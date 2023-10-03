@@ -14,7 +14,7 @@ public class Cliente {
 
     private int telefono;
 
-    private String nombreAlternativo;
+    private int nombreAlternativo;
 
     private String direccion;
 
@@ -22,7 +22,7 @@ public class Cliente {
 
     private ArrayList Mascota;
 
-    public Cliente(int idCliente, int Dni, String nombre, String apellido, int telefono, String nombreAlternativo, String direccion, boolean estadoCLiente, ArrayList Mascota) {
+    public Cliente(int idCliente, int Dni, String nombre, String apellido, int telefono, int nombreAlternativo, String direccion, boolean estadoCLiente, ArrayList Mascota) {
         this.idCliente = idCliente;
         this.Dni = Dni;
         this.nombre = nombre;
@@ -34,7 +34,7 @@ public class Cliente {
         this.Mascota = Mascota;
     }
 
-    public Cliente(int Dni, String nombre, String apellido, int telefono, String nombreAlternativo, String direccion, boolean estadoCLiente, ArrayList Mascota) {
+    public Cliente(int Dni, String nombre, String apellido, int telefono, int nombreAlternativo, String direccion, boolean estadoCLiente, ArrayList Mascota) {
         this.Dni = Dni;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -88,11 +88,11 @@ public class Cliente {
         this.telefono = telefono;
     }
 
-    public String getNombreAlternativo() {
+    public int getNombreAlternativo() {
         return nombreAlternativo;
     }
 
-    public void setNombreAlternativo(String nombreAlternativo) {
+    public void setNombreAlternativo(int nombreAlternativo) {
         this.nombreAlternativo = nombreAlternativo;
     }
 

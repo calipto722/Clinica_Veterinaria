@@ -58,7 +58,7 @@
       <Constructors/>
       <Methods/>
     </Class>
-    <Enum name="Tipo_Tratamiento" package="" visibility="public" xPosition="515.0" yPosition="414.0">
+    <Enum name="Tipo_Tratamiento" package="" visibility="public" xPosition="655.0" yPosition="510.0">
       <Literals>
         <Literal name="CASTRACION"/>
         <Literal name="VACUNACION"/>
@@ -69,9 +69,9 @@
     </Enum>
   </ClassDiagramComponents>
   <ClassDiagramRelations>
-    <HasRelation name="tiene" source="Visita" target="Tratamiento" type="Default" sourceCardinality="0..1" targetCardinality="1..1"/>
-    <HasRelation name="tiene" source="Cliente" target="Mascota" type="Default" sourceCardinality="0..1" targetCardinality="1..*" collectionType="ArrayList"/>
-    <HasRelation name="tiene" source="Mascota" target="Visita" type="Default" sourceCardinality="0..1" targetCardinality="1..*" collectionType="ArrayList"/>
     <UseRelation name="usa" source="Tratamiento" target="Tipo_Tratamiento" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="tiene" source="Visita" target="Tratamiento" type="Default" sourceCardinality="0..1" targetCardinality="1..1"/>
+    <HasRelation name="tiene" source="Mascota" target="Visita" type="Default" sourceCardinality="0..1" targetCardinality="1..*" collectionType="ArrayList"/>
+    <HasRelation name="tiene" source="Cliente" target="Mascota" type="Default" sourceCardinality="0..1" targetCardinality="1..*" collectionType="ArrayList"/>
   </ClassDiagramRelations>
 </ClassDiagram>
