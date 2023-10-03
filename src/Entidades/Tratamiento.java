@@ -3,17 +3,11 @@ package Entidades;
 public class Tratamiento {
 
     private int idTratamiento;
-
     private String nombre;
-
     private String tipoTratamiento;
-
     private String descripcion;
-
     private String medicamento;
-
     private int importe;
-
     private boolean estadoTratamiento;
 
     public Tratamiento(int idTratamiento, String nombre, String tipoTratamiento, String descripcion, String medicamento, int importe, boolean estadoTratamiento) {

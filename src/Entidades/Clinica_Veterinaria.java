@@ -22,8 +22,12 @@ public class Clinica_Veterinaria {
         Conexion.getConexion();
         
         ClienteData clientD= new ClienteData();
-        Cliente client=new Cliente(30215231, "Maria ","Juarez ", 1133220432, 22334589, "calle 14 n 4568", true);
-        clientD.GuardarCliente(client);
-    
+       // Cliente client=new Cliente(30215231, "Maria ","Juarez ", 1133220432, 22334589, "calle 14 n 4568", true);
+        //clientD.GuardarCliente(client);
+      //  Cliente clienM= new Cliente(1, 30215231,"Maria juanita ","Juarez ", 1135298799,22334589,"calle 14 n 3368", true);
+      // clientD.ModificarCliente(clienM);
+     // clientD.eliminarCliente(1);
+        System.out.println(clientD.listarClientes());
+       
 }
 }
