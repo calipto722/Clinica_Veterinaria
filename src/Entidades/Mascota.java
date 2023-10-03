@@ -5,24 +5,16 @@ import java.time.LocalDate;
 public class Mascota {
 
     private int idMascota;
-
     private String nombreAlias;
-
     private String sexo;
-
     private String especie;
-
     private String raza;
-
     private String colorPelo;
-
     private LocalDate fechaNacimiento;
-
     private boolean estadoMascota;
+    private Cliente cliente;
 
-    private Cliente idcliente;
-
-    public Mascota(int idMascota, String nombreAlias, String sexo, String especie, String raza, String colorPelo, LocalDate fechaNacimiento, boolean estadoMascota, Cliente idcliente) {
+    public Mascota(int idMascota, String nombreAlias, String sexo, String especie, String raza, String colorPelo, LocalDate fechaNacimiento, boolean estadoMascota, Cliente cliente) {
         this.idMascota = idMascota;
         this.nombreAlias = nombreAlias;
         this.sexo = sexo;
@@ -31,10 +23,10 @@ public class Mascota {
         this.colorPelo = colorPelo;
         this.fechaNacimiento = fechaNacimiento;
         this.estadoMascota = estadoMascota;
-        this.idcliente = idcliente;
+        this.cliente = cliente;
     }
 
-    public Mascota(String nombreAlias, String sexo, String especie, String raza, String colorPelo, LocalDate fechaNacimiento, boolean estadoMascota, Cliente idcliente) {
+    public Mascota(String nombreAlias, String sexo, String especie, String raza, String colorPelo, LocalDate fechaNacimiento, boolean estadoMascota, Cliente cliente) {
         this.nombreAlias = nombreAlias;
         this.sexo = sexo;
         this.especie = especie;
@@ -42,7 +34,7 @@ public class Mascota {
         this.colorPelo = colorPelo;
         this.fechaNacimiento = fechaNacimiento;
         this.estadoMascota = estadoMascota;
-        this.idcliente = idcliente;
+        this.cliente = cliente;
     }
 
     public Mascota() {
@@ -112,12 +104,12 @@ public class Mascota {
         this.estadoMascota = estadoMascota;
     }
 
-    public Cliente getIdcliente() {
-        return idcliente;
+    public Cliente getcliente() {
+        return cliente;
     }
 
-    public void setIdcliente(Cliente idcliente) {
-        this.idcliente = idcliente;
+    public void setIdcliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
     @Override

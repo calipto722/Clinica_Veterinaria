@@ -6,7 +6,7 @@ public class Tratamiento {
 
     private String nombre;
 
-    private Tipo_Tratamiento tipoTratamiento;
+    private String tipoTratamiento;
 
     private String descripcion;
 
@@ -16,7 +16,7 @@ public class Tratamiento {
 
     private boolean estadoTratamiento;
 
-    public Tratamiento(int idTratamiento, String nombre, Tipo_Tratamiento tipoTratamiento, String descripcion, String medicamento, int importe, boolean estadoTratamiento) {
+    public Tratamiento(int idTratamiento, String nombre, String tipoTratamiento, String descripcion, String medicamento, int importe, boolean estadoTratamiento) {
         this.idTratamiento = idTratamiento;
         this.nombre = nombre;
         this.tipoTratamiento = tipoTratamiento;
@@ -26,7 +26,7 @@ public class Tratamiento {
         this.estadoTratamiento = estadoTratamiento;
     }
 
-    public Tratamiento(String nombre, Tipo_Tratamiento tipoTratamiento, String descripcion, String medicamento, int importe, boolean estadoTratamiento) {
+    public Tratamiento(String nombre, String tipoTratamiento, String descripcion, String medicamento, int importe, boolean estadoTratamiento) {
         this.nombre = nombre;
         this.tipoTratamiento = tipoTratamiento;
         this.descripcion = descripcion;
@@ -54,11 +54,11 @@ public class Tratamiento {
         this.nombre = nombre;
     }
 
-    public Tipo_Tratamiento getTipoTratamiento() {
+    public String getTipoTratamiento() {
         return tipoTratamiento;
     }
 
-    public void setTipoTratamiento(Tipo_Tratamiento tipoTratamiento) {
+    public void setTipoTratamiento(String tipoTratamiento) {
         this.tipoTratamiento = tipoTratamiento;
     }
 

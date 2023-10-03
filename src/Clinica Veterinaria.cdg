@@ -12,12 +12,11 @@
         <Field name="nombreAlternativo" type="String" visibility="private"/>
         <Field name="direccion" type="String" visibility="private"/>
         <Field name="estadoCLiente" type="boolean" visibility="private"/>
-        <Field name="Mascota" type="ArrayList" visibility="private"/>
       </Fields>
       <Constructors/>
       <Methods/>
     </Class>
-    <Class name="Mascota" package="" visibility="public" xPosition="251.0" yPosition="111.0">
+    <Class name="Mascota" package="" visibility="public" xPosition="315.0" yPosition="100.0">
       <Fields>
         <Field name="idMascota" type="int" visibility="private"/>
         <Field name="nombreAlias" type="String" visibility="private"/>
@@ -27,12 +26,12 @@
         <Field name="colorPelo" type="String" visibility="private"/>
         <Field name="fechaNacimiento" type="Localdate" visibility="private"/>
         <Field name="estadoMascota" type="boolean" visibility="private"/>
-        <Field name="idcliente" type="Cliente" visibility="private"/>
+        <Field name="cliente" type="Cliente" visibility="private"/>
       </Fields>
       <Constructors/>
       <Methods/>
     </Class>
-    <Class name="Visita" package="" visibility="public" xPosition="525.0" yPosition="130.0">
+    <Class name="Visita" package="" visibility="public" xPosition="652.0" yPosition="100.0">
       <Fields>
         <Field name="idVisita" type="int" visibility="private"/>
         <Field name="fechaVisita" type="Localdate" visibility="private"/>
@@ -45,11 +44,11 @@
       <Constructors/>
       <Methods/>
     </Class>
-    <Class name="Tratamiento" package="" visibility="public" xPosition="746.0" yPosition="130.0">
+    <Class name="Tratamiento" package="" visibility="public" xPosition="1027.0" yPosition="100.0">
       <Fields>
         <Field name="idTratamiento" type="int" visibility="private"/>
         <Field name="nombre" type="String" visibility="private"/>
-        <Field name="tipoTratamiento" type="Tipo_tratamiento" visibility="private"/>
+        <Field name="tipoTratamiento" type="String" visibility="private"/>
         <Field name="descripcion" type="String" visibility="private"/>
         <Field name="medicamento" type="String" visibility="private"/>
         <Field name="importe" type="int" visibility="private"/>
@@ -58,20 +57,10 @@
       <Constructors/>
       <Methods/>
     </Class>
-    <Enum name="Tipo_Tratamiento" package="" visibility="public" xPosition="655.0" yPosition="510.0">
-      <Literals>
-        <Literal name="CASTRACION"/>
-        <Literal name="VACUNACION"/>
-        <Literal name="BAÑO"/>
-        <Literal name="CORTE_DE_PELO"/>
-        <Literal name="INTERNACION"/>
-      </Literals>
-    </Enum>
   </ClassDiagramComponents>
   <ClassDiagramRelations>
-    <UseRelation name="usa" source="Tratamiento" target="Tipo_Tratamiento" sourceCardinality="1..1" targetCardinality="1..1"/>
     <HasRelation name="tiene" source="Visita" target="Tratamiento" type="Default" sourceCardinality="0..1" targetCardinality="1..1"/>
-    <HasRelation name="tiene" source="Mascota" target="Visita" type="Default" sourceCardinality="0..1" targetCardinality="1..*" collectionType="ArrayList"/>
     <HasRelation name="tiene" source="Cliente" target="Mascota" type="Default" sourceCardinality="0..1" targetCardinality="1..*" collectionType="ArrayList"/>
+    <HasRelation name="tiene" source="Mascota" target="Visita" type="Default" sourceCardinality="0..1" targetCardinality="1..*" collectionType="ArrayList"/>
   </ClassDiagramRelations>
 </ClassDiagram>

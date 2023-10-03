@@ -1,28 +1,20 @@
 package Entidades;
 
-import java.util.ArrayList;
 
 public class Cliente {
 
     private int idCliente;
-
     private int Dni;
-
     private String nombre;
-
     private String apellido;
-
     private int telefono;
-
     private int nombreAlternativo;
-
     private String direccion;
-
     private boolean estadoCLiente;
 
-    private ArrayList Mascota;
+    
 
-    public Cliente(int idCliente, int Dni, String nombre, String apellido, int telefono, int nombreAlternativo, String direccion, boolean estadoCLiente, ArrayList Mascota) {
+    public Cliente(int idCliente, int Dni, String nombre, String apellido, int telefono, int nombreAlternativo, String direccion, boolean estadoCLiente) {
         this.idCliente = idCliente;
         this.Dni = Dni;
         this.nombre = nombre;
@@ -31,10 +23,10 @@ public class Cliente {
         this.nombreAlternativo = nombreAlternativo;
         this.direccion = direccion;
         this.estadoCLiente = estadoCLiente;
-        this.Mascota = Mascota;
+       
     }
 
-    public Cliente(int Dni, String nombre, String apellido, int telefono, int nombreAlternativo, String direccion, boolean estadoCLiente, ArrayList Mascota) {
+    public Cliente(int Dni, String nombre, String apellido, int telefono, int nombreAlternativo, String direccion, boolean estadoCLiente) {
         this.Dni = Dni;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -42,7 +34,7 @@ public class Cliente {
         this.nombreAlternativo = nombreAlternativo;
         this.direccion = direccion;
         this.estadoCLiente = estadoCLiente;
-        this.Mascota = Mascota;
+      ;
     }
 
     public Cliente() {
@@ -110,14 +102,6 @@ public class Cliente {
 
     public void setEstadoCLiente(boolean estadoCLiente) {
         this.estadoCLiente = estadoCLiente;
-    }
-
-    public ArrayList getMascota() {
-        return Mascota;
-    }
-
-    public void setMascota(ArrayList Mascota) {
-        this.Mascota = Mascota;
     }
 
     @Override

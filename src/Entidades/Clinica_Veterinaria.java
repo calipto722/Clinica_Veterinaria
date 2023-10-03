@@ -5,6 +5,7 @@
  */
 package Entidades;
 
+import Acceso_Base_de_Datos.ClienteData;
 import Acceso_Base_de_Datos.Conexion;
 
 /**
@@ -20,7 +21,9 @@ public class Clinica_Veterinaria {
         // TODO code application logic here
         Conexion.getConexion();
         
-        
-    }
+        ClienteData clientD= new ClienteData();
+        Cliente client=new Cliente(30215231, "Maria ","Juarez ", 1133220432, 22334589, "calle 14 n 4568", true);
+        clientD.GuardarCliente(client);
     
+}
 }
