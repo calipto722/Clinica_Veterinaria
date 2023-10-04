@@ -5,35 +5,26 @@ import java.time.LocalDate;
 public class Visita {
 
     private int idVisita;
-
     private LocalDate fechaVisita;
-
     private int importe;
-
     private Tratamiento tratamiento;
-
     private double pesoActual;
-
-    private double pesoPromedio;
-
     private Mascota mascota;
 
-    public Visita(int idVisita, LocalDate fechaVisita, int importe, Tratamiento tratamiento, double pesoActual, double pesoPromedio, Mascota mascota) {
+    public Visita(int idVisita, LocalDate fechaVisita, int importe, Tratamiento tratamiento, double pesoActual, Mascota mascota) {
         this.idVisita = idVisita;
         this.fechaVisita = fechaVisita;
         this.importe = importe;
         this.tratamiento = tratamiento;
         this.pesoActual = pesoActual;
-        this.pesoPromedio = pesoPromedio;
         this.mascota = mascota;
     }
 
-    public Visita(LocalDate fechaVisita, int importe, Tratamiento tratamiento, double pesoActual, double pesoPromedio, Mascota mascota) {
+    public Visita(LocalDate fechaVisita, int importe, Tratamiento tratamiento, double pesoActual, Mascota mascota) {
         this.fechaVisita = fechaVisita;
         this.importe = importe;
         this.tratamiento = tratamiento;
         this.pesoActual = pesoActual;
-        this.pesoPromedio = pesoPromedio;
         this.mascota = mascota;
     }
 
@@ -78,14 +69,6 @@ public class Visita {
 
     public void setPesoActual(double pesoActual) {
         this.pesoActual = pesoActual;
-    }
-
-    public double getPesoPromedio() {
-        return pesoPromedio;
-    }
-
-    public void setPesoPromedio(double pesoPromedio) {
-        this.pesoPromedio = pesoPromedio;
     }
 
     public Mascota getMascota() {
