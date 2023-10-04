@@ -8,33 +8,29 @@ public class Cliente {
     private String nombre;
     private String apellido;
     private int telefono;
-    private int nombreAlternativo;
+   private String nombreAlternativo;
     private String direccion;
     private boolean estadoCLiente;
 
-    
-
-    public Cliente(int idCliente, int Dni, String nombre, String apellido, int telefono, int nombreAlternativo, String direccion, boolean estadoCLiente) {
+    public Cliente(int idCliente, int Dni, String nombre, String apellido, int telefono, String contactoAlternativo, String direccion, boolean estadoCLiente) {
         this.idCliente = idCliente;
         this.Dni = Dni;
         this.nombre = nombre;
         this.apellido = apellido;
         this.telefono = telefono;
-        this.nombreAlternativo = nombreAlternativo;
+        this.nombreAlternativo = contactoAlternativo;
         this.direccion = direccion;
         this.estadoCLiente = estadoCLiente;
-       
     }
 
-    public Cliente(int Dni, String nombre, String apellido, int telefono, int nombreAlternativo, String direccion, boolean estadoCLiente) {
+    public Cliente(int Dni, String nombre, String apellido, int telefono, String contactoAlternativo, String direccion, boolean estadoCLiente) {
         this.Dni = Dni;
         this.nombre = nombre;
         this.apellido = apellido;
         this.telefono = telefono;
-        this.nombreAlternativo = nombreAlternativo;
+        this.nombreAlternativo = contactoAlternativo;
         this.direccion = direccion;
         this.estadoCLiente = estadoCLiente;
-      ;
     }
 
     public Cliente() {
@@ -80,12 +76,12 @@ public class Cliente {
         this.telefono = telefono;
     }
 
-    public int getNombreAlternativo() {
+    public String getNombreAlternativo() {
         return nombreAlternativo;
     }
 
-    public void setNombreAlternativo(int nombreAlternativo) {
-        this.nombreAlternativo = nombreAlternativo;
+    public void setNombreAlternativo(String contactoAlternativo) {
+        this.nombreAlternativo = contactoAlternativo;
     }
 
     public String getDireccion() {
@@ -106,9 +102,9 @@ public class Cliente {
 
     @Override
     public String toString() {
-        return  "idCliente= " + idCliente + ", nombre= " + nombre + ", apellido= " + apellido ;
+        return  "idCliente=" + idCliente + ", Dni=" + Dni + ", nombre=" + nombre + ", apellido=" + apellido ;
     }
+
     
-    
-    
+
 }

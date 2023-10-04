@@ -38,7 +38,7 @@ public class ClienteData {
             ps.setString(3, cliente.getApellido());
             ps.setInt(4, cliente.getTelefono());
             ps.setString(5, cliente.getDireccion());
-            ps.setInt(6, cliente.getNombreAlternativo());
+            ps.setString(6, cliente.getNombreAlternativo());
             ps.setBoolean(7, cliente.isEstadoCLiente());
             ps.executeUpdate();
             ResultSet rs=ps.getGeneratedKeys();
@@ -63,7 +63,7 @@ public class ClienteData {
             ps.setString(3, cliente.getApellido());
             ps.setInt(4, cliente.getTelefono());
             ps.setString(5, cliente.getDireccion());
-            ps.setInt(6, cliente.getNombreAlternativo());
+            ps.setString(6, cliente.getNombreAlternativo());
             ps.setBoolean(7, cliente.isEstadoCLiente());
             ps.setInt(8, cliente.getIdCliente());
             int exito = ps.executeUpdate();
@@ -113,7 +113,7 @@ public class ClienteData {
                 cliente.setApellido(rs.getString("apellido"));
                 cliente.setTelefono(rs.getInt("telefono"));
                 cliente.setDireccion(rs.getString("direccion"));
-                cliente.setNombreAlternativo(rs.getInt("contactoAlternativo"));
+                cliente.setNombreAlternativo(rs.getString("contactoAlternativo"));
                 cliente.setEstadoCLiente(rs.getBoolean("activo"));
                 clientes.add(cliente);
             }
