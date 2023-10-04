@@ -29,7 +29,8 @@ public class ClienteData {
     }
     
     public void GuardarCliente (Cliente cliente){
-        String sql= "INSERT INTO cliente (dni,nombre,apellido,telefono,direccion,contactoAlternativo,activo)"+ "VALUES (?,?,?,?,?,?,?)";
+        String sql= "INSERT INTO cliente (dni,nombre,apellido,telefono,direccion,contactoAlternativo,activo)"
+                +"VALUES (?,?,?,?,?,?,?)";
         
         try{
             PreparedStatement ps=con.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);

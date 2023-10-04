@@ -6,11 +6,11 @@ public class Tratamiento {
     private String nombre;
     private String tipoTratamiento;
     private String descripcion;
-    private String medicamento;
+    private Producto medicamento;
     private int importe;
     private boolean estadoTratamiento;
 
-    public Tratamiento(int idTratamiento, String nombre, String tipoTratamiento, String descripcion, String medicamento, int importe, boolean estadoTratamiento) {
+    public Tratamiento(int idTratamiento, String nombre, String tipoTratamiento, String descripcion, Producto medicamento, int importe, boolean estadoTratamiento) {
         this.idTratamiento = idTratamiento;
         this.nombre = nombre;
         this.tipoTratamiento = tipoTratamiento;
@@ -20,12 +20,11 @@ public class Tratamiento {
         this.estadoTratamiento = estadoTratamiento;
     }
 
-    public Tratamiento(String nombre, String tipoTratamiento, String descripcion, String medicamento, int importe, boolean estadoTratamiento) {
+    public Tratamiento(String nombre, String tipoTratamiento, String descripcion, Producto medicamento, boolean estadoTratamiento) {
         this.nombre = nombre;
         this.tipoTratamiento = tipoTratamiento;
         this.descripcion = descripcion;
         this.medicamento = medicamento;
-        this.importe = importe;
         this.estadoTratamiento = estadoTratamiento;
     }
 
@@ -64,11 +63,11 @@ public class Tratamiento {
         this.descripcion = descripcion;
     }
 
-    public String getMedicamento() {
+    public Producto getMedicamento() {
         return medicamento;
     }
 
-    public void setMedicamento(String medicamento) {
+    public void setMedicamento(Producto medicamento) {
         this.medicamento = medicamento;
     }
 
@@ -88,6 +87,7 @@ public class Tratamiento {
         this.estadoTratamiento = estadoTratamiento;
     }
 
+ 
     @Override
     public String toString() {
         return  "idTratamiento=" + idTratamiento + ", nombre=" + nombre ;
