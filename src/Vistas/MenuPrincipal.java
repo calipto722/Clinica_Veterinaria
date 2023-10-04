@@ -96,9 +96,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu2);
 
-        jMenu3.setText("Medicamentos");
+        jMenu3.setText("Productos");
 
-        jMenuItem4.setText("Buscar Medicamentos");
+        jMenuItem4.setText("Buscar Productos");
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem4ActionPerformed(evt);
@@ -118,7 +118,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jMenu4.setText("Visita");
 
-        jMenuItem5.setText("Gegistrar visita");
+        jMenuItem5.setText("Registrar visita");
         jMenu4.add(jMenuItem5);
 
         jMenuBar1.add(jMenu4);
