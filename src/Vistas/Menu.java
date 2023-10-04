@@ -118,7 +118,7 @@ public class Menu extends javax.swing.JFrame {
 
         jMenu4.setText("Visita");
 
-        jMenuItem5.setText("Ingreso");
+        jMenuItem5.setText("Gegistrar visita");
         jMenu4.add(jMenuItem5);
 
         jMenuBar1.add(jMenu4);
