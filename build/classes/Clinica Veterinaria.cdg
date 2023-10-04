@@ -2,7 +2,7 @@
 
 <ClassDiagram name="Clinica Veterinaria">
   <ClassDiagramComponents>
-    <Class name="Cliente" package="" visibility="public" xPosition="26.0" yPosition="111.0">
+    <Class name="Cliente" package="" visibility="public" xPosition="28.0" yPosition="114.0">
       <Fields>
         <Field name="idCliente" type="int" visibility="private"/>
         <Field name="Dni" type="int" visibility="private"/>
@@ -13,7 +13,9 @@
         <Field name="direccion" type="String" visibility="private"/>
         <Field name="estadoCLiente" type="boolean" visibility="private"/>
       </Fields>
-      <Constructors/>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
       <Methods/>
     </Class>
     <Class name="Mascota" package="" visibility="public" xPosition="315.0" yPosition="100.0">
@@ -28,7 +30,9 @@
         <Field name="estadoMascota" type="boolean" visibility="private"/>
         <Field name="cliente" type="Cliente" visibility="private"/>
       </Fields>
-      <Constructors/>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
       <Methods/>
     </Class>
     <Class name="Visita" package="" visibility="public" xPosition="652.0" yPosition="100.0">
@@ -41,7 +45,9 @@
         <Field name="pesoPromedio" type="double" visibility="private"/>
         <Field name="mascota" type="Mascota" visibility="private"/>
       </Fields>
-      <Constructors/>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
       <Methods/>
     </Class>
     <Class name="Tratamiento" package="" visibility="public" xPosition="1027.0" yPosition="100.0">
@@ -54,13 +60,29 @@
         <Field name="importe" type="int" visibility="private"/>
         <Field name="estadoTratamiento" type="boolean" visibility="private"/>
       </Fields>
-      <Constructors/>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="Producto" package="" visibility="public" xPosition="1406.0" yPosition="388.0">
+      <Fields>
+        <Field name="idProducto" type="int" visibility="private"/>
+        <Field name="nombre" type="String" visibility="private"/>
+        <Field name="descripcion" type="String" visibility="private"/>
+        <Field name="precio" type="int" visibility="private"/>
+        <Field name="stock" type="int" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
       <Methods/>
     </Class>
   </ClassDiagramComponents>
   <ClassDiagramRelations>
     <HasRelation name="tiene" source="Visita" target="Tratamiento" type="Default" sourceCardinality="0..1" targetCardinality="1..1"/>
-    <HasRelation name="tiene" source="Cliente" target="Mascota" type="Default" sourceCardinality="0..1" targetCardinality="1..*" collectionType="ArrayList"/>
+    <UseRelation name="" source="Tratamiento" target="Producto" sourceCardinality="1..1" targetCardinality="1..*"/>
     <HasRelation name="tiene" source="Mascota" target="Visita" type="Default" sourceCardinality="0..1" targetCardinality="1..*" collectionType="ArrayList"/>
+    <HasRelation name="tiene" source="Cliente" target="Mascota" type="Default" sourceCardinality="0..1" targetCardinality="1..*" collectionType="ArrayList"/>
   </ClassDiagramRelations>
 </ClassDiagram>
