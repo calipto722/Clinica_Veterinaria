@@ -13,6 +13,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -126,5 +128,34 @@ public class ClienteData {
         
         return clientes;
         
+    }
+    public Cliente buscarCliente(int id){
+       Cliente cliente =null;
+        String sql= "SELECT* FROM cliente WHERE idCliente=?";
+        PreparedStatement ps;
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs= ps.executeQuery();
+            if (rs.next()) {                
+                 cliente= new Cliente ();
+                
+                cliente.setIdCliente(id);
+                cliente.setDni(rs.getInt("dni"));
+                cliente.setNombre(rs.getString("nombre"));
+                cliente.setApellido(rs.getString("apellido"));
+                cliente.setTelefono(rs.getInt("telefono"));
+                cliente.setDireccion(rs.getString("direccion"));
+                cliente.setNombreAlternativo(rs.getString("contactoAlternativo"));
+                cliente.setEstadoCLiente(rs.getBoolean("activo"));
+            }else{
+                  JOptionPane.showMessageDialog(null, "No existe el Cliente");
+                ps.close();
+            }
+           
+        } catch (SQLException ex) {
+          JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Cliente "+ ex.getMessage());
+        }
+        return cliente;
     }
 }

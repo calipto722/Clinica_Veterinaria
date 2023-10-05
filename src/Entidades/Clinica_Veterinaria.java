@@ -7,6 +7,9 @@ package Entidades;
 
 import Acceso_Base_de_Datos.ClienteData;
 import Acceso_Base_de_Datos.Conexion;
+import Acceso_Base_de_Datos.MascotaData;
+import java.time.LocalDate;
+import java.time.Month;
 
 /**
  *
@@ -20,16 +23,17 @@ public class Clinica_Veterinaria {
     public static void main(String[] args) {
         // TODO code application logic here
         Conexion.getConexion();
-        
+        MascotaData mascotaData= new MascotaData();
         ClienteData clientD= new ClienteData();
-       Cliente client=new Cliente(30215220, "Maria ","Juarez ", 133220432, "2334589", "calle 14 n 4568", true);
-       clientD.GuardarCliente(client);
+//       Cliente client=new Cliente(30215220, "Maria ","Juarez ", 133220432, "2334589", "calle 14 n 4568", true);
+//       clientD.GuardarCliente(client);
       //  Cliente clienM= new Cliente(1, 30215231,"Maria juanita ","Juarez ", 1135298799,22334589,"calle 14 n 3368", true);
       // clientD.ModificarCliente(clienM);
      // clientD.eliminarCliente(1);
         //System.out.println(clientD.listarClientes());
-        
-        ///Preguntar 
+        Cliente cliente=clientD.buscarCliente(1);
+        Mascota mascota= new Mascota("Cielo", "Hembra","Perro","Callejera", "Negro", LocalDate.of(2022, Month.MARCH,12), true, cliente);
        
+       mascotaData.GuardarMascota(mascota);
 }
 }

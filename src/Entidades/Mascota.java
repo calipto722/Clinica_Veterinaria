@@ -114,7 +114,7 @@ public class Mascota {
 
     @Override
     public String toString() {
-        return "idMascota=" + idMascota + ", nombreAlias=" + nombreAlias ;
+        return "idMascota=" + idMascota + ", nombreAlias=" + nombreAlias + " idCliente"+ cliente;
     }
     
     
