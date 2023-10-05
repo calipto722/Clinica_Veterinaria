@@ -66,6 +66,13 @@ public class MascotaData {
             ps.setBoolean(8,mascota.isEstadoMascota());
             
             ps.setInt(8, mascota.getIdMascota());
+            int exito = ps.executeUpdate();
+            
+            if (exito==1){
+                JOptionPane.showMessageDialog(null, "Modificado Exitosamente. ");
+            }else {
+                JOptionPane.showMessageDialog(null, "La Mascota no existe");
+            }
         } catch (SQLException ex) {
             Logger.getLogger(MascotaData.class.getName()).log(Level.SEVERE, null, ex);
         }
