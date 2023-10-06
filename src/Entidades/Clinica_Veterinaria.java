@@ -60,7 +60,7 @@ public class Clinica_Veterinaria {
 //        Mascota mascota= new Mascota("Cachi", "Macho","gato","Mestizo", "blanco", LocalDate.of(2019, Month.MARCH,5), true, cliente);
 //       
 //       mascotaData.GuardarMascota(mascota);
- Tratamiento tratamiento=new Tratamiento("Baño", "Bañar al perro por mugroso",producto, true);
+ Tratamiento tratamiento=new Tratamiento("Baño", "perro super mugriento", producto, 3500, true);
  TratamientoData tratData=new TratamientoData();
  tratData.GuardarTratamiento(tratamiento);
  VisitaData visitData= new VisitaData();
