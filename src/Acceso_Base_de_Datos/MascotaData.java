@@ -64,7 +64,6 @@ public class MascotaData {
             ps.setDate(6,Date.valueOf(mascota.getFechaNacimiento()) );
             ps.setInt(7,mascota.getcliente().getIdCliente());
             ps.setBoolean(8,mascota.isEstadoMascota());
-            
             ps.setInt(8, mascota.getIdMascota());
             int exito = ps.executeUpdate();
             
@@ -73,6 +72,7 @@ public class MascotaData {
             }else {
                 JOptionPane.showMessageDialog(null, "La Mascota no existe");
             }
+            ps.close();
         } catch (SQLException ex) {
             Logger.getLogger(MascotaData.class.getName()).log(Level.SEVERE, null, ex);
         }

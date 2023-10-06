@@ -29,17 +29,17 @@ public class IngresoProductos extends javax.swing.JInternalFrame {
 
         jSeparator1 = new javax.swing.JSeparator();
         jPanel1 = new javax.swing.JPanel();
-        jtCodigo = new javax.swing.JTextField<>();
+        jtCodigo = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jtNombre = new javax.swing.JTextField<>();
+        jtNombre = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jtDescripcion = new javax.swing.JTextField<>();
+        jtDescripcion = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
         jPanel2 = new javax.swing.JPanel();
-        jtPrecio = new javax.swing.JTextField<>();
-        jtStock = new javax.swing.JTextField<>();
+        jtPrecio = new javax.swing.JTextField();
+        jtStock = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
@@ -99,8 +99,8 @@ public class IngresoProductos extends javax.swing.JInternalFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(7, 7, 7)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -228,10 +228,10 @@ public class IngresoProductos extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JTextField<int> jtCodigo;
-    private javax.swing.JTextField<String> jtDescripcion;
-    private javax.swing.JTextField<String> jtNombre;
-    private javax.swing.JTextField<int> jtPrecio;
-    private javax.swing.JTextField<int> jtStock;
+    private javax.swing.JTextField jtCodigo;
+    private javax.swing.JTextField jtDescripcion;
+    private javax.swing.JTextField jtNombre;
+    private javax.swing.JTextField jtPrecio;
+    private javax.swing.JTextField jtStock;
     // End of variables declaration//GEN-END:variables
 }
