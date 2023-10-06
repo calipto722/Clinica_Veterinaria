@@ -68,7 +68,7 @@ public class TratamientoData {
             } else {
                   JOptionPane.showMessageDialog(null, "No existe el Tratamiento");
                 ps.close();
-
+                
             }
         }catch (SQLException ex) {
           JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Tratamiento "+ ex.getMessage());
