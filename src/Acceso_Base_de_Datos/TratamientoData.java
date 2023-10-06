@@ -5,10 +5,43 @@
  */
 package Acceso_Base_de_Datos;
 
+import Entidades.Tratamiento;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+import sun.security.rsa.RSACore;
+
 /**
  *
  * @author noelia
  */
 public class TratamientoData {
+    Tratamiento tratamiento =new Tratamiento();
+    private Connection con =null;
+    public TratamientoData(){
+    con=Conexion.getConexion();
+}
+    public void GuardarTratamiento(Tratamiento tratamiento){
+        String sql= "INSERT INTO `tratamiento`(`descripcion`, `medicamento`, `importe`, `tipoTratamiento`, `activo`) VALUES (?,?,?,?,?,?)";
+        
+        try {
+            PreparedStatement ps = con.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
+            ps.setString(1, tratamiento.getDescripcion());
+            ps.setString(2, tratamiento.getMedicamento().getNombre());
+            ps.setInt(3,tratamiento.getImporte());
+            ps.setString(4, tratamiento.getTipoTratamiento());
+            ps.setBoolean(5,tratamiento.isEstadoTratamiento());
+            ps.executeUpdate();
+            ResultSet rs=ps.getGeneratedKeys();
+            if (rs.next()) {
+                tratamiento.setIdTratamiento(rs.getInt(1)); 
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"ERROR al acceder a la tabla Tratamiento "+ ex.getMessage());
+        }
+    }
     
 }
