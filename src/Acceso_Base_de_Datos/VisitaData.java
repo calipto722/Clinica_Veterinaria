@@ -99,8 +99,7 @@ public class VisitaData {
                 visita = new Visita();
                 Mascota mascota=new Mascota();
                 Tratamiento tratamiento = new Tratamiento();
-               
-               // tratamiento = tratData.buscarTratamiento(rs.getInt("idTratamiento")); //crear metodo para buscar el tratamiento
+                tratamiento = tratData.BuscarTratamiento(rs.getInt("idTratamiento")); 
                 mascota = mascData.BuscarMascota(rs.getInt("idMascota"));   
                 visita.setMascota(mascota);
                 visita.setIdVisita(rs.getInt("idVisita"));
