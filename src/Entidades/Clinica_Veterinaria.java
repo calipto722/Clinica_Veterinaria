@@ -28,6 +28,7 @@ public class Clinica_Veterinaria {
         Conexion.getConexion();
         MascotaData mascotaData= new MascotaData();
        ClienteData clientD= new ClienteData();
+       Cliente cliente= new Cliente();
 //       Cliente client=new Cliente(30215220, "Maria ","Juarez ", 133220432, "2334589", "calle 14 n 4568", true);
 //       clientD.GuardarCliente(client);
       //  Cliente clienM= new Cliente(1, 30215231,"Maria juanita ","Juarez ", 1135298799,22334589,"calle 14 n 3368", true);
@@ -42,7 +43,7 @@ public class Clinica_Veterinaria {
 
 Producto producto=new Producto("Sepillo","Peine para perro",600, 2);
         ProductoData pd=new ProductoData();
-       // pd.GuardarProducto(producto);
+        pd.GuardarProducto(producto);
         System.out.println(pd.BuscarProductoPorId(1));
         List<Producto> productos=pd.ListarProductos();
         System.out.println("-------Listado-----");
@@ -50,7 +51,9 @@ Producto producto=new Producto("Sepillo","Peine para perro",600, 2);
             System.out.println(producto1);
         }
 
-        Cliente cliente=clientD.buscarCliente(2);
+//            cliente=clientD.buscarCliente(1);
+//            
+//            System.out.println(cliente);
 //        Mascota mascota= new Mascota("Cachi", "Macho","gato","Mestizo", "blanco", LocalDate.of(2019, Month.MARCH,5), true, cliente);
 //       
 //       mascotaData.GuardarMascota(mascota);

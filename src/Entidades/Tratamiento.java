@@ -3,16 +3,14 @@ package Entidades;
 public class Tratamiento {
 
     private int idTratamiento;
-    private String nombre;
     private String tipoTratamiento;
     private String descripcion;
     private Producto medicamento;
     private int importe;
     private boolean estadoTratamiento;
 
-    public Tratamiento(int idTratamiento, String nombre, String tipoTratamiento, String descripcion, Producto medicamento, int importe, boolean estadoTratamiento) {
+    public Tratamiento(int idTratamiento, String tipoTratamiento, String descripcion, Producto medicamento, int importe, boolean estadoTratamiento) {
         this.idTratamiento = idTratamiento;
-        this.nombre = nombre;
         this.tipoTratamiento = tipoTratamiento;
         this.descripcion = descripcion;
         this.medicamento = medicamento;
@@ -21,7 +19,6 @@ public class Tratamiento {
     }
 
     public Tratamiento(String nombre, String tipoTratamiento, String descripcion, Producto medicamento, boolean estadoTratamiento) {
-        this.nombre = nombre;
         this.tipoTratamiento = tipoTratamiento;
         this.descripcion = descripcion;
         this.medicamento = medicamento;
@@ -37,14 +34,6 @@ public class Tratamiento {
 
     public void setIdTratamiento(int idTratamiento) {
         this.idTratamiento = idTratamiento;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
     }
 
     public String getTipoTratamiento() {
@@ -90,7 +79,7 @@ public class Tratamiento {
  
     @Override
     public String toString() {
-        return  "idTratamiento=" + idTratamiento + ", nombre=" + nombre ;
+        return  "idTratamiento=" + idTratamiento ;
     }
     
 }

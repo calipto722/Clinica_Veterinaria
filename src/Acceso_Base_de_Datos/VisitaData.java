@@ -26,7 +26,9 @@ public class VisitaData {
     
     Visita visita = new Visita();
     private Connection con=null;
-    
+     MascotaData mascData = new MascotaData();
+    TratamientoData tratData = new TratamientoData();
+
     public VisitaData(){
         con=Conexion.getConexion();
     }
@@ -95,12 +97,12 @@ public class VisitaData {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 visita = new Visita();
-                Mascota mascota = new Mascota();
+                Mascota mascota=new Mascota();
                 Tratamiento tratamiento = new Tratamiento();
-                MascotaData mascData = new MascotaData();
-                TratamientoData tratData = new TratamientoData();
-                tratamiento = tratData.buscarTratamiento(rs.getInt("idTratamiento")); //crear metodo para buscar el tratamiento
-                mascota = mascData.buscarMascota(rs.getInt("idMascota")); //crear metodo buscar mascota
+               
+               // tratamiento = tratData.buscarTratamiento(rs.getInt("idTratamiento")); //crear metodo para buscar el tratamiento
+                mascota = mascData.BuscarMascota(rs.getInt("idMascota"));   
+                visita.setMascota(mascota);
                 visita.setIdVisita(rs.getInt("idVisita"));
                 visita.setFechaVisita(rs.getDate("fechaVisiita").toLocalDate());
                 visita.setImporte(rs.getInt("importe"));
