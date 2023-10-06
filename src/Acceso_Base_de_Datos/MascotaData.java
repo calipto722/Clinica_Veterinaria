@@ -122,4 +122,34 @@ public class MascotaData {
             
             return mascotas;
    }
+   public void BuscarMascota(int id){
+       String sql="SELECT `alias`, `sexo`, `especie`, `raza`, `colorPelo`, `fechaNac`, `idCliente`, `activo` FROM `mascota` WHERE `idMascota`=?";
+       try{
+       PreparedStatement ps=con.prepareStatement(sql);
+       ps.setInt(1, id);
+       ResultSet rs= ps.executeQuery();
+           if (true) {
+               Mascota mascota= new Mascota();
+               ClienteData clienteData= new ClienteData();
+               Cliente cliente =new Cliente();
+               cliente=clienteData.buscarCliente(rs.getInt("idCliente"));
+               mascota.setIdMascota(id);
+               mascota.setColorPelo(rs.getString("colorPelo"));
+               mascota.setEspecie(rs.getString("especie"));
+               mascota.setEstadoMascota(rs.getBoolean("estado"));
+               mascota.setFechaNacimiento(rs.getDate("fechaNac").toLocalDate());
+               mascota.setIdcliente(cliente);
+               mascota.setNombreAlias(rs.getString("alias"));
+               mascota.setRaza(rs.getString("raza"));
+               mascota.setSexo(rs.getString("sexo"));
+               
+           } else {
+                  JOptionPane.showMessageDialog(null, "No existe La Mascota");
+                ps.close();
+           }
+       }catch(SQLException ex){
+             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Mascota "+ ex.getMessage());
+       }
+           
+   }
 }
