@@ -5,6 +5,7 @@
  */
 package Acceso_Base_de_Datos;
 
+import Entidades.Producto;
 import Entidades.Tratamiento;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -43,5 +44,35 @@ public class TratamientoData {
             JOptionPane.showMessageDialog(null,"ERROR al acceder a la tabla Tratamiento "+ ex.getMessage());
         }
     }
-    
+    public Tratamiento BuscarTratamiento (int id){
+        Tratamiento tratamiento =null;
+        String sql="SELECT * FROM `tratamiento` WHERE idTratamiento=?";
+        
+        try {
+            PreparedStatement ps=con.prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs= ps.executeQuery();
+            //``, `medicamento`, `importe`, `tipoTratamiento`, ``
+            if (rs.next()) {
+                 tratamiento= new Tratamiento();
+                 ProductoData productoData=new ProductoData();
+                 Producto producto = new Producto();
+                 producto=productoData.BuscarProductoPorId(rs.getInt("medicamento"));
+                tratamiento.setDescripcion(rs.getString("descripcion"));
+                tratamiento.setEstadoTratamiento(rs.getBoolean("activo"));
+                tratamiento.setIdTratamiento(id);
+                tratamiento.setImporte(rs.getInt("importe"));
+                tratamiento.setMedicamento(producto);
+                tratamiento.setTipoTratamiento(rs.getString("tipoTratamiento"));
+                
+            } else {
+                  JOptionPane.showMessageDialog(null, "No existe el Tratamiento");
+                ps.close();
+
+            }
+        }catch (SQLException ex) {
+          JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Tratamiento "+ ex.getMessage());
+        }
+      return tratamiento;  
+    }
 }
