@@ -122,7 +122,7 @@ public class MascotaData {
             
             return mascotas;
    }
-   public void BuscarMascota(int id){
+   public Mascota BuscarMascota(int id){
        String sql="SELECT `alias`, `sexo`, `especie`, `raza`, `colorPelo`, `fechaNac`, `idCliente`, `activo` FROM `mascota` WHERE `idMascota`=?";
        try{
        PreparedStatement ps=con.prepareStatement(sql);
@@ -150,6 +150,6 @@ public class MascotaData {
        }catch(SQLException ex){
              JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Mascota "+ ex.getMessage());
        }
-           
+          return mascota; 
    }
 }
