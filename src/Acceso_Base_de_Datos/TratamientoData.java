@@ -44,6 +44,10 @@ public class TratamientoData {
             JOptionPane.showMessageDialog(null,"ERROR al acceder a la tabla Tratamiento "+ ex.getMessage());
         }
     }
+    
+    public void ModificarTratamiento(Tratamiento tratamiento){
+        String sql= "";
+    }
     public Tratamiento BuscarTratamiento (int id){
         Tratamiento tratamiento =null;
         String sql="SELECT * FROM `tratamiento` WHERE idTratamiento=?";
