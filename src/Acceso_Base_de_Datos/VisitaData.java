@@ -32,7 +32,7 @@ public class VisitaData {
     public VisitaData(){
         con=Conexion.getConexion();
     }
-    public void RegistrarVisita(Visita visita){
+    public void GuardarVisita(Visita visita){
         String sql="INSERT INTO `visita`( idMascota, fechaVisita, importe, peso, idTratamiento) VALUES (?,?,?,?,?) ";
         try{
             PreparedStatement ps= con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -103,7 +103,7 @@ public class VisitaData {
                 mascota = mascData.BuscarMascota(rs.getInt("idMascota"));   
                 visita.setMascota(mascota);
                 visita.setIdVisita(rs.getInt("idVisita"));
-                visita.setFechaVisita(rs.getDate("fechaVisiita").toLocalDate());
+                visita.setFechaVisita(rs.getDate("fechaVisita").toLocalDate());
                 visita.setImporte(rs.getInt("importe"));
                 visita.setPesoActual(rs.getDouble("peso"));
                 visita.setTratamiento(tratamiento);
