@@ -31,7 +31,7 @@ public class TratamientoData {
         try {
             PreparedStatement ps = con.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, tratamiento.getDescripcion());
-            ps.setInt(2, tratamiento.getMedicamento().getIdProducto());
+            ps.setInt(2, tratamiento.getProducto().getIdProducto());
             ps.setInt(3,tratamiento.getImporte());
             ps.setString(4, tratamiento.getTipoTratamiento());
             ps.setBoolean(5,tratamiento.isEstadoTratamiento());
@@ -66,7 +66,7 @@ public class TratamientoData {
                 tratamiento.setEstadoTratamiento(rs.getBoolean("activo"));
                 tratamiento.setIdTratamiento(id);
                 tratamiento.setImporte(rs.getInt("importe"));
-                tratamiento.setMedicamento(producto);
+                tratamiento.setProducto(producto);
                 tratamiento.setTipoTratamiento(rs.getString("tipoTratamiento"));
                 
             } else {

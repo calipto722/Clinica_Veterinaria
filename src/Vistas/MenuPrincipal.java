@@ -122,6 +122,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMenu4.setText("Visita");
 
         jMenuItem5.setText("Registrar visita");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
         jMenu4.add(jMenuItem5);
 
         jMenuBar1.add(jMenu4);
@@ -187,8 +192,18 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     private void jSMSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSMSalirActionPerformed
-dispose();        // TODO add your handling code here:
+        dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_jSMSalirActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        Escritorio.removeAll();
+        Escritorio.repaint();
+        Imprecion imprecion = new Imprecion();
+        imprecion.setVisible(true);
+        Escritorio.add(imprecion);
+        Escritorio.moveToFront(imprecion);
+// TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     /**
      * @param args the command line arguments

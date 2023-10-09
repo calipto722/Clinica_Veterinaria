@@ -5,23 +5,23 @@ public class Tratamiento {
     private int idTratamiento;
     private String tipoTratamiento;
     private String descripcion;
-    private Producto medicamento;
+    private Producto producto;
     private int importe;
     private boolean estadoTratamiento;
 
-    public Tratamiento(int idTratamiento, String tipoTratamiento, String descripcion, Producto medicamento, int importe, boolean estadoTratamiento) {
+    public Tratamiento(int idTratamiento, String tipoTratamiento, String descripcion, Producto producto, int importe, boolean estadoTratamiento) {
         this.idTratamiento = idTratamiento;
         this.tipoTratamiento = tipoTratamiento;
         this.descripcion = descripcion;
-        this.medicamento = medicamento;
+        this.producto = producto;
         this.importe = importe;
         this.estadoTratamiento = estadoTratamiento;
     }
 
-    public Tratamiento(String tipoTratamiento, String descripcion, Producto medicamento,int importe, boolean estadoTratamiento) {
+    public Tratamiento(String tipoTratamiento, String descripcion, Producto producto,int importe, boolean estadoTratamiento) {
         this.tipoTratamiento = tipoTratamiento;
         this.descripcion = descripcion;
-        this.medicamento = medicamento;
+        this.producto = producto;
         this.estadoTratamiento = estadoTratamiento;
         this.importe= importe;
     }
@@ -53,12 +53,12 @@ public class Tratamiento {
         this.descripcion = descripcion;
     }
 
-    public Producto getMedicamento() {
-        return medicamento;
+    public Producto getProducto() {
+        return producto;
     }
 
-    public void setMedicamento(Producto medicamento) {
-        this.medicamento = medicamento;
+    public void setProducto(Producto producto) {
+        this.producto = producto;
     }
 
     public int getImporte() {
