@@ -26,7 +26,7 @@ public class TratamientoData {
     con=Conexion.getConexion();
 }
     public void GuardarTratamiento(Tratamiento tratamiento){
-        String sql= "INSERT INTO `tratamiento`(`descripcion`, `medicamento`, `importe`, `tipoTratamiento`, `activo`) VALUES (?,?,?,?,?,?)";
+        String sql= "INSERT INTO `tratamiento`(`descripcion`, `medicamento`, `importe`, `tipoTratamiento`, `activo`) VALUES (?,?,?,?,?)";
         
         try {
             PreparedStatement ps = con.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);

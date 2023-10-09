@@ -18,11 +18,12 @@ public class Tratamiento {
         this.estadoTratamiento = estadoTratamiento;
     }
 
-    public Tratamiento(String nombre, String tipoTratamiento, String descripcion, Producto medicamento, boolean estadoTratamiento) {
+    public Tratamiento(String tipoTratamiento, String descripcion, Producto medicamento,int importe, boolean estadoTratamiento) {
         this.tipoTratamiento = tipoTratamiento;
         this.descripcion = descripcion;
         this.medicamento = medicamento;
         this.estadoTratamiento = estadoTratamiento;
+        this.importe= importe;
     }
 
     public Tratamiento() {

@@ -133,7 +133,7 @@ public class MascotaData {
                ClienteData clienteData= new ClienteData();
                Cliente cliente =new Cliente();
                cliente=clienteData.buscarCliente(rs.getInt("idCliente"));
-               mascota.setIdMascota(id);
+               mascota.setIdMascota(rs.getInt("idMascota"));
                mascota.setColorPelo(rs.getString("colorPelo"));
                mascota.setEspecie(rs.getString("especie"));
                mascota.setEstadoMascota(rs.getBoolean("estado"));
