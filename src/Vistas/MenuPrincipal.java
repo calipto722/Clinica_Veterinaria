@@ -30,17 +30,18 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         Escritorio = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuClientes = new javax.swing.JMenu();
+        jmGestionClientes = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        jMmascotas = new javax.swing.JMenu();
+        jMGestionMascotas = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
-        jMenu3 = new javax.swing.JMenu();
-        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuProductos = new javax.swing.JMenu();
+        jmBuscarProductos = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
-        jMenu4 = new javax.swing.JMenu();
-        jMenuItem5 = new javax.swing.JMenuItem();
+        jmRegistroProducto = new javax.swing.JMenuItem();
+        jMenuVisita = new javax.swing.JMenu();
+        jmRegistrarVisita = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         jMenuItem8 = new javax.swing.JMenuItem();
         jSMSalir = new javax.swing.JMenuItem();
@@ -69,25 +70,25 @@ public class MenuPrincipal extends javax.swing.JFrame {
             .addComponent(Escritorio)
         );
 
-        jMenu1.setText("Clientes");
+        jMenuClientes.setText("Clientes");
 
-        jMenuItem1.setText("Gestion Clientes");
-        jMenu1.add(jMenuItem1);
+        jmGestionClientes.setText("Gestion Clientes");
+        jMenuClientes.add(jmGestionClientes);
 
         jMenuItem7.setText("Mascotas de cliente");
-        jMenu1.add(jMenuItem7);
+        jMenuClientes.add(jMenuItem7);
 
-        jMenuBar1.add(jMenu1);
+        jMenuBar1.add(jMenuClientes);
 
-        jMenu2.setText("Mascotas");
+        jMmascotas.setText("Mascotas");
 
-        jMenuItem2.setText("Gestion Mascota");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        jMGestionMascotas.setText("Gestion Mascota");
+        jMGestionMascotas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                jMGestionMascotasActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem2);
+        jMmascotas.add(jMGestionMascotas);
 
         jMenuItem3.setText("Historial Clinico");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
@@ -95,19 +96,19 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 jMenuItem3ActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem3);
+        jMmascotas.add(jMenuItem3);
 
-        jMenuBar1.add(jMenu2);
+        jMenuBar1.add(jMmascotas);
 
-        jMenu3.setText("Productos");
+        jMenuProductos.setText("Productos");
 
-        jMenuItem4.setText("Buscar Productos");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+        jmBuscarProductos.setText("Buscar Productos");
+        jmBuscarProductos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
+                jmBuscarProductosActionPerformed(evt);
             }
         });
-        jMenu3.add(jMenuItem4);
+        jMenuProductos.add(jmBuscarProductos);
 
         jMenuItem6.setText("Stock");
         jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
@@ -115,21 +116,24 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 jMenuItem6ActionPerformed(evt);
             }
         });
-        jMenu3.add(jMenuItem6);
+        jMenuProductos.add(jMenuItem6);
 
-        jMenuBar1.add(jMenu3);
+        jmRegistroProducto.setText("jMenuItem1");
+        jMenuProductos.add(jmRegistroProducto);
 
-        jMenu4.setText("Visita");
+        jMenuBar1.add(jMenuProductos);
 
-        jMenuItem5.setText("Registrar visita");
-        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+        jMenuVisita.setText("Visita");
+
+        jmRegistrarVisita.setText("Registrar visita");
+        jmRegistrarVisita.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem5ActionPerformed(evt);
+                jmRegistrarVisitaActionPerformed(evt);
             }
         });
-        jMenu4.add(jMenuItem5);
+        jMenuVisita.add(jmRegistrarVisita);
 
-        jMenuBar1.add(jMenu4);
+        jMenuBar1.add(jMenuVisita);
 
         jMenu5.setText("Salir");
 
@@ -171,17 +175,22 @@ public class MenuPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    private void jMGestionMascotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMGestionMascotasActionPerformed
+       Escritorio.removeAll();
+        Escritorio.repaint();
+        RegistroDeMascota rdm = new RegistroDeMascota();
+        rdm.setVisible(true);
+        Escritorio.add(rdm);
+        Escritorio.moveToFront(rdm);
+    }//GEN-LAST:event_jMGestionMascotasActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+    private void jmBuscarProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmBuscarProductosActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
+    }//GEN-LAST:event_jmBuscarProductosActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
         // TODO add your handling code here:
@@ -195,15 +204,15 @@ public class MenuPrincipal extends javax.swing.JFrame {
         dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_jSMSalirActionPerformed
 
-    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+    private void jmRegistrarVisitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmRegistrarVisitaActionPerformed
         Escritorio.removeAll();
         Escritorio.repaint();
-        Imprecion imprecion = new Imprecion();
-        imprecion.setVisible(true);
-        Escritorio.add(imprecion);
-        Escritorio.moveToFront(imprecion);
+        RegistrarVisita rgv = new RegistrarVisita();
+        rgv.setVisible(true);
+        Escritorio.add(rgv);
+        Escritorio.moveToFront(rgv);
 // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem5ActionPerformed
+    }//GEN-LAST:event_jmRegistrarVisitaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -243,21 +252,22 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane Escritorio;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenuItem jMGestionMascotas;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenu jMenuClientes;
     private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JMenu jMenuProductos;
+    private javax.swing.JMenu jMenuVisita;
+    private javax.swing.JMenu jMmascotas;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JMenuItem jSMSalir;
+    private javax.swing.JMenuItem jmBuscarProductos;
+    private javax.swing.JMenuItem jmGestionClientes;
+    private javax.swing.JMenuItem jmRegistrarVisita;
+    private javax.swing.JMenuItem jmRegistroProducto;
     // End of variables declaration//GEN-END:variables
 }

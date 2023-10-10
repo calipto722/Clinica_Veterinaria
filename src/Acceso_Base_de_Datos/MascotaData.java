@@ -74,7 +74,7 @@ public class MascotaData {
             }
             ps.close();
         } catch (SQLException ex) {
-            Logger.getLogger(MascotaData.class.getName()).log(Level.SEVERE, null, ex);
+              JOptionPane.showMessageDialog(null, "Error al acceder a la tabla mascota"+ JOptionPane.ERROR_MESSAGE+ex.getMessage());
         }
       
    }

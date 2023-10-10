@@ -5,8 +5,11 @@
  */
 package Vistas;
 
+import Acceso_Base_de_Datos.ClienteData;
 import Acceso_Base_de_Datos.MascotaData;
+import Entidades.Cliente;
 import Entidades.Mascota;
+import java.util.List;
 
 /**
  *
@@ -21,7 +24,8 @@ public class RegistroDeMascota extends javax.swing.JInternalFrame {
      */
     public RegistroDeMascota() {
         initComponents();
-        
+        cargarbox();
+        this.setTitle("Registro de mascotas ");
     }
 Mascota mascotaP=null;
     
@@ -29,7 +33,7 @@ Mascota mascotaP=null;
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroup1 = new javax.swing.ButtonGroup();
+        bgSexo = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jtNombre = new javax.swing.JTextField();
@@ -55,7 +59,7 @@ Mascota mascotaP=null;
         jbBuscar = new javax.swing.JButton();
         jbLimpiar = new javax.swing.JButton();
 
-        setTitle("Registro de Mascota");
+        setClosable(true);
         setToolTipText("");
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -69,8 +73,10 @@ Mascota mascotaP=null;
 
         jLabel4.setText("ESPECIE");
 
+        bgSexo.add(jRadioButton1);
         jRadioButton1.setText("MACHO");
 
+        bgSexo.add(jRadioButton2);
         jRadioButton2.setText("HEMBRA");
         jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -88,9 +94,20 @@ Mascota mascotaP=null;
 
         jLabel9.setText("DUEÑO");
 
+        jcCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcClienteActionPerformed(evt);
+            }
+        });
+
         jcEstado.setText("ACTIVO");
 
         jbGuardar.setText("GUARDAR");
+        jbGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbGuardarActionPerformed(evt);
+            }
+        });
 
         jbEliminar.setText("ELIMINAR");
 
@@ -226,9 +243,17 @@ Mascota mascotaP=null;
         // TODO add your handling code here:
     }//GEN-LAST:event_jRadioButton2ActionPerformed
 
+    private void jcClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcClienteActionPerformed
+     
+    }//GEN-LAST:event_jcClienteActionPerformed
+
+    private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
+        
+    }//GEN-LAST:event_jbGuardarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.ButtonGroup bgSexo;
     private javax.swing.JLabel jLNOMBRE;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
@@ -246,7 +271,7 @@ Mascota mascotaP=null;
     private javax.swing.JButton jbEliminar;
     private javax.swing.JButton jbGuardar;
     private javax.swing.JButton jbLimpiar;
-    private javax.swing.JComboBox<String> jcCliente;
+    private javax.swing.JComboBox<Cliente> jcCliente;
     private javax.swing.JCheckBox jcEstado;
     private com.toedter.calendar.JDateChooser jdFechaNac;
     private javax.swing.JTextField jtColoDePelo;
@@ -254,4 +279,14 @@ Mascota mascotaP=null;
     private javax.swing.JTextField jtNombre;
     private javax.swing.JTextField jtRaza;
     // End of variables declaration//GEN-END:variables
+  private void cargarbox() {
+        ClienteData clientD = new ClienteData();
+        List<Cliente> clientes = clientD.listarClientes();
+        jcCliente.removeAllItems();
+        for (int i = 0; i < clientes.size(); i++) {
+            jcCliente.addItem(clientes.get(i));
+    
+}
+
+  }
 }

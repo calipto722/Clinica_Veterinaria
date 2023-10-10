@@ -12,6 +12,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+
 import javax.swing.JOptionPane;
 import sun.security.rsa.RSACore;
 
@@ -46,7 +47,27 @@ public class TratamientoData {
     }
     
     public void ModificarTratamiento(Tratamiento tratamiento){
-        String sql= "";
+        String sql = "UPDATE tratamiento SET descripcion=?,idProducto=?,importe=?,tipoTratamiento=?,activo=? WHERE idTratamiento=?";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, tratamiento.getDescripcion());
+            ps.setInt(2, tratamiento.getProducto().getIdProducto());
+            ps.setInt(3, tratamiento.getImporte());
+            ps.setString(4, tratamiento.getTipoTratamiento());
+            ps.setBoolean(5, tratamiento.isEstadoTratamiento());
+            ps.setInt(6, tratamiento.getIdTratamiento());
+            int exito = ps.executeUpdate();
+
+            if (exito == 1) {
+                JOptionPane.showMessageDialog(null, "Modificado exitosamente. ");
+            } else {
+                JOptionPane.showMessageDialog(null, "El tratamiento no existe. ");
+            }
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla tratamiento " + ex.getMessage());
+        }
     }
     public Tratamiento BuscarTratamiento (int id){
         Tratamiento tratamiento =null;
@@ -79,4 +100,21 @@ public class TratamientoData {
         }
       return tratamiento;  
     }
+    public void eliminarTratamiento(int id){
+        String sql="UPDATE tratamiento set activo=0 WHERE idTratamiento=?";
+        try {
+            PreparedStatement ps=con.prepareStatement(sql);
+            ps.setInt(1, id);
+            int fila=ps.executeUpdate();
+            
+            if (fila==1){
+                JOptionPane.showMessageDialog(null, "Se elimino con exito el tratamiento.");
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"ERROR al acceder a la tabla tratamiento"+ ex.getMessage());
+            
+        
+    }
+}
 }
