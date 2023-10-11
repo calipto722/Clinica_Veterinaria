@@ -118,7 +118,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
         jMenuProductos.add(jMenuItem6);
 
-        jmRegistroProducto.setText("jMenuItem1");
+        jmRegistroProducto.setText("Ingreso de Productos");
+        jmRegistroProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmRegistroProductoActionPerformed(evt);
+            }
+        });
         jMenuProductos.add(jmRegistroProducto);
 
         jMenuBar1.add(jMenuProductos);
@@ -189,7 +194,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jmBuscarProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmBuscarProductosActionPerformed
-        // TODO add your handling code here:
+       Escritorio.removeAll();
+       Escritorio.repaint();
+       BuscarProductos bpd= new BuscarProductos();
+       bpd.setVisible(true);
+       Escritorio.add(bpd);
+       Escritorio.moveToFront(bpd);
     }//GEN-LAST:event_jmBuscarProductosActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
@@ -213,6 +223,15 @@ public class MenuPrincipal extends javax.swing.JFrame {
         Escritorio.moveToFront(rgv);
 // TODO add your handling code here:
     }//GEN-LAST:event_jmRegistrarVisitaActionPerformed
+
+    private void jmRegistroProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmRegistroProductoActionPerformed
+        Escritorio.removeAll();
+        Escritorio.repaint();
+        IngresoProductos ipd= new IngresoProductos();
+        ipd.setVisible(true);
+        Escritorio.add(ipd);
+        Escritorio.moveToFront(ipd);
+    }//GEN-LAST:event_jmRegistroProductoActionPerformed
 
     /**
      * @param args the command line arguments

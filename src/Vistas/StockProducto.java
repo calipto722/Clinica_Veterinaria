@@ -9,12 +9,12 @@ package Vistas;
  *
  * @author elmsn
  */
-public class RegistrarProducto extends javax.swing.JInternalFrame {
+public class StockProducto extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form RegistrarProducto
      */
-    public RegistrarProducto() {
+    public StockProducto() {
         initComponents();
         this.setTitle("Registro de producto ");
     }
