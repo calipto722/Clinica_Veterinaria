@@ -29,8 +29,8 @@ public class Clinica_Veterinaria {
         // TODO code application logic here
         Conexion.getConexion();
         MascotaData mascotaData= new MascotaData();
-       ClienteData clientD= new ClienteData();
-       Cliente cliente= new Cliente();
+//       ClienteData clientD= new ClienteData();
+//       Cliente cliente= new Cliente();
      //  Cliente client=new Cliente(302240234, "Mar","Juzco ", 1332444092, "2244552", "calle 24 n 4668", true);
     //  clientD.GuardarCliente(client);
       //  Cliente clienM= new Cliente(1, 30215231,"Maria juanita ","Juarez ", 1135298799,22334589,"calle 14 n 3368", true);
@@ -45,10 +45,10 @@ public class Clinica_Veterinaria {
  // Mascota masc=   mascotaData.BuscarMascota(2);
 //        System.out.println(masc);
 //    Producto producto=new Producto("shampoo","para el perro",800, 10);
-       ProductoData pd=new ProductoData();
-  Producto producto= new Producto();
-//  pd.GuardarProducto(producto);
-     producto=pd.BuscarProductoPorId(3);
+//       ProductoData pd=new ProductoData();
+//  Producto producto= new Producto();
+////  pd.GuardarProducto(producto);
+//     producto=pd.BuscarProductoPorId(3);
 //        System.out.println(pd.BuscarProductoPorId(1));
 //////        List<Producto> productos=pd.ListarProductos();
 //////        System.out.println("-------Listado-----");
@@ -63,17 +63,17 @@ public class Clinica_Veterinaria {
 //////       
 //////       mascotaData.GuardarMascota(mascota);
 //Tratamiento tratamiento=new Tratamiento();
-Tratamiento tratamiento=new Tratamiento(6,"Baño", "Bañar perro y quitarles las garrapatas", producto, 4500, true);
-TratamientoData tratData=new TratamientoData();
-//tratData.ModificarTratamiento(tratamiento);
-//tratData.eliminarTratamiento();
-
-//    //tratData.GuardarTratamiento(tratamiento);
-
-//      //  System.out.println(tratamiento);
-//        tratamiento=tratData.BuscarTratamiento(6);
- VisitaData visitData= new VisitaData();
-//// 
+//Tratamiento tratamiento=new Tratamiento(6,"Baño", "Bañar perro y quitarles las garrapatas", producto, 4500, true);
+//TratamientoData tratData=new TratamientoData();
+////tratData.ModificarTratamiento(tratamiento);
+////tratData.eliminarTratamiento();
+//
+////    //tratData.GuardarTratamiento(tratamiento);
+//
+////      //  System.out.println(tratamiento);
+////        tratamiento=tratData.BuscarTratamiento(6);
+// VisitaData visitData= new VisitaData();
+////// 
 //// Visita visita = new Visita(LocalDate.of(2023, Month.JUNE, 15), 6000, tratamiento, 20, masc);
 //// visitData.GuardarVisita(visita); 
 ////System.out.println(visitData.listarVisitas());
@@ -83,6 +83,8 @@ TratamientoData tratData=new TratamientoData();
 //        }
 ////            
 //        }
+Mascota masc= mascotaData.BuscarMascotaPorNombre("Cielo");
+        System.out.println(masc);
 }
 }
 
