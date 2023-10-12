@@ -49,12 +49,12 @@
             <Property name="text" type="java.lang.String" value="Productos"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="jmBuscarProductos">
+            <MenuItem class="javax.swing.JMenuItem" name="jmBuscarProductosNombre">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Buscar Productos"/>
+                <Property name="text" type="java.lang.String" value="Productos por nombre"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmBuscarProductosActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmBuscarProductosNombreActionPerformed"/>
               </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem6">

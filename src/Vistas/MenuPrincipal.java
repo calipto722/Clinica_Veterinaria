@@ -37,7 +37,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMGestionMascotas = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuProductos = new javax.swing.JMenu();
-        jmBuscarProductos = new javax.swing.JMenuItem();
+        jmBuscarProductosNombre = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
         jmRegistroProducto = new javax.swing.JMenuItem();
         jMenuVisita = new javax.swing.JMenu();
@@ -102,13 +102,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jMenuProductos.setText("Productos");
 
-        jmBuscarProductos.setText("Buscar Productos");
-        jmBuscarProductos.addActionListener(new java.awt.event.ActionListener() {
+        jmBuscarProductosNombre.setText("Productos por nombre");
+        jmBuscarProductosNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmBuscarProductosActionPerformed(evt);
+                jmBuscarProductosNombreActionPerformed(evt);
             }
         });
-        jMenuProductos.add(jmBuscarProductos);
+        jMenuProductos.add(jmBuscarProductosNombre);
 
         jMenuItem6.setText("Stock");
         jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
@@ -193,14 +193,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
-    private void jmBuscarProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmBuscarProductosActionPerformed
+    private void jmBuscarProductosNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmBuscarProductosNombreActionPerformed
        Escritorio.removeAll();
        Escritorio.repaint();
-       BuscarProductos bpd= new BuscarProductos();
-       bpd.setVisible(true);
-       Escritorio.add(bpd);
-       Escritorio.moveToFront(bpd);
-    }//GEN-LAST:event_jmBuscarProductosActionPerformed
+       ProductosporNombre bpn= new ProductosporNombre();
+       bpn.setVisible(true);
+       Escritorio.add(bpn);
+       Escritorio.moveToFront(bpn);
+    }//GEN-LAST:event_jmBuscarProductosNombreActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
         // TODO add your handling code here:
@@ -284,7 +284,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMmascotas;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JMenuItem jSMSalir;
-    private javax.swing.JMenuItem jmBuscarProductos;
+    private javax.swing.JMenuItem jmBuscarProductosNombre;
     private javax.swing.JMenuItem jmGestionClientes;
     private javax.swing.JMenuItem jmRegistrarVisita;
     private javax.swing.JMenuItem jmRegistroProducto;
