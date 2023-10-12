@@ -129,4 +129,17 @@ public class ProductoData {
         }
 return producto;
     }
+    public Producto BuscarProductoPorNombre(String nombre){
+        Producto producto=null;
+        String sql= "SELECT * FROM producto  WHERE nombre Like ?%";
+        try {
+            PreparedStatement ps= con.prepareStatement(sql);
+            ps.setString(1, nombre);
+            
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductoData.class.getName()).log(Level.SEVERE, null, ex);
+        }
+             
+    }
 }

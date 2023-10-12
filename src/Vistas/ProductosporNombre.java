@@ -5,6 +5,8 @@
  */
 package Vistas;
 
+import Acceso_Base_de_Datos.ProductoData;
+import Entidades.Producto;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -57,6 +59,11 @@ private DefaultTableModel modelo= new DefaultTableModel(){
         jtNombreProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtNombreProductoActionPerformed(evt);
+            }
+        });
+        jtNombreProducto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jtNombreProductoKeyReleased(evt);
             }
         });
 
@@ -147,6 +154,13 @@ private DefaultTableModel modelo= new DefaultTableModel(){
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jtNombreProductoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtNombreProductoKeyReleased
+       borrarFilas();
+        for (Producto prod : ) {
+            
+        }
+    }//GEN-LAST:event_jtNombreProductoKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
