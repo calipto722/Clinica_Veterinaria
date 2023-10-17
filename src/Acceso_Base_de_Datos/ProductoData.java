@@ -135,11 +135,22 @@ return producto;
         try {
             PreparedStatement ps= con.prepareStatement(sql);
             ps.setString(1, nombre);
-            
-            
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                producto=new Producto();
+                producto.setIdProducto(rs.getInt("idProducto"));
+                producto.setDescripcion(rs.getString("descripcion"));
+                producto.setNombre(rs.getString("nombre"));
+                producto.setPrecio(rs.getInt("precio"));
+                producto.setStock(rs.getInt("stock"));
+            } else {
+                  JOptionPane.showMessageDialog(null,"No existe el Producto"); 
+            }
+            ps.close();
         } catch (SQLException ex) {
             Logger.getLogger(ProductoData.class.getName()).log(Level.SEVERE, null, ex);
         }
-             
+return producto;
+   
     }
 }

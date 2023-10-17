@@ -84,7 +84,12 @@ public class Clinica_Veterinaria {
 ////            
 //        }
 Mascota masc= mascotaData.BuscarMascotaPorNombre("Cielo");
+Mascota masp = mascotaData.BuscarMascota(1);
         System.out.println(masc);
+        System.err.println(masp);
+        /*consultar 
+        Registro mascota linea 348
+        */
 }
 }
 

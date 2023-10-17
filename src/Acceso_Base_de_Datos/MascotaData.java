@@ -67,7 +67,7 @@ public class MascotaData {
             ps.setDate(6, Date.valueOf(mascota.getFechaNacimiento()));
             ps.setInt(7, mascota.getcliente().getIdCliente());
             ps.setBoolean(8, mascota.isEstadoMascota());
-            ps.setInt(8, mascota.getIdMascota());
+            ps.setInt(9, mascota.getIdMascota());
             int exito = ps.executeUpdate();
 
             if (exito == 1) {
@@ -151,7 +151,7 @@ public class MascotaData {
                 mascota.setNombreAlias(rs.getString("alias"));
                 mascota.setRaza(rs.getString("raza"));
                 mascota.setSexo(rs.getString("sexo"));
-
+                
             } else {
                 JOptionPane.showMessageDialog(null, "No existe La Mascota");
 
