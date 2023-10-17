@@ -102,6 +102,16 @@ public class RegistroDeMascota extends javax.swing.JInternalFrame {
 
         jLabel7.setText("FECHA DE NACIMIENTO");
 
+        jdFechaNac.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                jdFechaNacAncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+
         jLabel8.setText("ESTADO");
 
         jLabel9.setText("DUEÑO");
@@ -328,11 +338,7 @@ public class RegistroDeMascota extends javax.swing.JInternalFrame {
             
                mascotaP = mascotaData.BuscarMascota(id);
             
-        } catch (NullPointerException e) {
-            System.out.println(  "----");
-        } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(null, "Ingresar un Numero");
-        }
+    
         if(mascotaP!=null){
         mascotaP.setColorPelo(jtColoDePelo.getText());
         mascotaP.setEspecie(jtEspecie.getText());
@@ -341,11 +347,32 @@ public class RegistroDeMascota extends javax.swing.JInternalFrame {
         mascotaP.setIdcliente((Cliente) jcCliente.getSelectedItem());
         mascotaP.setNombreAlias(jtNombre.getText());
         mascotaP.setRaza(jtRaza.getText());
-        mascotaP.setSexo(bgSexo.getSelection().toString());
+        mascotaP.setSexo(bgSexo.getSelection().toString()); //corregir el tema del sexo en modificar 
         mascotaData.ModificarMascota(mascotaP);
         }else{
-            Mascota masc=new Mascota(jtNombre.getText(),bgSexo.getSelection().toString(), jtEspecie.getText(), jtRaza.getText(), jtColoDePelo.getText(), jdFechaNac.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), jcEstado.isSelected(), (Cliente) jcCliente.getSelectedItem());
+            String nombre = jtNombre.getText();
+            String sexo;
+            if (jrMacho.isSelected()) {
+                sexo = "Macho";
+            } else {
+                sexo = "Hembra";
+            }
+
+           String especie= jtEspecie.getText();
+           String raza= jtRaza.getText();
+           String colorPelo= jtColoDePelo.getText();
+           LocalDate FechaNac=jdFechaNac.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+           boolean estado= jcEstado.isSelected();
+           Cliente cliente= (Cliente) jcCliente.getSelectedItem();
+                
+            
+            Mascota masc=new Mascota(nombre,sexo,especie,raza,colorPelo,FechaNac,estado,cliente);
        mascotaData.GuardarMascota(masc);
+        }
+            } catch (NullPointerException e) {
+            JOptionPane.showMessageDialog(this, "Error al Guardar mascota"+ e.getMessage());
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(null, "Ingresar un Numero");
         }
     }//GEN-LAST:event_jbGuardarActionPerformed
 
@@ -373,6 +400,11 @@ public class RegistroDeMascota extends javax.swing.JInternalFrame {
             mascotaP=null;
            // TODO add your handling code here:
     }//GEN-LAST:event_jbLimpiarActionPerformed
+
+    private void jdFechaNacAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jdFechaNacAncestorAdded
+   
+    
+    }//GEN-LAST:event_jdFechaNacAncestorAdded
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
