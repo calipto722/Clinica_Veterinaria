@@ -29,9 +29,10 @@ public class MascotaData {
     }
 
     public void GuardarMascota(Mascota mascota) {
-        String sql = "INSERT INTO `mascota`( `alias`, `sexo`, `especie`, `raza`, `colorPelo`, `fechaNac`, `idCliente`, `activo`)"
-                + " VALUES (?,?,?,?,?,?,?,?)";
+      
         try {
+              String sql = "INSERT INTO `mascota`( `alias`, `sexo`, `especie`, `raza`, `colorPelo`, `fechaNac`, `idCliente`, `activo`)"
+                + " VALUES (?,?,?,?,?,?,?,?)";
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, mascota.getNombreAlias());
             ps.setString(2, mascota.getSexo());
