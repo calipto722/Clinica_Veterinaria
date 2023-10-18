@@ -82,7 +82,7 @@ public class TratamientoData {
                  tratamiento= new Tratamiento();
                  ProductoData productoData=new ProductoData();
                  Producto producto = new Producto();
-                 producto=productoData.BuscarProductoPorId(rs.getInt("medicamento"));
+                 producto=productoData.BuscarProductoPorId(rs.getInt("idProducto"));
                 tratamiento.setDescripcion(rs.getString("descripcion"));
                 tratamiento.setEstadoTratamiento(rs.getBoolean("activo"));
                 tratamiento.setIdTratamiento(id);

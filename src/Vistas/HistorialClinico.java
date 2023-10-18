@@ -125,9 +125,10 @@ private DefaultTableModel modelo= new DefaultTableModel();
  borrarFilas();
         VisitaData visitaData = new VisitaData();
     List<Visita> visitas= visitaData.listarVisitas();
+    Mascota masp = (Mascota) jComboBox1.getSelectedItem();
         for (Visita visita : visitas) {
             System.out.println(visita);
-            if (visita.getMascota().equals(jComboBox1.getSelectedItem())) {
+            if (visita.getMascota().getIdMascota()==(masp.getIdMascota())) {
                 modelo.addRow(new Object[]{
                     visita.getFechaVisita(),
                     visita.getTratamiento(),
