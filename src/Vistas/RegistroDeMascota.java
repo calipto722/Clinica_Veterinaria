@@ -337,49 +337,52 @@ public class RegistroDeMascota extends javax.swing.JInternalFrame {
         //buscar una forma de poder cargar el comboBox sin buscar un id porque por el momento inicia en blanco 
 
         try {
-          //  int id = Integer.valueOf(jtId.getText());
+            //  int id = Integer.valueOf(jtId.getText());
 
-         //   mascotaP = mascotaData.BuscarMascota(id);
+            //   mascotaP = mascotaData.BuscarMascota(id);
+            if (mascotaP.getColorPelo() != null) {
+                mascotaP.setColorPelo(jtColoDePelo.getText());
+                mascotaP.setEspecie(jtEspecie.getText());
+                mascotaP.setEstadoMascota(jcEstado.isSelected());
+                mascotaP.setFechaNacimiento(jdFechaNac.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+                mascotaP.setIdcliente((Cliente) jcCliente.getSelectedItem());
+                mascotaP.setNombreAlias(jtNombre.getText());
+                mascotaP.setRaza(jtRaza.getText());
+                String sexo;
+                if (jrMacho.isSelected()) {
+                    sexo = "Macho";
+                } else {
+                    sexo = "Hembra";
+                }
+                mascotaP.setSexo(sexo);
+                //corregir el tema del sexo en modificar 
+                mascotaData.ModificarMascota(mascotaP);
+            } else {
+                String nombre = jtNombre.getText();
+                String sexo;
+                if (jrMacho.isSelected()) {
+                    sexo = "Macho";
+                } else {
+                    sexo = "Hembra";
+                }
+
+                String especie = jtEspecie.getText();
+                String raza = jtRaza.getText();
+                String colorPelo = jtColoDePelo.getText();
+                LocalDate FechaNac = jdFechaNac.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                boolean estado = jcEstado.isSelected();
+                Cliente cliente = (Cliente) jcCliente.getSelectedItem();
+
+                Mascota masc = new Mascota(nombre, sexo, especie, raza, colorPelo, FechaNac, estado, cliente);
+
+                if (revisiondeNull()) {
+                    mascotaData.GuardarMascota(masc);
+                }
+
+            }
         } catch (NullPointerException e) {
-            JOptionPane.showMessageDialog(this, "Error al Guardar mascota" + e.getMessage());
-        } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(null, "Ingresar un Numero");
-        }
-        if (mascotaP.getColorPelo() != null) {
-            mascotaP.setColorPelo(jtColoDePelo.getText());
-            mascotaP.setEspecie(jtEspecie.getText());
-            mascotaP.setEstadoMascota(jcEstado.isSelected());
-            mascotaP.setFechaNacimiento(jdFechaNac.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
-            mascotaP.setIdcliente((Cliente) jcCliente.getSelectedItem());
-            mascotaP.setNombreAlias(jtNombre.getText());
-            mascotaP.setRaza(jtRaza.getText());
-            String sexo;
-            if (jrMacho.isSelected()) {
-                sexo = "Macho";
-            } else {
-                sexo = "Hembra";
-            }
-            mascotaP.setSexo(sexo);
-            //corregir el tema del sexo en modificar 
-            mascotaData.ModificarMascota(mascotaP);
-        } else {
-            String nombre = jtNombre.getText();
-            String sexo;
-            if (jrMacho.isSelected()) {
-                sexo = "Macho";
-            } else {
-                sexo = "Hembra";
-            }
+            JOptionPane.showMessageDialog(this, "Falta completar campos", "ERROR", JOptionPane.ERROR_MESSAGE); //solo salta en caso de no poner fecha
 
-            String especie = jtEspecie.getText();
-            String raza = jtRaza.getText();
-            String colorPelo = jtColoDePelo.getText();
-            LocalDate FechaNac = jdFechaNac.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-            boolean estado = jcEstado.isSelected();
-            Cliente cliente = (Cliente) jcCliente.getSelectedItem();
-
-            Mascota masc = new Mascota(nombre, sexo, especie, raza, colorPelo, FechaNac, estado, cliente);
-            mascotaData.GuardarMascota(masc);
         }
 
     }//GEN-LAST:event_jbGuardarActionPerformed
@@ -455,5 +458,25 @@ public class RegistroDeMascota extends javax.swing.JInternalFrame {
 
         }
 
+    }
+
+    private boolean revisiondeNull() {
+        boolean revision = true;
+        if (jtNombre.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Falta completar Nombre");
+            revision = false;
+        } else if (jtColoDePelo.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Falta completar color de pelo");
+            revision = false;
+        } else if (jtEspecie.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Falta completar especie");
+            revision = false;
+        } else if (jtRaza.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Falta completar raza ");
+            revision = false;
+        } else if( jdFechaNac.getTreeLock() ==null){
+            revision=false;
+        }
+        return revision;
     }
 }
