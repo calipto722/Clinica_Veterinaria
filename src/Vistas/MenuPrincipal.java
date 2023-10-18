@@ -190,7 +190,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMGestionMascotasActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        // TODO add your handling code here:
+    Escritorio.removeAll();
+    Escritorio.repaint();
+    HistorialClinico historialClinico= new HistorialClinico();
+historialClinico.setVisible(true);
+Escritorio.add(historialClinico);
+Escritorio.moveToFront(historialClinico);// TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jmBuscarProductosNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmBuscarProductosNombreActionPerformed
