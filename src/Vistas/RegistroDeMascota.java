@@ -32,10 +32,11 @@ public class RegistroDeMascota extends javax.swing.JInternalFrame {
      */
     public RegistroDeMascota() {
         initComponents();
-         mascotaP = new Mascota();
-         mascotaData=new MascotaData();
-         clienteData= new ClienteData();
+        mascotaP = new Mascota();
+        mascotaData = new MascotaData();
+        clienteData = new ClienteData();
         this.setTitle("Registro de mascotas ");
+        cargarbox();
     }
 
     @SuppressWarnings("unchecked")
@@ -259,7 +260,7 @@ public class RegistroDeMascota extends javax.swing.JInternalFrame {
                 .addContainerGap())
         );
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 48)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("MASCOTA");
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -269,22 +270,24 @@ public class RegistroDeMascota extends javax.swing.JInternalFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(320, 320, 320)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(0, 11, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 11, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(250, 250, 250)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
@@ -293,7 +296,7 @@ public class RegistroDeMascota extends javax.swing.JInternalFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         pack();
@@ -302,16 +305,17 @@ public class RegistroDeMascota extends javax.swing.JInternalFrame {
     private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
         try {
             int id = Integer.valueOf(jtId.getText());
-            
-               mascotaP = mascotaData.BuscarMascota(id);
-            
+
+            mascotaP = mascotaData.BuscarMascota(id);
+
         } catch (NullPointerException e) {
-            System.out.println(  "----");
+            System.out.println("----");
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(null, "Ingresar un Numero");
         }
 
         if (mascotaP != null) {
+            jcCliente.removeAllItems();
             jtNombre.setText(mascotaP.getNombreAlias());
             jcCliente.addItem(mascotaP.getcliente());
             jtColoDePelo.setText(mascotaP.getColorPelo());
@@ -324,24 +328,24 @@ public class RegistroDeMascota extends javax.swing.JInternalFrame {
             } else {
                 jrMacho.setSelected(true);
             }
-        } else {
-
-            cargarbox();
         }
 
         // TODO add your handling code here:
     }//GEN-LAST:event_jbBuscarActionPerformed
 
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
-      //buscar una forma de poder cargar el comboBox sin buscar un id porque por el momento inicia en blanco 
-        
+        //buscar una forma de poder cargar el comboBox sin buscar un id porque por el momento inicia en blanco 
+
         try {
-            int id = Integer.valueOf(jtId.getText());
-            
-               mascotaP = mascotaData.BuscarMascota(id);
-            
-    
-        if(mascotaP!=null){
+          //  int id = Integer.valueOf(jtId.getText());
+
+         //   mascotaP = mascotaData.BuscarMascota(id);
+        } catch (NullPointerException e) {
+            JOptionPane.showMessageDialog(this, "Error al Guardar mascota" + e.getMessage());
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(null, "Ingresar un Numero");
+        }
+        if (mascotaP.getColorPelo() != null) {
             mascotaP.setColorPelo(jtColoDePelo.getText());
             mascotaP.setEspecie(jtEspecie.getText());
             mascotaP.setEstadoMascota(jcEstado.isSelected());
@@ -358,30 +362,26 @@ public class RegistroDeMascota extends javax.swing.JInternalFrame {
             mascotaP.setSexo(sexo);
             //corregir el tema del sexo en modificar 
             mascotaData.ModificarMascota(mascotaP);
-        }else{
-                String nombre = jtNombre.getText();
-                String sexo;
-                if (jrMacho.isSelected()) {
-                    sexo = "Macho";
-                } else {
-                    sexo = "Hembra";
-                }
-
-                String especie = jtEspecie.getText();
-                String raza = jtRaza.getText();
-                String colorPelo = jtColoDePelo.getText();
-                LocalDate FechaNac = jdFechaNac.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-                boolean estado = jcEstado.isSelected();
-                Cliente cliente = (Cliente) jcCliente.getSelectedItem();
-
-                Mascota masc = new Mascota(nombre, sexo, especie, raza, colorPelo, FechaNac, estado, cliente);
-                mascotaData.GuardarMascota(masc);
+        } else {
+            String nombre = jtNombre.getText();
+            String sexo;
+            if (jrMacho.isSelected()) {
+                sexo = "Macho";
+            } else {
+                sexo = "Hembra";
             }
-        } catch (NullPointerException e) {
-            JOptionPane.showMessageDialog(this, "Error al Guardar mascota" + e.getMessage());
-        } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(null, "Ingresar un Numero");
+
+            String especie = jtEspecie.getText();
+            String raza = jtRaza.getText();
+            String colorPelo = jtColoDePelo.getText();
+            LocalDate FechaNac = jdFechaNac.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            boolean estado = jcEstado.isSelected();
+            Cliente cliente = (Cliente) jcCliente.getSelectedItem();
+
+            Mascota masc = new Mascota(nombre, sexo, especie, raza, colorPelo, FechaNac, estado, cliente);
+            mascotaData.GuardarMascota(masc);
         }
+
     }//GEN-LAST:event_jbGuardarActionPerformed
 
     private void jcClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcClienteActionPerformed
@@ -397,21 +397,23 @@ public class RegistroDeMascota extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jtNombreActionPerformed
 
     private void jbLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLimpiarActionPerformed
-       jtNombre.setText("");
-            jcCliente.removeAllItems();
-            jtColoDePelo.setText("");
-            jtEspecie.setText("");
-            jtRaza.setText("");
-            jcEstado.setSelected(false);
-            jdFechaNac.setDate(null);
-            bgSexo.clearSelection();
-            mascotaP=null;
-           // TODO add your handling code here:
+        jtNombre.setText("");
+        jcCliente.removeAllItems();
+        cargarbox();
+        jtColoDePelo.setText("");
+        jtEspecie.setText("");
+        jtRaza.setText("");
+        jcEstado.setSelected(false);
+        jdFechaNac.setDate(null);
+        bgSexo.clearSelection();
+        mascotaP = null;
+        jtId.setText("");
+        // TODO add your handling code here:
     }//GEN-LAST:event_jbLimpiarActionPerformed
 
     private void jdFechaNacAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jdFechaNacAncestorAdded
-   
-    
+
+
     }//GEN-LAST:event_jdFechaNacAncestorAdded
 
 
