@@ -120,6 +120,7 @@ public class MascotaData {
                 mascota.setIdMascota(rs.getInt("idMascota"));
                 mascota.setNombreAlias(rs.getString("alias"));
                 mascota.setRaza(rs.getString("raza"));
+                mascota.setIdcliente(cliente);
                 mascota.setSexo(rs.getString("sexo"));
                 mascotas.add(mascota);
             }
