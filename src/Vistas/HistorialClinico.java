@@ -131,7 +131,7 @@ private DefaultTableModel modelo= new DefaultTableModel();
             if (visita.getMascota().getIdMascota()==(masp.getIdMascota())) {
                 modelo.addRow(new Object[]{
                     visita.getFechaVisita(),
-                    visita.getTratamiento(),
+                    visita.getTratamiento().getDescripcion(),
                     visita.getPesoActual()
                 });
             }
