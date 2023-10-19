@@ -334,62 +334,7 @@ public class RegistroDeMascota extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbBuscarActionPerformed
 
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
-        //buscar una forma de poder cargar el comboBox sin buscar un id porque por el momento inicia en blanco 
-
-//        try {
-//            //  int id = Integer.valueOf(jtId.getText());
-//
-//            //   mascotaP = mascotaData.BuscarMascota(id);
-//            if (mascotaP.getColorPelo() != null) {
-//                mascotaP.setColorPelo(jtColoDePelo.getText());
-//                mascotaP.setEspecie(jtEspecie.getText());
-//                mascotaP.setEstadoMascota(jcEstado.isSelected());
-//                mascotaP.setFechaNacimiento(jdFechaNac.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
-//                mascotaP.setIdcliente((Cliente) jcCliente.getSelectedItem());
-//                mascotaP.setNombreAlias(jtNombre.getText());
-//                mascotaP.setRaza(jtRaza.getText());
-//                String sexo;
-//                if (jrMacho.isSelected()) {
-//                    sexo = "Macho";
-//                } else {
-//                    sexo = "Hembra";
-//                }
-//                mascotaP.setSexo(sexo);
-//                //corregir el tema del sexo en modificar 
-//                mascotaData.ModificarMascota(mascotaP);
-//            } else {
-//                String nombre = jtNombre.getText();
-//                String sexo;
-//                if (jrMacho.isSelected()) {
-//                    sexo = "Macho";
-//                } else {
-//                    sexo = "Hembra";
-//                }
-//
-//                String especie = jtEspecie.getText();
-//                System.out.println(especie);
-//                String raza = jtRaza.getText();
-//                System.out.println(raza);
-//                String colorPelo = jtColoDePelo.getText();
-//                System.out.println(colorPelo);
-//                LocalDate FechaNac = jdFechaNac.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-//                System.out.println(FechaNac);
-//                boolean estado = jcEstado.isSelected();
-//                
-//                Cliente cliente = (Cliente) jcCliente.getSelectedItem();
-//                System.out.println(cliente);
-//
-//                Mascota masc = new Mascota(nombre, sexo, especie, raza, colorPelo, FechaNac, estado, cliente);
-//
-//                if (revisiondeNull()) {
-//                    mascotaData.GuardarMascota(masc);
-//                }
-//
-//            }
-//        } catch (NullPointerException e) {
-//            JOptionPane.showMessageDialog(this, "Falta completar campos", "ERROR", JOptionPane.ERROR_MESSAGE); //solo salta en caso de no poner fecha
-//
-//        }
+        
  try {
         String nombre = jtNombre.getText();
         String especie = jtEspecie.getText();
@@ -398,7 +343,8 @@ public class RegistroDeMascota extends javax.swing.JInternalFrame {
         LocalDate fechaNac = jdFechaNac.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         boolean estado = jcEstado.isSelected();
         Cliente cliente = (Cliente) jcCliente.getSelectedItem();
-        
+        // El símbolo ? se utiliza en una expresión condicional (también conocida como operador ternario).
+        //Esta expresión condicional es una forma abreviada de escribir una estructura condicional if-else.
         String sexo = (jrMacho.isSelected()) ? "Macho" : "Hembra";
         
         if (nombre.isEmpty() || especie.isEmpty() || raza.isEmpty() || colorPelo.isEmpty() || fechaNac == null || cliente == null) {
