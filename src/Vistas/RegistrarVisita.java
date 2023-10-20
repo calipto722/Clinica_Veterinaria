@@ -12,6 +12,7 @@ import Entidades.Cliente;
 import Entidades.Mascota;
 import Entidades.Producto;
 import java.util.List;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -25,7 +26,7 @@ public class RegistrarVisita extends javax.swing.JInternalFrame {
     static double total;
     double subtotal;
     double igv;
-
+    DefaultListModel<String>model = new DefaultListModel<>();
     public RegistrarVisita() {
         initComponents();
         cargarbox();
@@ -33,7 +34,7 @@ public class RegistrarVisita extends javax.swing.JInternalFrame {
         total = 0;
         subtotal = 0.0;
         igv = 0.0;
-
+        armarTabla();
     }
 
     /**
@@ -425,7 +426,7 @@ public class RegistrarVisita extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jbProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbProductoActionPerformed
-        armarTabla();
+        
         jdPRoducto.setVisible(true);
         jdPRoducto.setSize(730, 463);
         jdPRoducto.setLocationRelativeTo(null);
@@ -438,8 +439,7 @@ public class RegistrarVisita extends javax.swing.JInternalFrame {
         int filselec = jtProductos.getSelectedRow();
         try {
             String id,nombre, descripcion, precio, cant, importe;
-            double calcular = 0.0;
-            int canti = 0;;
+            
 
             if (filselec == -1) {
                 JOptionPane.showMessageDialog(null, "Debe seleccionar producto", "Advertancia", JOptionPane.WARNING_MESSAGE);// TODO add your handling code here:
@@ -454,14 +454,20 @@ public class RegistrarVisita extends javax.swing.JInternalFrame {
                double x= (Double.parseDouble(precio)* Integer.parseInt(cant));
                 importe= String.valueOf(x);
                 
-                m= (DefaultTableModel) jList1.getModel();
-                String filaElemento[]= {cant,nombre,descripcion,precio};
-                m.addRow(filaElemento);
+                jList1.setModel(model);
+                String filaElemento= "Producto : "+cant+", " +nombre +", "+ descripcion + " Precio: $"+ x;
+                model.addElement(filaElemento);
+                ProductoData prod= new ProductoData();
+                Producto producStock=prod.BuscarProductoPorId(Integer.parseInt(id));
+        producStock.setStock(producStock.getStock()-Integer.parseInt(cant));
+        prod.ModificarProducto(producStock);
             }
         } catch (Exception ex) {
 
         }
-
+        
+        
+       jdPRoducto.dispose();
     }//GEN-LAST:event_jbAddDialogoActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
