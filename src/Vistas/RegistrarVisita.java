@@ -9,6 +9,7 @@ import Acceso_Base_de_Datos.ClienteData;
 import Acceso_Base_de_Datos.MascotaData;
 import Entidades.Cliente;
 import Entidades.Mascota;
+import static Vistas.MenuPrincipal.Escritorio;
 import java.util.List;
 
 /**
@@ -147,7 +148,7 @@ public class RegistrarVisita extends javax.swing.JInternalFrame {
                                     .addGroup(layout.createSequentialGroup()
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jDateFechaVisita, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 192, Short.MAX_VALUE)
                                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -210,7 +211,7 @@ public class RegistrarVisita extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 32, Short.MAX_VALUE)
+                                .addGap(0, 284, Short.MAX_VALUE)
                                 .addComponent(jLabel8))
                             .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -233,6 +234,11 @@ public class RegistrarVisita extends javax.swing.JInternalFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
+        RegistrarTratamiento rgt = new RegistrarTratamiento();
+        Escritorio.add(rgt);
+        rgt.toFront();
+        rgt.setVisible(true);
+
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -241,8 +247,7 @@ public class RegistrarVisita extends javax.swing.JInternalFrame {
 
     private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
      // falta buscar la forma de que abra el panel para registrar el tratamiento
-       
-        
+    
        
     }//GEN-LAST:event_jButton4MouseClicked
 
