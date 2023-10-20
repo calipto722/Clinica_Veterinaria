@@ -208,7 +208,12 @@ Escritorio.moveToFront(historialClinico);// TODO add your handling code here:
     }//GEN-LAST:event_jmBuscarProductosNombreActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
-        // TODO add your handling code here:
+Escritorio.removeAll();
+       Escritorio.repaint();
+       StockProducto stockProducto= new StockProducto();
+       stockProducto.setVisible(true);
+       Escritorio.add(stockProducto);
+       Escritorio.moveToFront(stockProducto);        // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed

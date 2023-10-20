@@ -2,7 +2,7 @@
 
 <ClassDiagram name="Clinica Veterinaria">
   <ClassDiagramComponents>
-    <Class name="Cliente" package="" visibility="public" xPosition="453.0" yPosition="29.0">
+    <Class name="Cliente" package="" visibility="public" xPosition="68.0" yPosition="-251.0">
       <Fields>
         <Field name="idCliente" type="int" visibility="private"/>
         <Field name="Dni" type="int" visibility="private"/>
@@ -141,7 +141,7 @@
         </Method>
       </Methods>
     </Class>
-    <Class name="Visita" package="" visibility="public" xPosition="453.0" yPosition="696.0">
+    <Class name="Visita" package="" visibility="public" xPosition="530.0" yPosition="376.0">
       <Fields>
         <Field name="idVisita" type="int" visibility="private"/>
         <Field name="fechaVisita" type="Localdate" visibility="private"/>
@@ -197,7 +197,7 @@
         </Method>
       </Methods>
     </Class>
-    <Class name="Tratamiento" package="" visibility="public" xPosition="386.0" yPosition="245.0">
+    <Class name="Tratamiento" package="" visibility="public" xPosition="1024.0" yPosition="276.0">
       <Fields>
         <Field name="idTratamiento" type="int" visibility="private"/>
         <Field name="nombre" type="String" visibility="private"/>
@@ -302,9 +302,9 @@
     </Class>
   </ClassDiagramComponents>
   <ClassDiagramRelations>
-    <UseRelation name="" source="Tratamiento" target="Producto" sourceCardinality="1..1" targetCardinality="1..*"/>
     <HasRelation name="tiene" source="Visita" target="Tratamiento" type="Default" sourceCardinality="0..1" targetCardinality="1..1"/>
     <HasRelation name="tiene" source="Mascota" target="Visita" type="Default" sourceCardinality="0..1" targetCardinality="1..*" collectionType="ArrayList"/>
     <HasRelation name="tiene" source="Cliente" target="Mascota" type="Default" sourceCardinality="0..1" targetCardinality="1..*" collectionType="ArrayList"/>
+    <UseRelation name="" source="Tratamiento" target="Producto" sourceCardinality="1..1" targetCardinality="1..*"/>
   </ClassDiagramRelations>
 </ClassDiagram>

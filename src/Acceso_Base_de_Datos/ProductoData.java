@@ -31,17 +31,17 @@ public class ProductoData {
     }
 
     public void GuardarProducto(Producto propucto) {
-        String sql = "INSERT INTO `producto`( `nombre`, `descripcion`, `precio`, `stock`) VALUES (?,?,?,?)";
+        String sql = "INSERT INTO `producto`( `idProducto`,`nombre`, `descripcion`, `precio`, `stock`) VALUES (?,?,?,?,?)";
         try {
-            PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            ps.setString(1, propucto.getNombre());
-            ps.setString(2, propucto.getDescripcion());
-            ps.setInt(3, propucto.getPrecio());
-            ps.setInt(4, propucto.getStock());
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, propucto.getIdProducto());
+            ps.setString(2, propucto.getNombre());
+            ps.setString(3, propucto.getDescripcion());
+            ps.setInt(4, propucto.getPrecio());
+            ps.setInt(5, propucto.getStock());
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
-                propucto.setIdProducto(rs.getInt(1));
                 JOptionPane.showMessageDialog(null, "Producto Añadida con exito");
             }
             ps.close();
