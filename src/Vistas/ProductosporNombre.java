@@ -7,7 +7,11 @@ package Vistas;
 
 import Acceso_Base_de_Datos.ProductoData;
 import Entidades.Producto;
+import static Vistas.Ventas.model;
 import java.util.List;
+import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
+import javax.swing.ListModel;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -15,15 +19,20 @@ import javax.swing.table.DefaultTableModel;
  * @author elmsn
  */
 public class ProductosporNombre extends javax.swing.JInternalFrame {
-private DefaultTableModel modelo= new DefaultTableModel(){
+
+    private DefaultTableModel modelo = new DefaultTableModel();
+        
     
-};
+
     /**
      * Creates new form BuscarProductos
      */
     public ProductosporNombre() {
         initComponents();
         armarTabla();
+        cargaTabla();
+        jbAgregar.setVisible(false);
+        
     }
 
     /**
@@ -40,14 +49,17 @@ private DefaultTableModel modelo= new DefaultTableModel(){
         jtNombreProducto = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTablaProductos = new javax.swing.JTable();
+        jtProductos = new javax.swing.JTable();
         jbSalir = new javax.swing.JButton();
+        jbAgregar = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jtCant = new javax.swing.JTextField();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 28, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -70,7 +82,7 @@ private DefaultTableModel modelo= new DefaultTableModel(){
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel1.setText("Buscar Productos por nombre");
 
-        jScrollPane1.setViewportView(jTablaProductos);
+        jScrollPane1.setViewportView(jtProductos);
 
         jbSalir.setText("Salir");
         jbSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -79,16 +91,22 @@ private DefaultTableModel modelo= new DefaultTableModel(){
             }
         });
 
+        jbAgregar.setText("AGREGAR");
+        jbAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbAgregarActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("CANT");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(71, 71, 71)
+                .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -100,9 +118,19 @@ private DefaultTableModel modelo= new DefaultTableModel(){
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jtNombreProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(29, 29, 29)))
+                        .addGap(29, 29, 29))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addGap(18, 18, 18)
+                                .addComponent(jtCant, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 375, Short.MAX_VALUE)
+                                .addComponent(jbAgregar)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(0, 0, 0))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -116,9 +144,18 @@ private DefaultTableModel modelo= new DefaultTableModel(){
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jtNombreProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(50, 50, 50)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jbAgregar)
+                                .addGap(9, 9, 9))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jtCant, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(1, 1, 1)))
                         .addComponent(jbSalir)))
                 .addContainerGap())
         );
@@ -131,15 +168,15 @@ private DefaultTableModel modelo= new DefaultTableModel(){
     }//GEN-LAST:event_jtNombreProductoActionPerformed
 
     private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
-    dispose();        // TODO add your handling code here:
+        dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_jbSalirActionPerformed
 
     private void jtNombreProductoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtNombreProductoKeyReleased
-       borrarFilas();
-       ProductoData prodData= new ProductoData();
-       
-       List<Producto> producto= prodData.ListarProductos();
-            for (Producto prod : producto) {
+        borrarFilas();
+        ProductoData prodData = new ProductoData();
+
+        List<Producto> producto = prodData.ListarProductos();
+        for (Producto prod : producto) {
             if (prod.getNombre().toLowerCase().startsWith(jtNombreProducto.getText().toLowerCase())) {
                 modelo.addRow(new Object[]{
                     prod.getIdProducto(),
@@ -147,35 +184,90 @@ private DefaultTableModel modelo= new DefaultTableModel(){
                     prod.getDescripcion(),
                     prod.getPrecio(),
                     prod.getStock()
-                });}
+                });
+            }
         }
     }//GEN-LAST:event_jtNombreProductoKeyReleased
+
+    private void jbAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAgregarActionPerformed
+        int filselec = jtProductos.getSelectedRow();
+        try {
+            String id, nombre, descripcion, precio, cant, importe;
+
+            if (filselec == -1) {
+                JOptionPane.showMessageDialog(null, "Debe seleccionar producto", "Advertancia", JOptionPane.WARNING_MESSAGE);// TODO add your handling code here:
+            } else {
+                modelo = (DefaultTableModel) jtProductos.getModel();
+                id = jtProductos.getValueAt(filselec, 0).toString();
+                nombre = jtProductos.getValueAt(filselec, 1).toString();
+                descripcion = jtProductos.getValueAt(filselec, 2).toString();
+                precio = jtProductos.getValueAt(filselec, 3).toString();
+                cant = jtCant.getText();
+
+                double x = (Double.parseDouble(precio) * Integer.parseInt(cant));
+                importe = String.valueOf(x);
+               
+
+                
+                String filaElemento = "Producto : " + cant + ", " + nombre + ", " + descripcion + " Precio: $" + x;
+                model.addElement(filaElemento);
+                ProductoData prod = new ProductoData();
+                Producto producStock = prod.BuscarProductoPorId(Integer.parseInt(id));
+                producStock.setStock(producStock.getStock() - Integer.parseInt(cant));
+                prod.ModificarProducto(producStock);
+            }
+        } catch (Exception ex) {
+
+        }
+
+        dispose();
+// TODO add your handling code here:
+    }//GEN-LAST:event_jbAgregarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTablaProductos;
+    public javax.swing.JButton jbAgregar;
     private javax.swing.JButton jbSalir;
+    private javax.swing.JTextField jtCant;
     private javax.swing.JTextField jtNombreProducto;
+    public javax.swing.JTable jtProductos;
     // End of variables declaration//GEN-END:variables
-private void armarTabla(){
-    modelo.addColumn("id");
-    modelo.addColumn("nombre");
-    modelo.addColumn("descripcion");
-    modelo.addColumn("precio");
-    modelo.addColumn("stock");
-    
-    jTablaProductos.setModel(modelo);
-    
-}
-private void borrarFilas(){
-    int f=jTablaProductos.getRowCount()-1;
-    
-    for(int i=f; i>=0;i--){
-        modelo.removeRow(i);
+private void armarTabla() {
+        modelo.addColumn("id");
+        modelo.addColumn("nombre");
+        modelo.addColumn("descripcion");
+        modelo.addColumn("precio");
+        modelo.addColumn("stock");
+
+        jtProductos.setModel(modelo);
+
     }
+private void cargaTabla(){
+       ProductoData prodData = new ProductoData();
+
+        List<Producto> producto = prodData.ListarProductos();
+        for (Producto prod : producto) {
+           
+                modelo.addRow(new Object[]{
+                    prod.getIdProducto(),
+                    prod.getNombre(),
+                    prod.getDescripcion(),
+                    prod.getPrecio(),
+                    prod.getStock()
+                });
+            
+        }
 }
+    private void borrarFilas() {
+        int f = jtProductos.getRowCount() - 1;
+
+        for (int i = f; i >= 0; i--) {
+            modelo.removeRow(i);
+        }
+    }
 }

@@ -42,6 +42,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jmRegistroProducto = new javax.swing.JMenuItem();
         jMenuVisita = new javax.swing.JMenu();
         jmRegistrarVisita = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         jMenuItem8 = new javax.swing.JMenuItem();
         jSMSalir = new javax.swing.JMenuItem();
@@ -141,6 +143,18 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMenuVisita.add(jmRegistrarVisita);
 
         jMenuBar1.add(jMenuVisita);
+
+        jMenu1.setText("Contabilidad");
+
+        jMenuItem1.setText("Factura");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem1);
+
+        jMenuBar1.add(jMenu1);
 
         jMenu5.setText("Salir");
 
@@ -243,6 +257,16 @@ Escritorio.removeAll();
         Escritorio.moveToFront(ipd);
     }//GEN-LAST:event_jmRegistroProductoActionPerformed
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+     Escritorio.removeAll();
+        Escritorio.repaint();
+        Ventas ventas =new Ventas();
+        
+        ventas.setVisible(true);
+        Escritorio.add(ventas);
+        Escritorio.moveToFront(ventas);   // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -282,9 +306,11 @@ Escritorio.removeAll();
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JDesktopPane Escritorio;
     private javax.swing.JMenuItem jMGestionMascotas;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu jMenuClientes;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
