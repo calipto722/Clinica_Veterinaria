@@ -258,14 +258,14 @@ private void cargaTabla(){
         List<Producto> producto = prodData.ListarProductos();
         for (Producto prod : producto) {
            
-                modelo.addRow(new Object[]{
-                    prod.getIdProducto(),
-                    prod.getNombre(),
-                    prod.getDescripcion(),
-                    prod.getPrecio(),
-                    prod.getStock()
-                });
-            
+               modelo.addRow(new Object[]{
+                prod.getIdProducto(),
+                prod.getNombre(),
+                prod.getDescripcion(),
+                prod.getPrecio(),
+                prod.getStock()
+            });
+
         }
 }
     private void borrarFilas() {

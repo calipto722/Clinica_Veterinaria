@@ -21,7 +21,7 @@ import javax.swing.JOptionPane;
  *
  * @author noelia
  */
-public class RegistroDeMascota extends javax.swing.JInternalFrame {
+public class Mascota_Registro extends javax.swing.JInternalFrame {
 
     private MascotaData mascotaData;
     private ClienteData clienteData;
@@ -30,7 +30,7 @@ public class RegistroDeMascota extends javax.swing.JInternalFrame {
     /**
      * Creates new form RegistroDeMascota
      */
-    public RegistroDeMascota() {
+    public Mascota_Registro() {
         initComponents();
         mascotaP = new Mascota();
         mascotaData = new MascotaData();

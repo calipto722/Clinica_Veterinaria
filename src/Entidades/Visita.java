@@ -81,7 +81,7 @@ public class Visita {
 
     @Override
     public String toString() {
-        return  "idVisita=" + idVisita + ", fechaVisita=" + fechaVisita ;
+        return  "Macota: "+mascota.getNombreAlias()+ ", fechaVisita=" + fechaVisita ;
     }
     
 }
