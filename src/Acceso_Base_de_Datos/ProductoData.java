@@ -39,10 +39,12 @@ public class ProductoData {
             ps.setString(3, propucto.getDescripcion());
             ps.setInt(4, propucto.getPrecio());
             ps.setInt(5, propucto.getStock());
-            ps.executeUpdate();
-            ResultSet rs = ps.getGeneratedKeys();
-            if (rs.next()) {
+            int exito=ps.executeUpdate();
+            
+            if (exito==1) {
                 JOptionPane.showMessageDialog(null, "Producto Añadida con exito");
+            }else {
+                JOptionPane.showMessageDialog(null, "El Producto existe");
             }
             ps.close();
         } catch (SQLException ex) {

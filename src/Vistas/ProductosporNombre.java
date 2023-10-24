@@ -7,7 +7,9 @@ package Vistas;
 
 import Acceso_Base_de_Datos.ProductoData;
 import Entidades.Producto;
+import static Vistas.Ventas.lbl_total;
 import static Vistas.Ventas.model;
+import static Vistas.Ventas.total;
 import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
@@ -32,7 +34,8 @@ public class ProductosporNombre extends javax.swing.JInternalFrame {
         armarTabla();
         cargaTabla();
         jbAgregar.setVisible(false);
-        
+        jlcant.setVisible(false);
+        jtCant.setVisible(false);
     }
 
     /**
@@ -52,7 +55,7 @@ public class ProductosporNombre extends javax.swing.JInternalFrame {
         jtProductos = new javax.swing.JTable();
         jbSalir = new javax.swing.JButton();
         jbAgregar = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
+        jlcant = new javax.swing.JLabel();
         jtCant = new javax.swing.JTextField();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -98,7 +101,7 @@ public class ProductosporNombre extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel3.setText("CANT");
+        jlcant.setText("CANT");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -123,7 +126,7 @@ public class ProductosporNombre extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3)
+                                .addComponent(jlcant)
                                 .addGap(18, 18, 18)
                                 .addComponent(jtCant, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 375, Short.MAX_VALUE)
@@ -153,7 +156,7 @@ public class ProductosporNombre extends javax.swing.JInternalFrame {
                                 .addGap(9, 9, 9))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel3)
+                                    .addComponent(jlcant)
                                     .addComponent(jtCant, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(1, 1, 1)))
                         .addComponent(jbSalir)))
@@ -209,12 +212,14 @@ public class ProductosporNombre extends javax.swing.JInternalFrame {
                
 
                 
-                String filaElemento = "Producto : " + cant + ", " + nombre + ", " + descripcion + " Precio: $" + x;
+                String filaElemento = "Producto : " + cant + ", " + nombre + ", " + descripcion +" Precio: $"+ x;
                 model.addElement(filaElemento);
                 ProductoData prod = new ProductoData();
                 Producto producStock = prod.BuscarProductoPorId(Integer.parseInt(id));
                 producStock.setStock(producStock.getStock() - Integer.parseInt(cant));
                 prod.ModificarProducto(producStock);
+                Ventas.total+= x;
+                lbl_total.setText("$"+total);
             }
         } catch (Exception ex) {
 
@@ -228,12 +233,12 @@ public class ProductosporNombre extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JButton jbAgregar;
     private javax.swing.JButton jbSalir;
-    private javax.swing.JTextField jtCant;
+    public javax.swing.JLabel jlcant;
+    public javax.swing.JTextField jtCant;
     private javax.swing.JTextField jtNombreProducto;
     public javax.swing.JTable jtProductos;
     // End of variables declaration//GEN-END:variables
