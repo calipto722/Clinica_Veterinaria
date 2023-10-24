@@ -144,14 +144,17 @@ private DefaultTableModel modelo= new DefaultTableModel();
         VisitaData visitaData = new VisitaData();
     List<Visita> visitas= visitaData.listarVisitas();
     Mascota masp = (Mascota) jComboBox1.getSelectedItem();
-        for (Visita visita : visitas) {
-            System.out.println(visita);
-            if (visita.getMascota().getIdMascota()==(masp.getIdMascota())) {
+        for (int i = 0; i < 10; i++) {
+             if (visitas.get(i).getMascota().getIdMascota()==(masp.getIdMascota())) {
                 modelo.addRow(new Object[]{
-                    visita.getFechaVisita(),
-                    visita.getTratamiento().getTipoTratamiento(),
-                    visita.getPesoActual()
+                    visitas.get(i).getFechaVisita(),
+                    visitas.get(i).getTratamiento().getTipoTratamiento(),
+                    visitas.get(i).getPesoActual()
                 });
+        }
+ {
+       
+           
             }
         } 
         PesoPromedio.setText(pesopromed(jTable1));// TODO add your handling code here:
@@ -171,7 +174,8 @@ private DefaultTableModel modelo= new DefaultTableModel();
          MascotaData mascotaD = new MascotaData();
         List<Mascota> mascotas = mascotaD.listarMascota();
         jComboBox1.removeAllItems();
-        for (int i = 0; i < mascotas.size(); i++) {
+       
+        for (int i = 0; i <mascotas.size() ; i++) {
             jComboBox1.addItem(mascotas.get(i));
 
         }
