@@ -150,7 +150,7 @@ return producto;
             }
             ps.close();
         } catch (SQLException ex) {
-            Logger.getLogger(ProductoData.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null,"Problema con la tabla producto " + ex.getMessage());
         }
 return producto;
    

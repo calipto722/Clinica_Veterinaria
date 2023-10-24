@@ -12,6 +12,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.JOptionPane;
 import sun.security.rsa.RSACore;
@@ -79,10 +83,10 @@ public class TratamientoData {
             ResultSet rs= ps.executeQuery();
             //``, `medicamento`, `importe`, `tipoTratamiento`, ``
             if (rs.next()) {
-                 tratamiento= new Tratamiento();
-                 ProductoData productoData=new ProductoData();
-                 Producto producto = new Producto();
-                 producto=productoData.BuscarProductoPorId(rs.getInt("idProducto"));
+                tratamiento = new Tratamiento();
+                ProductoData productoData = new ProductoData();
+                Producto producto = new Producto();
+                producto = productoData.BuscarProductoPorId(rs.getInt("idProducto"));
                 tratamiento.setDescripcion(rs.getString("descripcion"));
                 tratamiento.setEstadoTratamiento(rs.getBoolean("activo"));
                 tratamiento.setIdTratamiento(id);
@@ -117,4 +121,61 @@ public class TratamientoData {
         
     }
 }
+        public List<Tratamiento> ListarTratamientos() {
+            List<Tratamiento> tratamientos = new ArrayList<>();
+            String sql = "SELECT * FROM `tratamiento` WHERE 1";
+            PreparedStatement ps;
+            try {
+                ps = con.prepareStatement(sql);
+                ResultSet rs = ps.executeQuery();
+                while (rs.next()) {
+                    Tratamiento tratamiento = new Tratamiento();
+                    ProductoData productoData = new ProductoData();
+                    Producto producto = new Producto();
+                    producto = productoData.BuscarProductoPorId(rs.getInt("idProducto"));
+                    tratamiento.setDescripcion(rs.getString("descripcion"));
+                    tratamiento.setEstadoTratamiento(rs.getBoolean("activo"));
+                    tratamiento.setIdTratamiento(rs.getInt("idTratamiento"));
+                    tratamiento.setImporte(rs.getInt("importe"));
+                    tratamiento.setProducto(producto);
+                    tratamiento.setTipoTratamiento(rs.getString("tipoTratamiento"));
+                    tratamientos.add(tratamiento);
+
+                }
+                ps.close();
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Tratamiento " + ex.getMessage());
+            }
+
+            return tratamientos;
+    }
+         public Tratamiento BuscarTramientoPorNombre(String tipoTratamiento){
+             Tratamiento tratamiento = null;
+             String sql = "SELECT * FROM tratamiento  WHERE tipoTratamiento Like ?%";
+             try {
+                 PreparedStatement ps = con.prepareStatement(sql);
+                 ps.setString(1, tipoTratamiento);
+                 ResultSet rs = ps.executeQuery();
+                 if (rs.next()) {
+                     tratamiento = new Tratamiento();
+                     ProductoData productoData=new ProductoData();
+                     Producto producto= new Producto();
+                     producto= productoData.BuscarProductoPorId(rs.getInt("idProducto"));
+                     tratamiento.setIdTratamiento(rs.getInt("idTratamiento"));
+                     tratamiento.setDescripcion(rs.getString("descripcion"));
+                     tratamiento.setTipoTratamiento(rs.getString("tipoTratamiento"));
+                     tratamiento.setImporte(rs.getInt("importe"));
+                     tratamiento.setProducto(producto);
+                     tratamiento.setEstadoTratamiento(rs.getBoolean("activo"));
+                 } else {
+                     JOptionPane.showMessageDialog(null, "No existe el Tratamiento");
+                 }
+                 ps.close();
+             } catch (SQLException ex) {
+                 JOptionPane.showMessageDialog(null,"Problema con la tabla tratamiento "+ ex.getMessage());
+             }
+             return tratamiento;
+   
+    }
+        
 }
