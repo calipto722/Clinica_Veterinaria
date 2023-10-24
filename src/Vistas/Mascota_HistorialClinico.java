@@ -18,12 +18,12 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author noelia
  */
-public class HistorialClinico extends javax.swing.JInternalFrame {
+public class Mascota_HistorialClinico extends javax.swing.JInternalFrame {
 private DefaultTableModel modelo= new DefaultTableModel();
     /**
      * Creates new form HistorialClinico
      */
-    public HistorialClinico() {
+    public Mascota_HistorialClinico() {
         initComponents();
         cargarbox();
         armarTabla();

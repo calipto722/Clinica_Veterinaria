@@ -42,6 +42,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jmRegistroProducto = new javax.swing.JMenuItem();
         jMenuVisita = new javax.swing.JMenu();
         jmRegistrarVisita = new javax.swing.JMenuItem();
+        jListarTratamiento = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
@@ -142,6 +143,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
         jMenuVisita.add(jmRegistrarVisita);
 
+        jListarTratamiento.setText("Lista Tratamientos");
+        jListarTratamiento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jListarTratamientoActionPerformed(evt);
+            }
+        });
+        jMenuVisita.add(jListarTratamiento);
+
         jMenuBar1.add(jMenuVisita);
 
         jMenu1.setText("Contabilidad");
@@ -197,7 +206,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void jMGestionMascotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMGestionMascotasActionPerformed
        Escritorio.removeAll();
         Escritorio.repaint();
-        RegistroDeMascota rdm = new RegistroDeMascota();
+        Mascota_Registro rdm = new Mascota_Registro();
         rdm.setVisible(true);
         Escritorio.add(rdm);
         Escritorio.moveToFront(rdm);
@@ -206,7 +215,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
     Escritorio.removeAll();
     Escritorio.repaint();
-    HistorialClinico historialClinico= new HistorialClinico();
+    Mascota_HistorialClinico historialClinico= new Mascota_HistorialClinico();
 historialClinico.setVisible(true);
 Escritorio.add(historialClinico);
 Escritorio.moveToFront(historialClinico);// TODO add your handling code here:
@@ -224,7 +233,7 @@ Escritorio.moveToFront(historialClinico);// TODO add your handling code here:
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
 Escritorio.removeAll();
        Escritorio.repaint();
-       StockProducto stockProducto= new StockProducto();
+       Producto_Stock stockProducto= new Producto_Stock();
        stockProducto.setVisible(true);
        Escritorio.add(stockProducto);
        Escritorio.moveToFront(stockProducto);        // TODO add your handling code here:
@@ -241,7 +250,7 @@ Escritorio.removeAll();
     private void jmRegistrarVisitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmRegistrarVisitaActionPerformed
         Escritorio.removeAll();
         Escritorio.repaint();
-        RegistrarVisita rgv = new RegistrarVisita();
+        Visita_Registrar rgv = new Visita_Registrar();
         rgv.setVisible(true);
         Escritorio.add(rgv);
         Escritorio.moveToFront(rgv);
@@ -251,7 +260,7 @@ Escritorio.removeAll();
     private void jmRegistroProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmRegistroProductoActionPerformed
         Escritorio.removeAll();
         Escritorio.repaint();
-        IngresoProductos ipd= new IngresoProductos();
+        Productos_Ingresos ipd= new Productos_Ingresos();
         ipd.setVisible(true);
         Escritorio.add(ipd);
         Escritorio.moveToFront(ipd);
@@ -266,6 +275,16 @@ Escritorio.removeAll();
         Escritorio.add(ventas);
         Escritorio.moveToFront(ventas);   // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jListarTratamientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jListarTratamientoActionPerformed
+      Escritorio.removeAll();
+        Escritorio.repaint();
+        Tratamiento_Listar tratamiento_Listar= new Tratamiento_Listar();
+        
+        tratamiento_Listar.setVisible(true);
+        Escritorio.add(tratamiento_Listar);
+        Escritorio.moveToFront(tratamiento_Listar);    // TODO add your handling code here:
+    }//GEN-LAST:event_jListarTratamientoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -305,6 +324,7 @@ Escritorio.removeAll();
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JDesktopPane Escritorio;
+    private javax.swing.JMenuItem jListarTratamiento;
     private javax.swing.JMenuItem jMGestionMascotas;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu5;

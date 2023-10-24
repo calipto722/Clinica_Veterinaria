@@ -13,14 +13,14 @@ import javax.swing.JOptionPane;
  *
  * @author noelia
  */
-public class IngresoProductos extends javax.swing.JInternalFrame {
+public class Productos_Ingresos extends javax.swing.JInternalFrame {
 
     private Producto productoP;
 
     /**
      * Creates new form IngresoProductos
      */
-    public IngresoProductos() {
+    public Productos_Ingresos() {
         initComponents();
         productoP = new Producto();
 

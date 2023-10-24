@@ -24,14 +24,14 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author noelia
  */
-public class RegistrarVisita extends javax.swing.JInternalFrame {
+public class Visita_Registrar extends javax.swing.JInternalFrame {
 
     private DefaultTableModel m = new DefaultTableModel();
     static double total;
     double subtotal;
     double igv;
     DefaultListModel<String>model = new DefaultListModel<>();
-    public RegistrarVisita() {
+    public Visita_Registrar() {
         initComponents();
         cargarbox();
         this.setTitle("Registro de visita");
@@ -366,7 +366,7 @@ public class RegistrarVisita extends javax.swing.JInternalFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        RegistrarTratamiento rgt = new RegistrarTratamiento();
+        Tratamiento_Registrar rgt = new Tratamiento_Registrar();
         Escritorio.add(rgt);
         rgt.toFront();
         rgt.setVisible(true);
