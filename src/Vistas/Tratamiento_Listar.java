@@ -5,9 +5,12 @@
  */
 package Vistas;
 
+import Acceso_Base_de_Datos.ProductoData;
 import Acceso_Base_de_Datos.TratamientoData;
+import Entidades.Producto;
 import Entidades.Tratamiento;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
@@ -26,7 +29,7 @@ public class Tratamiento_Listar extends javax.swing.JInternalFrame {
         initComponents();
         armarTabla();
         cargarTabla();
-
+        jbAgregar.setVisible(false);
     }
 
     /**
@@ -40,7 +43,9 @@ public class Tratamiento_Listar extends javax.swing.JInternalFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jtTratamientos = new javax.swing.JTable();
+        jbAgregar = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -50,10 +55,10 @@ public class Tratamiento_Listar extends javax.swing.JInternalFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 24, Short.MAX_VALUE)
         );
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jtTratamientos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -61,7 +66,18 @@ public class Tratamiento_Listar extends javax.swing.JInternalFrame {
 
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jtTratamientos);
+
+        jbAgregar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jbAgregar.setText("Agregar");
+        jbAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbAgregarActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("KodchiangUPC", 2, 48)); // NOI18N
+        jLabel1.setText("Tratamientos");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -69,11 +85,22 @@ public class Tratamiento_Listar extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 828, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jbAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 487, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jbAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -81,19 +108,48 @@ public class Tratamiento_Listar extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jbAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAgregarActionPerformed
+        int filselec = jtTratamientos.getSelectedRow();
+        ProductoData prod = new ProductoData();
+        Producto prodselec = new Producto();
+        String tipo, descripcion, estado, importe;
+        int producto;
+        if (filselec == -1) {
+            JOptionPane.showMessageDialog(null, "Debe seleccionar producto", "Advertancia", JOptionPane.WARNING_MESSAGE);// TODO add your handling code here:
+        } else {
+            modelo = (DefaultTableModel) jtTratamientos.getModel();
+            tipo = jtTratamientos.getValueAt(filselec, 0).toString();
+            descripcion = jtTratamientos.getValueAt(filselec, 1).toString();
+            producto = (int) jtTratamientos.getValueAt(filselec, 2);
+            prodselec = prod.BuscarProductoPorId(producto);
+            estado = jtTratamientos.getValueAt(filselec, 4).toString();
+            importe = jtTratamientos.getValueAt(filselec, 5).toString();
+            Tratamiento_Registrar.jtDescripcion.setText(descripcion);
+            Tratamiento_Registrar.jtTipo.setText(tipo);
+            Tratamiento_Registrar.jcProducto.removeAllItems();
+            Tratamiento_Registrar.jcProducto.addItem(prodselec);
+            Tratamiento_Registrar.jtEstado.setText(estado);
+            Tratamiento_Registrar.jtImporte.setText(importe);
+            dispose();
+// TODO add your handling code here:
+    }//GEN-LAST:event_jbAgregarActionPerformed
 
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    public javax.swing.JButton jbAgregar;
+    private javax.swing.JTable jtTratamientos;
     // End of variables declaration//GEN-END:variables
 private void armarTabla() {
-        modelo.addColumn("id");
+        modelo.addColumn("tipo");
         modelo.addColumn("Descripcion");
+        modelo.addColumn("id");
         modelo.addColumn("Producto");
-        modelo.addColumn("Tipo Tratamiento");
-
-        jTable1.setModel(modelo);
+        modelo.addColumn("Estado");
+        modelo.addColumn("Importe");
+        jtTratamientos.setModel(modelo);
     }
 
     private void cargarTabla() {
@@ -101,13 +157,16 @@ private void armarTabla() {
         List<Tratamiento> tratamientos = tratamientoData.ListarTratamiento();
         for (Tratamiento tratamiento : tratamientos) {
             modelo.addRow(new Object[]{
-                tratamiento.getIdTratamiento(),
+                tratamiento.getTipoTratamiento(),
                 tratamiento.getDescripcion(),
+                tratamiento.getProducto().getIdProducto(),
                 tratamiento.getProducto().getNombre(),
-                tratamiento.getTipoTratamiento()
+                tratamiento.isEstadoTratamiento(),
+                tratamiento.getImporte()
 
             });
 
         }
     }
+    
 }
