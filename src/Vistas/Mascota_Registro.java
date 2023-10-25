@@ -313,11 +313,11 @@ public class Mascota_Registro extends javax.swing.JInternalFrame {
 
             mascotaP = mascotaData.BuscarMascota(id);
 
-        } catch (NullPointerException e) {
-            System.out.println("----");
-        } catch (NumberFormatException ex) {
+        }  catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(null, "Ingresar un Numero");
-        }
+        }try{
+            
+       
 
         if (mascotaP != null) {
             jcCliente.removeAllItems();
@@ -334,13 +334,20 @@ public class Mascota_Registro extends javax.swing.JInternalFrame {
                 jrMacho.setSelected(true);
             }
         }
-
+ }catch (NullPointerException e) {
+            System.out.println("----");
+        }
         // TODO add your handling code here:
     }//GEN-LAST:event_jbBuscarActionPerformed
 
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
         
  try {
+     if (revisiondeNull()==false) {
+            seteo();
+        } else {
+            
+            
         String nombre = jtNombre.getText();
         String especie = jtEspecie.getText();
         String raza = jtRaza.getText();
@@ -352,18 +359,6 @@ public class Mascota_Registro extends javax.swing.JInternalFrame {
         //Esta expresión condicional es una forma abreviada de escribir una estructura condicional if-else.
         String sexo = (jrMacho.isSelected()) ? "Macho" : "Hembra";
         
-        if (nombre.isEmpty() || especie.isEmpty() || raza.isEmpty() || colorPelo.isEmpty() || fechaNac == null || cliente == null) {
-            JOptionPane.showMessageDialog(this, "Falta completar campos obligatorios", "ERROR", JOptionPane.ERROR_MESSAGE);
-        } else {
-            int id = 0;
-            Mascota mascotaP = null;
-            
-            try {
-                id = Integer.valueOf(jtId.getText());
-                mascotaP = mascotaData.BuscarMascota(id);
-            } catch (NumberFormatException ex) {
-                // El ID no es un número válido, asumimos que estamos creando una nueva mascota
-            }
             
             if (mascotaP != null) {
                 // Modificar la mascota existente
@@ -377,17 +372,17 @@ public class Mascota_Registro extends javax.swing.JInternalFrame {
                 mascotaP.setSexo(sexo);
                 
                 mascotaData.ModificarMascota(mascotaP);
-                JOptionPane.showMessageDialog(this, "Mascota modificada con éxito", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+              
             } else {
                 // Crear una nueva mascota
                 Mascota mascota = new Mascota(nombre, sexo, especie, raza, colorPelo, fechaNac, estado, cliente);
-                if (revisiondeNull()) {
+                
                     mascotaData.GuardarMascota(mascota);
-                    JOptionPane.showMessageDialog(this, "Mascota guardada con éxito", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-                }
+                   
+                
             }
         }
-    } catch (Exception e) {
+    } catch (NumberFormatException e) {
         JOptionPane.showMessageDialog(this, "Ocurrió un error inesperado", "ERROR", JOptionPane.ERROR_MESSAGE);
     }
     }//GEN-LAST:event_jbGuardarActionPerformed
@@ -405,17 +400,7 @@ public class Mascota_Registro extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jtNombreActionPerformed
 
     private void jbLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLimpiarActionPerformed
-        jtNombre.setText("");
-        jcCliente.removeAllItems();
-        cargarbox();
-        jtColoDePelo.setText("");
-        jtEspecie.setText("");
-        jtRaza.setText("");
-        jcEstado.setSelected(false);
-        jdFechaNac.setDate(null);
-        bgSexo.clearSelection();
-       // mascotaP = null;
-        jtId.setText("");
+        seteo();
         // TODO add your handling code here:
     }//GEN-LAST:event_jbLimpiarActionPerformed
 
@@ -468,7 +453,19 @@ public class Mascota_Registro extends javax.swing.JInternalFrame {
         }
 
     }
-
+private void seteo(){
+       jtNombre.setText("");
+        jcCliente.removeAllItems();
+        cargarbox();
+        jtColoDePelo.setText("");
+        jtEspecie.setText("");
+        jtRaza.setText("");
+        jcEstado.setSelected(false);
+        jdFechaNac.setDate(null);
+        bgSexo.clearSelection();
+       mascotaP = null;
+        jtId.setText("");
+}
     private boolean revisiondeNull() {
         boolean revision = true;
         if (jtNombre.getText().equals("")) {
