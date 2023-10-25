@@ -5,14 +5,29 @@
  */
 package Vistas;
 
+import Acceso_Base_de_Datos.Conexion;
 import Acceso_Base_de_Datos.MascotaData;
 import Acceso_Base_de_Datos.VisitaData;
 import Entidades.Mascota;
 import Entidades.Visita;
+import java.sql.Connection;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -20,9 +35,8 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Mascota_HistorialClinico extends javax.swing.JInternalFrame {
 private DefaultTableModel modelo= new DefaultTableModel();
-    /**
-     * Creates new form HistorialClinico
-     */
+    private Connection con=null;
+     
     public Mascota_HistorialClinico() {
         initComponents();
         cargarbox();
@@ -45,6 +59,8 @@ private DefaultTableModel modelo= new DefaultTableModel();
         jButton1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         PesoPromedio = new javax.swing.JLabel();
+
+        setClosable(true);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -100,8 +116,8 @@ private DefaultTableModel modelo= new DefaultTableModel();
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
                                 .addComponent(PesoPromedio, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jButton1)))))
@@ -131,7 +147,23 @@ private DefaultTableModel modelo= new DefaultTableModel();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+    con=Conexion.getConexion();
+       
+        Mascota masp = (Mascota) jComboBox1.getSelectedItem();
+    
+        try {
+            JasperReport report =null;
+            String dir = "src\\RECURSOS\\Historial_Clinico.jasper";
+         report = (JasperReport) JRLoader.loadObjectFromFile(dir);
+        Map parametro = new HashMap();
+        parametro.put("Mascota", masp.getNombreAlias());
+            JasperPrint jprint= JasperFillManager.fillReport(report,parametro,con);
+            JasperViewer view =new JasperViewer(jprint, false);
+            view.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+            view.setVisible(true);
+        } catch (JRException ex) {
+        Logger.getLogger(Mascota_HistorialClinico.class.getName()).log(Level.SEVERE, null, ex);
+    }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jComboBox1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jComboBox1KeyReleased
