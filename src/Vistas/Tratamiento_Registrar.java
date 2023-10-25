@@ -7,7 +7,6 @@ package Vistas;
 
 import Acceso_Base_de_Datos.ClienteData;
 import Acceso_Base_de_Datos.ProductoData;
-import Acceso_Base_de_Datos.TratamientoData;
 import Entidades.Cliente;
 import Entidades.Producto;
 import Entidades.Tratamiento;
@@ -228,31 +227,22 @@ public class Tratamiento_Registrar extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jbAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAgregarActionPerformed
-        ProductoData prod = new ProductoData();
-        String descripcion = this.jtDescripcion.getText();
-        int importe = Integer.valueOf(this.jtImporte.getText());
+        
+        if (revisiondeNull()) {
+            int importe = Integer.valueOf(this.jtImporte.getText());
         boolean estado = jtEstado.getText().equals("1") ? true : false;
-        String tipoString= this.jtTipo.getText();
+        tratamientoP.setTipoTratamiento(this.jtTipo.getText());
+        tratamientoP.setDescripcion(this.jtDescripcion.getText());
+        tratamientoP.setEstadoTratamiento(estado);
+        tratamientoP.setImporte(importe);
+       
+        
+ProductoData prod = new ProductoData();
         Producto producStock = (Producto) jcProducto.getSelectedItem();
-
         producStock.setStock(producStock.getStock() - 1);
         prod.ModificarProducto(producStock);
-        TratamientoData tratamientoData = new TratamientoData();
-        if (revisiondeNull()) {
-            
-            if (tratamientoP.getDescripcion()!=null) {
-                tratamientoP.setTipoTratamiento(tipoString);
-                tratamientoP.setDescripcion(descripcion);
-                tratamientoP.setEstadoTratamiento(estado);
-                tratamientoP.setImporte(importe);
-                tratamientoP.setProducto(producStock);
-                tratamientoData.ModificarTratamiento(tratamientoP);
-            } else {
-                Tratamiento tratamiento= new Tratamiento(tipoString, descripcion, producStock, importe, estado);
-                tratamientoData.GuardarTratamiento(tratamiento);
-            }
-            dispose();
-        }// TODO add your handling code here:
+
+        dispose();}// TODO add your handling code here:
     }//GEN-LAST:event_jbAgregarActionPerformed
 
     private void jcProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcProductoActionPerformed
@@ -260,13 +250,13 @@ public class Tratamiento_Registrar extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jcProductoActionPerformed
 
     private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
-
+ 
         Tratamiento_Listar tratamiento_Listar = new Tratamiento_Listar();
         Escritorio.add(tratamiento_Listar);
         tratamiento_Listar.toFront();
         tratamiento_Listar.setVisible(true);
         tratamiento_Listar.jbAgregar.setVisible(true);
-
+        
         // TODO add your handling code here:
     }//GEN-LAST:event_jbBuscarActionPerformed
 
