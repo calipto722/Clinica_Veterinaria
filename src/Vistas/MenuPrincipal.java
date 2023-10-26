@@ -42,6 +42,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jmRegistroProducto = new javax.swing.JMenuItem();
         jMenuVisita = new javax.swing.JMenu();
         jmRegistrarVisita = new javax.swing.JMenuItem();
+        jListarTratamiento = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         jMenuItem8 = new javax.swing.JMenuItem();
         jSMSalir = new javax.swing.JMenuItem();
@@ -52,11 +55,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         Escritorio.setLayout(EscritorioLayout);
         EscritorioLayout.setHorizontalGroup(
             EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1290, Short.MAX_VALUE)
+            .addGap(0, 1316, Short.MAX_VALUE)
         );
         EscritorioLayout.setVerticalGroup(
             EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 531, Short.MAX_VALUE)
+            .addGap(0, 777, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -67,7 +70,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Escritorio)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(Escritorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         jMenuClientes.setText("Clientes");
@@ -138,7 +143,27 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
         jMenuVisita.add(jmRegistrarVisita);
 
+        jListarTratamiento.setText("Lista Tratamientos");
+        jListarTratamiento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jListarTratamientoActionPerformed(evt);
+            }
+        });
+        jMenuVisita.add(jListarTratamiento);
+
         jMenuBar1.add(jMenuVisita);
+
+        jMenu1.setText("Contabilidad");
+
+        jMenuItem1.setText("Factura");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem1);
+
+        jMenuBar1.add(jMenu1);
 
         jMenu5.setText("Salir");
 
@@ -166,15 +191,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 774, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -183,7 +206,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void jMGestionMascotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMGestionMascotasActionPerformed
        Escritorio.removeAll();
         Escritorio.repaint();
-        RegistroDeMascota rdm = new RegistroDeMascota();
+        Mascota_Registro rdm = new Mascota_Registro();
         rdm.setVisible(true);
         Escritorio.add(rdm);
         Escritorio.moveToFront(rdm);
@@ -192,7 +215,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
     Escritorio.removeAll();
     Escritorio.repaint();
-    HistorialClinico historialClinico= new HistorialClinico();
+    Mascota_HistorialClinico historialClinico= new Mascota_HistorialClinico();
 historialClinico.setVisible(true);
 Escritorio.add(historialClinico);
 Escritorio.moveToFront(historialClinico);// TODO add your handling code here:
@@ -208,7 +231,12 @@ Escritorio.moveToFront(historialClinico);// TODO add your handling code here:
     }//GEN-LAST:event_jmBuscarProductosNombreActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
-        // TODO add your handling code here:
+Escritorio.removeAll();
+       Escritorio.repaint();
+       Producto_Stock stockProducto= new Producto_Stock();
+       stockProducto.setVisible(true);
+       Escritorio.add(stockProducto);
+       Escritorio.moveToFront(stockProducto);        // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
@@ -222,7 +250,7 @@ Escritorio.moveToFront(historialClinico);// TODO add your handling code here:
     private void jmRegistrarVisitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmRegistrarVisitaActionPerformed
         Escritorio.removeAll();
         Escritorio.repaint();
-        RegistrarVisita rgv = new RegistrarVisita();
+        Visita_Registrar rgv = new Visita_Registrar();
         rgv.setVisible(true);
         Escritorio.add(rgv);
         Escritorio.moveToFront(rgv);
@@ -232,11 +260,31 @@ Escritorio.moveToFront(historialClinico);// TODO add your handling code here:
     private void jmRegistroProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmRegistroProductoActionPerformed
         Escritorio.removeAll();
         Escritorio.repaint();
-        IngresoProductos ipd= new IngresoProductos();
+        Productos_Ingresos ipd= new Productos_Ingresos();
         ipd.setVisible(true);
         Escritorio.add(ipd);
         Escritorio.moveToFront(ipd);
     }//GEN-LAST:event_jmRegistroProductoActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+     Escritorio.removeAll();
+        Escritorio.repaint();
+        Ventas ventas =new Ventas();
+        
+        ventas.setVisible(true);
+        Escritorio.add(ventas);
+        Escritorio.moveToFront(ventas);   // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jListarTratamientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jListarTratamientoActionPerformed
+      Escritorio.removeAll();
+        Escritorio.repaint();
+        Tratamiento_Listar tratamiento_Listar= new Tratamiento_Listar();
+        
+        tratamiento_Listar.setVisible(true);
+        Escritorio.add(tratamiento_Listar);
+        Escritorio.moveToFront(tratamiento_Listar);    // TODO add your handling code here:
+    }//GEN-LAST:event_jListarTratamientoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -275,11 +323,14 @@ Escritorio.moveToFront(historialClinico);// TODO add your handling code here:
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JDesktopPane Escritorio;
+    public static javax.swing.JDesktopPane Escritorio;
+    private javax.swing.JMenuItem jListarTratamiento;
     private javax.swing.JMenuItem jMGestionMascotas;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu jMenuClientes;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
