@@ -13,6 +13,7 @@ public class Mascota {
     private LocalDate fechaNacimiento;
     private boolean estadoMascota;
     private Cliente cliente;
+    private double pesoprod;
 
     public Mascota(int idMascota, String nombreAlias, String sexo, String especie, String raza, String colorPelo, LocalDate fechaNacimiento, boolean estadoMascota, Cliente cliente) {
         this.idMascota = idMascota;
@@ -38,6 +39,19 @@ public class Mascota {
     }
 
     public Mascota() {
+    }
+
+    public Mascota(int idMascota, String nombreAlias, String sexo, String especie, String raza, String colorPelo, LocalDate fechaNacimiento, boolean estadoMascota, Cliente cliente, int pesoprod) {
+        this.idMascota = idMascota;
+        this.nombreAlias = nombreAlias;
+        this.sexo = sexo;
+        this.especie = especie;
+        this.raza = raza;
+        this.colorPelo = colorPelo;
+        this.fechaNacimiento = fechaNacimiento;
+        this.estadoMascota = estadoMascota;
+        this.cliente = cliente;
+        this.pesoprod = pesoprod;
     }
 
     public int getIdMascota() {
@@ -110,6 +124,14 @@ public class Mascota {
 
     public void setIdcliente(Cliente cliente) {
         this.cliente = cliente;
+    }
+
+    public double getPesoprod() {
+        return pesoprod;
+    }
+
+    public void setPesoprod(double pesoprod) {
+        this.pesoprod = pesoprod;
     }
 
     @Override

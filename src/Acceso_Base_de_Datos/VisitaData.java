@@ -40,11 +40,14 @@ public class VisitaData {
             ps.setDate(2, Date.valueOf(visita.getFechaVisita()));
             ps.setInt(3,visita.getImporte());
             ps.setDouble(4,visita.getPesoActual());
+            
             ps.setInt(5, visita.getTratamiento().getIdTratamiento());
             ps.executeUpdate();
             ResultSet rs=ps.getGeneratedKeys();
             if(rs.next()){
                 visita.setIdVisita(rs.getInt(1));
+                visita.getMascota().setPesoprod(rs.getDouble(4));
+                mascData.GuardarMascota(visita.getMascota());
                 JOptionPane.showMessageDialog(null, "Visita Registrada con exito");
             }
             ps.close();

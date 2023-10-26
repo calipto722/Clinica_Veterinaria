@@ -32,7 +32,7 @@ public class MascotaData {
       
         try {
               String sql = "INSERT INTO `mascota`( `alias`, `sexo`, `especie`, `raza`, `colorPelo`, `fechaNac`, `idCliente`, `activo`)"
-                + " VALUES (?,?,?,?,?,?,?,?)";
+                + " VALUES (?,?,?,?,?,?,?,?,?)";
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, mascota.getNombreAlias());
             ps.setString(2, mascota.getSexo());
@@ -42,6 +42,7 @@ public class MascotaData {
             ps.setDate(6, Date.valueOf(mascota.getFechaNacimiento()));
             ps.setInt(7, mascota.getcliente().getIdCliente());
             ps.setBoolean(8, mascota.isEstadoMascota());
+            ps.setDouble(9, mascota.getPesoprod());
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
@@ -55,7 +56,7 @@ public class MascotaData {
     }
 
     public void ModificarMascota(Mascota mascota) {
-        String sql = "UPDATE `mascota` SET `alias`=?,`sexo`=?,`especie`=?,`raza`=?,`colorPelo`=?,`fechaNac`=?,`idCliente`=?,`activo`=? WHERE `idMascota`=?";
+        String sql = "UPDATE `mascota` SET `alias`=?,`sexo`=?,`especie`=?,`raza`=?,`colorPelo`=?,`fechaNac`=?,`idCliente`=?,`activo`=?, pesoPromedio= ?WHERE `idMascota`=?";
 
         PreparedStatement ps;
         try {
@@ -68,7 +69,8 @@ public class MascotaData {
             ps.setDate(6, Date.valueOf(mascota.getFechaNacimiento()));
             ps.setInt(7, mascota.getcliente().getIdCliente());
             ps.setBoolean(8, mascota.isEstadoMascota());
-            ps.setInt(9, mascota.getIdMascota());
+            ps.setDouble(9,mascota.getPesoprod());
+            ps.setInt(10, mascota.getIdMascota());
             int exito = ps.executeUpdate();
 
             if (exito == 1) {
@@ -122,6 +124,7 @@ public class MascotaData {
                 mascota.setRaza(rs.getString("raza"));
                 mascota.setIdcliente(cliente);
                 mascota.setSexo(rs.getString("sexo"));
+                mascota.setPesoprod( rs.getDouble("pesoPromedio"));
                 mascotas.add(mascota);
             }
             ps.close();
@@ -153,6 +156,7 @@ public class MascotaData {
                 mascota.setNombreAlias(rs.getString("alias"));
                 mascota.setRaza(rs.getString("raza"));
                 mascota.setSexo(rs.getString("sexo"));
+                mascota.setPesoprod( rs.getDouble("pesoPromedio"));
                 
             } else {
                 JOptionPane.showMessageDialog(null, "No existe La Mascota");
@@ -186,7 +190,7 @@ public class MascotaData {
                 mascota.setNombreAlias(rs.getString("alias"));
                 mascota.setRaza(rs.getString("raza"));
                 mascota.setSexo(rs.getString("sexo"));
-
+                mascota.setPesoprod( rs.getDouble("pesoPromedio"));
             } else {
                 JOptionPane.showMessageDialog(null, "No existe La Mascota");
 

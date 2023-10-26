@@ -8,12 +8,18 @@ package Vistas;
 import Acceso_Base_de_Datos.ClienteData;
 import Acceso_Base_de_Datos.MascotaData;
 import Acceso_Base_de_Datos.ProductoData;
+import Acceso_Base_de_Datos.VisitaData;
 import Entidades.Cliente;
 import Entidades.Mascota;
 
 import static Vistas.MenuPrincipal.Escritorio;
 
 import Entidades.Producto;
+import Entidades.Tratamiento;
+import Entidades.Visita;
+import java.sql.Date;
+import java.time.LocalDate;
+import java.time.ZoneId;
 
 import java.util.List;
 import javax.swing.DefaultListModel;
@@ -27,7 +33,7 @@ import javax.swing.table.DefaultTableModel;
 public class Visita_Registrar extends javax.swing.JInternalFrame {
 
     private DefaultTableModel m = new DefaultTableModel();
-    
+    public static Tratamiento tratamientodeVisita;
     DefaultListModel<String>model = new DefaultListModel<>();
     public Visita_Registrar() {
         initComponents();
@@ -260,6 +266,11 @@ public class Visita_Registrar extends javax.swing.JInternalFrame {
         });
 
         jButton2.setText("GUARDAR");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Agregar Tratamiento");
         jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -393,6 +404,16 @@ public class Visita_Registrar extends javax.swing.JInternalFrame {
     
        
     }//GEN-LAST:event_jButton4MouseClicked
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        LocalDate fecha= jDateFechaVisita.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+       Mascota masp= (Mascota) jComboBox1.getSelectedItem();
+        String peso= jtPesoActual.getText();
+        VisitaData visitd =new VisitaData();
+        Visita visita= new Visita()
+        visitd.GuardarVisita(visita);
+// TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

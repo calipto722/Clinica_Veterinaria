@@ -266,10 +266,12 @@ if (revisiondeNull()) {
                 tratamientoP.setImporte(importe);
                 tratamientoP.setProducto(producStock);
                 tratamientoData.ModificarTratamiento(tratamientoP);
+                Visita_Registrar.tratamientodeVisita=tratamientoP;
             } else {
                 // Crear nuevo tratamiento
                 Tratamiento tratamiento = new Tratamiento(tipoString, descripcion, producStock, importe, estado);
                 tratamientoData.GuardarTratamiento(tratamiento);
+                Visita_Registrar.tratamientodeVisita=tratamiento;
             }
 
             // Cerrar la ventana
