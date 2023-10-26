@@ -116,6 +116,34 @@ public class VisitaData {
         }
         return visitas;
     }
+public List<Visita> listarVisitasPorMascota(Mascota mascota) {
+        List<Visita> visitas = new ArrayList<>();
 
+        try {
+            String sql = "SELECT * FROM `visita` WHERE idMascota=?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, mascota.getIdMascota());
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                visita = new Visita();
+               
+                Tratamiento tratamiento = new Tratamiento();
+                tratamiento = tratData.BuscarTratamiento(rs.getInt("idTratamiento")); 
+                
+                visita.setMascota(mascota);
+                visita.setIdVisita(rs.getInt("idVisita"));
+                visita.setFechaVisita(rs.getDate("fechaVisita").toLocalDate());
+                visita.setImporte(rs.getInt("importe"));
+                visita.setPesoActual(rs.getDouble("peso"));
+                visita.setTratamiento(tratamiento);
+                visitas.add(visita);
+
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "ERROR al acceder a la tabla visita " + ex.getMessage());
+        }
+        return visitas;
+    }
     
 }

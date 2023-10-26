@@ -174,20 +174,23 @@ private DefaultTableModel modelo= new DefaultTableModel();
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
  borrarFilas();
         VisitaData visitaData = new VisitaData();
-    List<Visita> visitas= visitaData.listarVisitas();
+    
+        
+        
     Mascota masp = (Mascota) jComboBox1.getSelectedItem();
+   List<Visita>visitas= visitaData.listarVisitasPorMascota(masp);
+        for (Visita visita : visitas) {
+            System.out.println(visita);
+        }
         for (int i = 0; i < 10; i++) {
-             if (visitas.get(i).getMascota().getIdMascota()==(masp.getIdMascota())) {
-                modelo.addRow(new Object[]{
+           
+                 modelo.addRow(new Object[]{
                     visitas.get(i).getFechaVisita(),
                     visitas.get(i).getTratamiento().getTipoTratamiento(),
                     visitas.get(i).getPesoActual()
                 });
-        }
- {
-       
-           
-            }
+        
+
         } 
         PesoPromedio.setText(pesopromed(jTable1));// TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1ActionPerformed

@@ -86,16 +86,12 @@ public class Clinica_Veterinaria {
 //Mascota masc= mascotaData.BuscarMascotaPorNombre("Cielo");
 Mascota masp = mascotaData.BuscarMascota(2);
 //        System.out.println(masc);
-        System.err.println(masp);
-        /*consultar 
-        Registro mascota linea 348
-        */
+       
         VisitaData visitaData= new VisitaData();
-        List<Visita> visitas=visitaData.listarVisitas();
+        List<Visita> visitas=visitaData.listarVisitasPorMascota(masp);
         for (Visita visita : visitas) {
-            if(visita.getMascota().getIdMascota()==(masp.getIdMascota()))
-             System.out.println(visita);   
-            }
+            System.out.println(visita);
+        }
             
         }
     }
