@@ -12,7 +12,7 @@
      mascota.`alias` AS mascota_alias
 FROM
      `mascota` mascota INNER JOIN `visita` visita ON mascota.`idMascota` = visita.`idMascota`
-     INNER JOIN `tratamiento` tratamiento ON visita.`idTratamiento` = tratamiento.`idTratamiento`]]>
+     INNER JOIN `tratamiento` tratamiento ON visita.`idTratamiento` = tratamiento.`idTratamiento` ORDER BY `idVisita` DESC LIMIT 10;]]>
 	</queryString>
 	<field name="visita_fechaVisita" class="java.sql.Date"/>
 	<field name="visita_peso" class="java.lang.Double"/>

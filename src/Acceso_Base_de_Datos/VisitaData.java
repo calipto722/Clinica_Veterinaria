@@ -120,7 +120,8 @@ public List<Visita> listarVisitasPorMascota(Mascota mascota) {
         List<Visita> visitas = new ArrayList<>();
 
         try {
-            String sql = "SELECT * FROM `visita` WHERE idMascota=?";
+            String sql = "SELECT * FROM `visita` WHERE `idMascota` =?  \n" +
+"ORDER BY `visita`.`idVisita` DESC";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, mascota.getIdMascota());
             ResultSet rs = ps.executeQuery();

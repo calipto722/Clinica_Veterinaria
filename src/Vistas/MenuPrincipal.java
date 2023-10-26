@@ -16,6 +16,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
      */
     public MenuPrincipal() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -210,6 +211,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         rdm.setVisible(true);
         Escritorio.add(rdm);
         Escritorio.moveToFront(rdm);
+        
     }//GEN-LAST:event_jMGestionMascotasActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
