@@ -44,6 +44,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMenuVisita = new javax.swing.JMenu();
         jmRegistrarVisita = new javax.swing.JMenuItem();
         jListarTratamiento = new javax.swing.JMenuItem();
+        jmBuscarTratamiento = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
@@ -79,6 +80,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMenuClientes.setText("Clientes");
 
         jmGestionClientes.setText("Gestion Clientes");
+        jmGestionClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmGestionClientesActionPerformed(evt);
+            }
+        });
         jMenuClientes.add(jmGestionClientes);
 
         jMenuItem7.setText("Mascotas de cliente");
@@ -152,6 +158,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
         jMenuVisita.add(jListarTratamiento);
 
+        jmBuscarTratamiento.setText("Buscar visita por Tratamiento");
+        jmBuscarTratamiento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmBuscarTratamientoActionPerformed(evt);
+            }
+        });
+        jMenuVisita.add(jmBuscarTratamiento);
+
         jMenuBar1.add(jMenuVisita);
 
         jMenu1.setText("Contabilidad");
@@ -205,7 +219,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMGestionMascotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMGestionMascotasActionPerformed
-       Escritorio.removeAll();
+        Escritorio.removeAll();
         Escritorio.repaint();
         Mascota_Registro rdm = new Mascota_Registro();
         rdm.setVisible(true);
@@ -215,12 +229,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMGestionMascotasActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-    Escritorio.removeAll();
-    Escritorio.repaint();
-    Mascota_HistorialClinico historialClinico= new Mascota_HistorialClinico();
-historialClinico.setVisible(true);
-Escritorio.add(historialClinico);
-Escritorio.moveToFront(historialClinico);// TODO add your handling code here:
+        Escritorio.removeAll();
+        Escritorio.repaint();
+        Mascota_HistorialClinico historialClinico = new Mascota_HistorialClinico();
+        historialClinico.setVisible(true);
+        Escritorio.add(historialClinico);
+        Escritorio.moveToFront(historialClinico);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jmBuscarProductosNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmBuscarProductosNombreActionPerformed
@@ -233,12 +247,12 @@ Escritorio.moveToFront(historialClinico);// TODO add your handling code here:
     }//GEN-LAST:event_jmBuscarProductosNombreActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
-Escritorio.removeAll();
-       Escritorio.repaint();
-       Producto_Stock stockProducto= new Producto_Stock();
-       stockProducto.setVisible(true);
-       Escritorio.add(stockProducto);
-       Escritorio.moveToFront(stockProducto);        // TODO add your handling code here:
+        Escritorio.removeAll();
+        Escritorio.repaint();
+        Producto_Stock stockProducto = new Producto_Stock();
+        stockProducto.setVisible(true);
+        Escritorio.add(stockProducto);
+        Escritorio.moveToFront(stockProducto);        // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
@@ -269,9 +283,9 @@ Escritorio.removeAll();
     }//GEN-LAST:event_jmRegistroProductoActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-     Escritorio.removeAll();
+        Escritorio.removeAll();
         Escritorio.repaint();
-        Ventas ventas =new Ventas();
+        Ventas ventas = new Ventas();
         
         ventas.setVisible(true);
         Escritorio.add(ventas);
@@ -279,14 +293,32 @@ Escritorio.removeAll();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jListarTratamientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jListarTratamientoActionPerformed
-      Escritorio.removeAll();
+        Escritorio.removeAll();
         Escritorio.repaint();
-        Tratamiento_Listar tratamiento_Listar= new Tratamiento_Listar();
+        Tratamiento_Listar tratamiento_Listar = new Tratamiento_Listar();
         
         tratamiento_Listar.setVisible(true);
         Escritorio.add(tratamiento_Listar);
         Escritorio.moveToFront(tratamiento_Listar);    // TODO add your handling code here:
     }//GEN-LAST:event_jListarTratamientoActionPerformed
+
+    private void jmBuscarTratamientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmBuscarTratamientoActionPerformed
+        Escritorio.removeAll();
+        Escritorio.repaint();
+        TratamientoPorTipo Tpt = new TratamientoPorTipo();
+        Tpt.setVisible(true);
+        Escritorio.add(Tpt);
+        Escritorio.moveToFront(Tpt);
+    }//GEN-LAST:event_jmBuscarTratamientoActionPerformed
+
+    private void jmGestionClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmGestionClientesActionPerformed
+        Escritorio.removeAll();
+        Escritorio.repaint();
+        GestionCliente gtc = new GestionCliente();
+        gtc.setVisible(true);
+        Escritorio.add(gtc);
+        Escritorio.moveToFront(gtc);
+    }//GEN-LAST:event_jmGestionClientesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -343,6 +375,7 @@ Escritorio.removeAll();
     private javax.swing.JPanel jPanel1;
     private javax.swing.JMenuItem jSMSalir;
     private javax.swing.JMenuItem jmBuscarProductosNombre;
+    private javax.swing.JMenuItem jmBuscarTratamiento;
     private javax.swing.JMenuItem jmGestionClientes;
     private javax.swing.JMenuItem jmRegistrarVisita;
     private javax.swing.JMenuItem jmRegistroProducto;

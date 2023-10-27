@@ -134,12 +134,12 @@ public class TratamientoData {
 
         while (rs.next()) {
             ProductoData productoData = new ProductoData();
-                Producto producto = new Producto();
-                producto = productoData.BuscarProductoPorId(rs.getInt("idProducto"));
+            Producto producto = new Producto();
+            producto = productoData.BuscarProductoPorId(rs.getInt("idProducto"));
             Tratamiento tratamiento = new Tratamiento();
             tratamiento.setIdTratamiento(rs.getInt("idTratamiento"));
             tratamiento.setDescripcion(rs.getString("descripcion"));
-            tratamiento.setProducto(producto); 
+            tratamiento.setProducto(producto);
             tratamiento.setImporte(rs.getInt("importe"));
             tratamiento.setTipoTratamiento(rs.getString("tipoTratamiento"));
             tratamiento.setEstadoTratamiento(rs.getBoolean("activo"));
@@ -182,6 +182,8 @@ public class TratamientoData {
             return tratamientos;
     }
          public Tratamiento BuscarTramientoPorNombre(String tipoTratamiento){
+             
+             // metodo que usamos para buscar en una vista el tratamiento segun el tipo
              Tratamiento tratamiento = null;
              String sql = "SELECT * FROM tratamiento  WHERE tipoTratamiento Like ?%";
              try {
