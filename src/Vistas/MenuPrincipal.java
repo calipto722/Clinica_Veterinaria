@@ -80,6 +80,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMenuClientes.setText("Clientes");
 
         jmGestionClientes.setText("Gestion Clientes");
+        jmGestionClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmGestionClientesActionPerformed(evt);
+            }
+        });
         jMenuClientes.add(jmGestionClientes);
 
         jMenuItem7.setText("Mascotas de cliente");
@@ -305,6 +310,15 @@ public class MenuPrincipal extends javax.swing.JFrame {
         Escritorio.add(Tpt);
         Escritorio.moveToFront(Tpt);
     }//GEN-LAST:event_jmBuscarTratamientoActionPerformed
+
+    private void jmGestionClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmGestionClientesActionPerformed
+        Escritorio.removeAll();
+        Escritorio.repaint();
+        GestionCliente gtc = new GestionCliente();
+        gtc.setVisible(true);
+        Escritorio.add(gtc);
+        Escritorio.moveToFront(gtc);
+    }//GEN-LAST:event_jmGestionClientesActionPerformed
 
     /**
      * @param args the command line arguments
