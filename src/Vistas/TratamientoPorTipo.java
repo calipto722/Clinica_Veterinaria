@@ -149,6 +149,7 @@ private DefaultTableModel modelo= new DefaultTableModel();
                 modelo.addRow(new Object[]{
                     visit.getFechaVisita(),
                     visit.getTratamiento().getTipoTratamiento(),
+                    visit.getMascota().getNombreAlias(),
                     visit.getTratamiento().getDescripcion(),
                     visit.getTratamiento().getImporte(),
                     visit.getTratamiento().isEstadoTratamiento()
@@ -171,6 +172,7 @@ private DefaultTableModel modelo= new DefaultTableModel();
 private void armarTabla(){
     modelo.addColumn("Fecha ");// fecha de visita
     modelo.addColumn("Tratamiento ");// tipodeTratamiento de tratamiento
+    modelo.addColumn("Mascota ");
     modelo.addColumn("Descripcion ");// descripcion del tratamiento
     modelo.addColumn("Importe del tratamiento ");// importe del tratamiento
     modelo.addColumn("Estado "); //estado del tratamiento
@@ -185,6 +187,7 @@ private void cargarTabla(){
         modelo.addRow(new Object[]{ 
             visit.getFechaVisita(),
             visit.getTratamiento().getTipoTratamiento(),
+            visit.getMascota().getNombreAlias(),
             visit.getTratamiento().getDescripcion(),
             visit.getTratamiento().getImporte(),
             visit.getTratamiento().isEstadoTratamiento()
