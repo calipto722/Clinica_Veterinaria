@@ -44,6 +44,10 @@ ORDER BY
 				</textElement>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
+			<image onErrorType="Blank">
+				<reportElement x="0" y="16" width="50" height="50" uuid="7d4643cc-f3d9-4352-9b75-4f9ea8df73e3"/>
+				<imageExpression><![CDATA["C:\\Users\\noelia\\Documents\\NetBeansProjects\\Clinica_Veterinaria\\Clinica_Veterinaria\\src\\RECURSOS\\klipartz.com (26).png"]]></imageExpression>
+			</image>
 		</band>
 	</title>
 	<pageHeader>
@@ -63,9 +67,13 @@ ORDER BY
 				<textFieldExpression><![CDATA[$F{mascota_alias}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="404" y="0" width="100" height="20" uuid="650eff00-29b4-4ac3-92f4-c66d94cf5764"/>
+				<reportElement x="417" y="0" width="100" height="20" uuid="650eff00-29b4-4ac3-92f4-c66d94cf5764"/>
 				<textFieldExpression><![CDATA[$F{mascota_pesoPromedio}]]></textFieldExpression>
 			</textField>
+			<staticText>
+				<reportElement x="315" y="0" width="89" height="20" uuid="3e332038-beb7-43d9-92a5-00d5ebf0659d"/>
+				<text><![CDATA[Peso Promedio:]]></text>
+			</staticText>
 		</band>
 	</pageHeader>
 	<columnHeader>
@@ -86,7 +94,7 @@ ORDER BY
 	</columnHeader>
 	<detail>
 		<band height="33" splitType="Stretch">
-			<textField>
+			<textField pattern="dd/MM/yyyy">
 				<reportElement x="0" y="9" width="131" height="20" uuid="df6015b1-1ca4-4a8b-b845-660fab99c286"/>
 				<textFieldExpression><![CDATA[$F{visita_fechaVisita}]]></textFieldExpression>
 			</textField>

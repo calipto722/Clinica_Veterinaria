@@ -36,7 +36,7 @@ import net.sf.jasperreports.view.JasperViewer;
 public class Mascota_HistorialClinico extends javax.swing.JInternalFrame {
 private DefaultTableModel modelo= new DefaultTableModel();
     private Connection con=null;
-     
+    private Mascota masp;
     public Mascota_HistorialClinico() {
         initComponents();
         cargarbox();
@@ -149,7 +149,7 @@ private DefaultTableModel modelo= new DefaultTableModel();
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
     con=Conexion.getConexion();
        
-        Mascota masp = (Mascota) jComboBox1.getSelectedItem();
+         masp = (Mascota) jComboBox1.getSelectedItem();
     
         try {
             JasperReport report =null;
@@ -174,10 +174,10 @@ private DefaultTableModel modelo= new DefaultTableModel();
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
  borrarFilas();
         VisitaData visitaData = new VisitaData();
-    
+    MascotaData mascotaData= new MascotaData();
         
-    Mascota mascotaSeleccionada = (Mascota) jComboBox1.getSelectedItem();
-    List<Visita> visitas = visitaData.listarVisitasPorMascota(mascotaSeleccionada);
+    masp = (Mascota) jComboBox1.getSelectedItem();
+    List<Visita> visitas = visitaData.listarVisitasPorMascota(masp);
 
     int contador = 0;
 
@@ -195,8 +195,14 @@ private DefaultTableModel modelo= new DefaultTableModel();
             }
         
     }
-        
-        PesoPromedio.setText(pesopromed(jTable1));// TODO add your handling code here:
+        String pesopro=pesopromed(jTable1);
+        PesoPromedio.setText(pesopro);
+        if (masp!=null) {
+            masp.setPesoprod(Double.valueOf(pesopro)); 
+            mascotaData.ModificarMascota(masp);
+        }
+       
+// TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
 
@@ -236,11 +242,12 @@ private void borrarFilas(){
     }
 }
 private String pesopromed(JTable jTable){
-    int pesosuma=0;
+    
+    double pesosuma=0;
     double pesoprod = 0;
     for (int i = 0; i <jTable.getRowCount(); i++) {
         
-        pesosuma= (int) (pesosuma+ Double.parseDouble(jTable1.getValueAt(i,2).toString()));
+        pesosuma=  (double) (pesosuma+ Double.parseDouble(jTable1.getValueAt(i,2).toString()));
             pesoprod= pesosuma/jTable.getRowCount();
         
     }

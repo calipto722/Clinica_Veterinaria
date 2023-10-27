@@ -35,11 +35,13 @@ public class Visita_Registrar extends javax.swing.JInternalFrame {
     private DefaultTableModel m = new DefaultTableModel();
     public static Tratamiento tratamientodeVisita;
     DefaultListModel<String>model = new DefaultListModel<>();
+    int importeVisita=500;
     public Visita_Registrar() {
         initComponents();
         cargarbox();
         this.setTitle("Registro de visita");
         armarTabla();
+        
     }
 
     /**
@@ -75,7 +77,7 @@ public class Visita_Registrar extends javax.swing.JInternalFrame {
         jDateFechaVisita = new com.toedter.calendar.JDateChooser();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jcMascotaselec = new javax.swing.JComboBox<>();
         jtPesoActual = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
@@ -253,9 +255,9 @@ public class Visita_Registrar extends javax.swing.JInternalFrame {
 
         jLabel6.setText("MASCOTA");
 
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        jcMascotaselec.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                jcMascotaselecActionPerformed(evt);
             }
         });
 
@@ -299,7 +301,7 @@ public class Visita_Registrar extends javax.swing.JInternalFrame {
                         .addContainerGap()
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jcMascotaselec, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(19, 19, 19)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -324,7 +326,7 @@ public class Visita_Registrar extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jcMascotaselec, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
@@ -343,9 +345,9 @@ public class Visita_Registrar extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jtPesoActualActionPerformed
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void jcMascotaselecActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcMascotaselecActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_jcMascotaselecActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
@@ -407,11 +409,14 @@ public class Visita_Registrar extends javax.swing.JInternalFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         LocalDate fecha= jDateFechaVisita.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-       Mascota masp= (Mascota) jComboBox1.getSelectedItem();
+       Mascota masp= (Mascota) jcMascotaselec.getSelectedItem();
         String peso= jtPesoActual.getText();
         VisitaData visitd =new VisitaData();
-        Visita visita= new Visita()
-        visitd.GuardarVisita(visita);
+        if (casillasVacias()==true) {
+          Visita visita= new Visita(fecha,importeVisita, tratamientodeVisita,Double.valueOf(peso), masp);
+        visitd.GuardarVisita(visita);  
+        }
+        
 // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -421,7 +426,6 @@ public class Visita_Registrar extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private javax.swing.JComboBox<Mascota> jComboBox1;
     private com.toedter.calendar.JDateChooser jDateFechaVisita;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -438,6 +442,7 @@ public class Visita_Registrar extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTextField3;
     private javax.swing.JButton jbAddDialogo;
     private javax.swing.JButton jbAddDialogo1;
+    private javax.swing.JComboBox<Mascota> jcMascotaselec;
     private javax.swing.JDialog jdPRoducto;
     private javax.swing.JDialog jdTRatamiento;
     private javax.swing.JTextField jtCantidad;
@@ -449,9 +454,9 @@ public class Visita_Registrar extends javax.swing.JInternalFrame {
   private void cargarbox() {
         MascotaData mascD = new MascotaData();
         List<Mascota> mascotas = mascD.listarMascota();
-        jComboBox1.removeAllItems();
+        jcMascotaselec.removeAllItems();
         for (int i = 0; i < mascotas.size(); i++) {
-            jComboBox1.addItem(mascotas.get(i));
+            jcMascotaselec.addItem(mascotas.get(i));
 
         }
     }
@@ -487,5 +492,22 @@ public class Visita_Registrar extends javax.swing.JInternalFrame {
         for (int i = f; i >= 0; i--) {
             m.removeRow(i);
         }
+    }
+    private boolean casillasVacias(){
+        boolean revision= true;
+        if (this.jDateFechaVisita.getTreeLock()==null) {
+            JOptionPane.showMessageDialog(this, "Falta Elegir Fecha");
+            revision=false;
+        }else if (jtPesoActual.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Falta completar Peso");
+            revision=false;
+        }else if (tratamientodeVisita.getDescripcion().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Falta Elegir Tratamiento");
+            revision=false;
+        }else if (jcMascotaselec.getSelectedIndex()== -1) {
+           JOptionPane.showMessageDialog(this, "Falta Elegir Mascota");
+           revision= false;
+        }
+      return revision;
     }
 }

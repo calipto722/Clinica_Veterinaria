@@ -46,8 +46,6 @@ public class VisitaData {
             ResultSet rs=ps.getGeneratedKeys();
             if(rs.next()){
                 visita.setIdVisita(rs.getInt(1));
-                visita.getMascota().setPesoprod(rs.getDouble(4));
-                mascData.GuardarMascota(visita.getMascota());
                 JOptionPane.showMessageDialog(null, "Visita Registrada con exito");
             }
             ps.close();
