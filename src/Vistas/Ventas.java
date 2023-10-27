@@ -15,14 +15,15 @@ import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.List;
 import javax.swing.DefaultListModel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author noelia
  */
 public class Ventas extends javax.swing.JInternalFrame {
-
-    public static DefaultListModel<String> model = new DefaultListModel<>();
+private DefaultTableModel modelo = new DefaultTableModel();
+   
     public static double total = 0;
     Visita visita;
     Calendar c1 = Calendar.getInstance();
@@ -35,7 +36,7 @@ public class Ventas extends javax.swing.JInternalFrame {
         lbl_total.setText("$" + total);
         visita = new Visita();
         cargarBox();
-        fecha();
+       
     }
 
     /**
@@ -50,16 +51,16 @@ public class Ventas extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
         lbl_total = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jlFecha = new javax.swing.JLabel();
+        jbSeleccionar = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jtFactura = new javax.swing.JTable();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -76,8 +77,6 @@ public class Ventas extends javax.swing.JInternalFrame {
             }
         });
 
-        jScrollPane1.setViewportView(jList1);
-
         lbl_total.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lbl_total.setText(" $ 0");
 
@@ -90,10 +89,10 @@ public class Ventas extends javax.swing.JInternalFrame {
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setText("visita");
 
-        jButton2.setText("Seleccionar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jbSeleccionar.setText("Seleccionar");
+        jbSeleccionar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jbSeleccionarActionPerformed(evt);
             }
         });
 
@@ -103,6 +102,19 @@ public class Ventas extends javax.swing.JInternalFrame {
                 jButton3ActionPerformed(evt);
             }
         });
+
+        jtFactura.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(jtFactura);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -123,7 +135,7 @@ public class Ventas extends javax.swing.JInternalFrame {
                         .addGap(35, 35, 35)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jlFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -132,12 +144,12 @@ public class Ventas extends javax.swing.JInternalFrame {
                         .addComponent(lbl_total, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(566, 566, 566))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton2)
+                        .addComponent(jbSeleccionar)
                         .addGap(31, 31, 31)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(243, 243, 243))))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(54, 54, 54))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton3)
@@ -151,27 +163,26 @@ public class Ventas extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(3, 3, 3)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel4)
-                            .addComponent(jlFecha))
+                            .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5)
-                            .addComponent(jButton2))
+                            .addComponent(jbSeleccionar))
                         .addGap(27, 27, 27)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton1)))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton3)
                 .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbl_total)
                     .addComponent(jLabel3))
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -185,42 +196,47 @@ public class Ventas extends javax.swing.JInternalFrame {
         productosporNombre.jbAgregar.setVisible(true);
         productosporNombre.jlcant.setVisible(true);
         productosporNombre.jtCant.setVisible(true);
-        jList1.setModel(model);
+        
 
 // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jbSeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSeleccionarActionPerformed
         visita = (Visita) jComboBox1.getSelectedItem();
         double importevis = visita.getImporte();
         double importTra = visita.getTratamiento().getImporte();
         double importProd = visita.getTratamiento().getProducto().getPrecio();
-        String elemento = "Visita Importe: $" + importevis+"-Tratamiento:  " + visita.getTratamiento().getDescripcion() + "-Importe: $" + importTra +"-Importe Producto: $"+ importProd;
-        model.addElement(elemento);
-        jList1.setModel(model);
+       
+//        model.addElement(elemento);
+//        jList1.setModel(model);
         total += importProd + importTra + importevis;
         lbl_total.setText("$" + total);// TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_jbSeleccionarActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
- model.remove(jList1.getSelectedIndex()) ;
- jList1.setModel(model);// TODO add your handling code here:
+// int selec= jList1.getSelectedIndex();
+// 
+//        System.out.println(jList1.getSelectedValuesList());
+//        
+//        model.remove(selec) ;
+// jList1.setModel(model);
+////total += // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JComboBox<Visita> jComboBox1;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    public static javax.swing.JList<String> jList1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel jlFecha;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JButton jbSeleccionar;
+    private javax.swing.JTable jtFactura;
     public static javax.swing.JLabel lbl_total;
     // End of variables declaration//GEN-END:variables
 
@@ -233,11 +249,15 @@ public class Ventas extends javax.swing.JInternalFrame {
             jComboBox1.addItem(visita);
 
         }
+    }private void armarTabla() {
+        modelo.addColumn("id");// visita
+        modelo.addColumn("nombre");//visita
+        modelo.addColumn("descripcion");
+        modelo.addColumn("precio");
+        modelo.addColumn("stock");
+
+        jtFactura.setModel(modelo);
+
     }
-    private void fecha(){
-       String dia = Integer.toString(c1.get(Calendar.DATE));
-String mes = Integer.toString(c1.get(Calendar.MONTH));
-String annio = Integer.toString(c1.get(Calendar.YEAR));
-jlFecha.setText(annio+"-"+mes+"-"+dia);
-    }
+    
 }

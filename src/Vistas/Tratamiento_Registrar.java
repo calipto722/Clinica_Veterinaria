@@ -228,23 +228,7 @@ public class Tratamiento_Registrar extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jbAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAgregarActionPerformed
-        
-//        if (revisiondeNull()) {
-//            int importe = Integer.valueOf(this.jtImporte.getText());
-//        boolean estado = jtEstado.getText().equals("1") ? true : false;
-//        tratamientoP.setTipoTratamiento(this.jtTipo.getText());
-//        tratamientoP.setDescripcion(this.jtDescripcion.getText());
-//        tratamientoP.setEstadoTratamiento(estado);
-//        tratamientoP.setImporte(importe);
-//       
-//        
-//ProductoData prod = new ProductoData();
-//        Producto producStock = (Producto) jcProducto.getSelectedItem();
-//        producStock.setStock(producStock.getStock() - 1);
-//        prod.ModificarProducto(producStock);
-//
-//        dispose();
-//        }
+       
 if (revisiondeNull()) {
             // Obtener los datos del tratamiento
             String descripcion = this.jtDescripcion.getText();
