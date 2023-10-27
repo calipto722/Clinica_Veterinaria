@@ -77,7 +77,7 @@ public class Visita_Registrar extends javax.swing.JInternalFrame {
         jLabel6 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
         jtPesoActual = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
+        jbGuardar = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
 
         jtProductos.setModel(new javax.swing.table.DefaultTableModel(
@@ -265,10 +265,10 @@ public class Visita_Registrar extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton2.setText("GUARDAR");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jbGuardar.setText("GUARDAR");
+        jbGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jbGuardarActionPerformed(evt);
             }
         });
 
@@ -303,7 +303,7 @@ public class Visita_Registrar extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(19, 19, 19)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton2)
+                            .addComponent(jbGuardar)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -332,7 +332,7 @@ public class Visita_Registrar extends javax.swing.JInternalFrame {
                 .addGap(38, 38, 38)
                 .addComponent(jButton4)
                 .addGap(18, 18, 18)
-                .addComponent(jButton2)
+                .addComponent(jbGuardar)
                 .addContainerGap(61, Short.MAX_VALUE))
         );
 
@@ -405,19 +405,19 @@ public class Visita_Registrar extends javax.swing.JInternalFrame {
        
     }//GEN-LAST:event_jButton4MouseClicked
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        LocalDate fecha= jDateFechaVisita.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-       Mascota masp= (Mascota) jComboBox1.getSelectedItem();
-        String peso= jtPesoActual.getText();
-        VisitaData visitd =new VisitaData();
-        Visita visita= new Visita()
+    private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
+      //TERMINAR ESTE CODIGO ES PARA REGISTRAR LA VISITA
+        LocalDate fecha = jDateFechaVisita.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        Mascota masp = (Mascota) jComboBox1.getSelectedItem();
+        Double peso = Double.parseDouble(jtPesoActual.getText());
+        VisitaData visitd = new VisitaData();
+        Visita visita = new Visita(fecha, 5000, tratamientodeVisita, peso, masp);
         visitd.GuardarVisita(visita);
-// TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+
+    }//GEN-LAST:event_jbGuardarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
@@ -438,6 +438,7 @@ public class Visita_Registrar extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTextField3;
     private javax.swing.JButton jbAddDialogo;
     private javax.swing.JButton jbAddDialogo1;
+    private javax.swing.JButton jbGuardar;
     private javax.swing.JDialog jdPRoducto;
     private javax.swing.JDialog jdTRatamiento;
     private javax.swing.JTextField jtCantidad;
