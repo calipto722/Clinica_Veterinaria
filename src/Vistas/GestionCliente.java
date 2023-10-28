@@ -5,17 +5,24 @@
  */
 package Vistas;
 
+import Acceso_Base_de_Datos.ClienteData;
+import Entidades.Cliente;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author elmsn
  */
 public class GestionCliente extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form GestionCliente
-     */
+ private ClienteData clienteD;
+ private Cliente clienteP;
+  
     public GestionCliente() {
         initComponents();
+        clienteP=new Cliente();
+        clienteD= new ClienteData();
+        this.setTitle("Registro de cliente ");
     }
 
     /**
@@ -48,7 +55,7 @@ public class GestionCliente extends javax.swing.JInternalFrame {
         jbSalir = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         jtid = new javax.swing.JTextField();
-        jButton4 = new javax.swing.JButton();
+        jbBuscar = new javax.swing.JButton();
         jbEliminar = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
@@ -112,7 +119,12 @@ public class GestionCliente extends javax.swing.JInternalFrame {
 
         jLabel9.setText("ID:");
 
-        jButton4.setText("Buscar");
+        jbBuscar.setText("Buscar");
+        jbBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbBuscarActionPerformed(evt);
+            }
+        });
 
         jbEliminar.setText("Eliminar");
         jbEliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -158,7 +170,7 @@ public class GestionCliente extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(20, 20, 20)
-                        .addComponent(jButton4))
+                        .addComponent(jbBuscar))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(44, 44, 44)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -192,7 +204,7 @@ public class GestionCliente extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(jtid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4))
+                    .addComponent(jbBuscar))
                 .addGap(11, 11, 11)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -257,11 +269,57 @@ public class GestionCliente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jtContactoAltActionPerformed
 
     private void jbLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLimpiarActionPerformed
-        // TODO add your handling code here:
+       Limpiar();
     }//GEN-LAST:event_jbLimpiarActionPerformed
 
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
-        // TODO add your handling code here:
+      
+
+
+ try {
+     int id=Integer.parseInt(jtid.getText());
+     clienteP= clienteD.buscarCliente(id);
+     
+     
+     
+     
+        String nombre = jtNombre.getText();
+        String apellido = jtApellido.getText();
+        String dniStr = jtDni.getText();
+        String telefonoStr = jtTelefono.getText();
+        String contactoAlternativo = jtContactoAlt.getText();
+        String direccion = jtDireccion.getText();
+        boolean estado = jCheckEstado.isSelected();
+
+        if (nombre.isEmpty() || apellido.isEmpty() || dniStr.isEmpty() || telefonoStr.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos obligatorios.");
+        } else {
+            int dni = Integer.parseInt(dniStr);
+            int telefono = Integer.parseInt(telefonoStr);
+
+            if (clienteP != null) {
+                clienteP.setNombre(nombre);
+                clienteP.setApellido(apellido);
+                clienteP.setDni(dni);
+                clienteP.setTelefono(telefono);
+                clienteP.setNombreAlternativo(contactoAlternativo);
+                clienteP.setDireccion(direccion);
+                clienteP.isEstadoCLiente();
+                clienteD.ModificarCliente(clienteP);
+
+                
+                 
+            } else {
+                Cliente cliente = new Cliente(dni, nombre, apellido, telefono, contactoAlternativo, direccion, estado);
+                clienteD.GuardarCliente(cliente);
+            }
+        }
+    } catch (NumberFormatException nf) {
+        JOptionPane.showMessageDialog(this, "Error de formato en campos numéricos.");
+    } catch (Exception ex) {
+        JOptionPane.showMessageDialog(this, "Ocurrió un error al guardar/modificar el cliente: " + ex.getMessage());
+    }
+
     }//GEN-LAST:event_jbGuardarActionPerformed
 
     private void jbEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEliminarActionPerformed
@@ -272,9 +330,41 @@ public class GestionCliente extends javax.swing.JInternalFrame {
        this.dispose();
     }//GEN-LAST:event_jbSalirActionPerformed
 
+    private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
+      try{
+          int id=Integer.valueOf(jtid.getText());
+          clienteP=  clienteD.buscarCliente(id);
+          
+          
+      }catch(NumberFormatException nf){
+          JOptionPane.showMessageDialog(this, "Ingrese un numero para ID");
+      }
+      try{
+          if(clienteP!=null){
+              jtNombre.setText(clienteP.getNombre());
+              jtApellido.setText(clienteP.getApellido());
+              String dni= Integer.toString(clienteP.getDni());
+              jtDni.setText(dni);
+              String tel= Integer.toString(clienteP.getTelefono());
+              jtTelefono.setText(tel);
+              jtContactoAlt.setText(clienteP.getNombreAlternativo());
+              jtDireccion.setText(clienteP.getDireccion());
+              if (clienteP.isEstadoCLiente()==true){
+                  jCheckEstado.setSelected(true);
+              }else {
+                  jCheckEstado.setSelected(false);
+              }
+              
+              
+          }
+      }catch (NullPointerException e) {
+          JOptionPane.showMessageDialog(this, "Error en algun campo "+e.getMessage());
+      }
+        
+    }//GEN-LAST:event_jbBuscarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton4;
     private javax.swing.JCheckBox jCheckEstado;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -286,6 +376,7 @@ public class GestionCliente extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton jbBuscar;
     private javax.swing.JButton jbEliminar;
     private javax.swing.JButton jbGuardar;
     private javax.swing.JButton jbLimpiar;
@@ -298,4 +389,17 @@ public class GestionCliente extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jtTelefono;
     private javax.swing.JTextField jtid;
     // End of variables declaration//GEN-END:variables
+private void Limpiar(){
+    jtNombre.setText("");
+    jtApellido.setText("");
+    jtDni.setText("");
+    jtTelefono.setText("");
+    jtContactoAlt.setText("");
+    jtDireccion.setText("");
+    jCheckEstado.setSelected(false);
+    clienteP=null;
+    jtid.setText("");
+    
+}
+    
 }

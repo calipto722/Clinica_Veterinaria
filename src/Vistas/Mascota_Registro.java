@@ -342,49 +342,48 @@ public class Mascota_Registro extends javax.swing.JInternalFrame {
 
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
         
- try {
-     if (revisiondeNull()==false) {
-            seteo();
-        } else {
-            
-            
-        String nombre = jtNombre.getText();
-        String especie = jtEspecie.getText();
-        String raza = jtRaza.getText();
-        String colorPelo = jtColoDePelo.getText();
-        LocalDate fechaNac = jdFechaNac.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        boolean estado = jcEstado.isSelected();
-        Cliente cliente = (Cliente) jcCliente.getSelectedItem();
-        // El símbolo ? se utiliza en una expresión condicional (también conocida como operador ternario).
-        //Esta expresión condicional es una forma abreviada de escribir una estructura condicional if-else.
-        String sexo = (jrMacho.isSelected()) ? "Macho" : "Hembra";
-        
-            
-            if (mascotaP != null) {
-                // Modificar la mascota existente
-                mascotaP.setColorPelo(colorPelo);
-                mascotaP.setEspecie(especie);
-                mascotaP.setEstadoMascota(estado);
-                mascotaP.setFechaNacimiento(fechaNac);
-                mascotaP.setIdcliente(cliente);
-                mascotaP.setNombreAlias(nombre);
-                mascotaP.setRaza(raza);
-                mascotaP.setSexo(sexo);
-                
-                mascotaData.ModificarMascota(mascotaP);
-              
+        try {
+            int id = Integer.valueOf(jtId.getText());
+            mascotaP = mascotaData.BuscarMascota(id);
+            if (revisiondeNull() == false) {
+                seteo();
             } else {
-                // Crear una nueva mascota
-                Mascota mascota = new Mascota(nombre, sexo, especie, raza, colorPelo, fechaNac, estado, cliente);
-                
+
+                String nombre = jtNombre.getText();
+                String especie = jtEspecie.getText();
+                String raza = jtRaza.getText();
+                String colorPelo = jtColoDePelo.getText();
+                LocalDate fechaNac = jdFechaNac.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                boolean estado = jcEstado.isSelected();
+                Cliente cliente = (Cliente) jcCliente.getSelectedItem();
+                // El símbolo ? se utiliza en una expresión condicional (también conocida como operador ternario).
+                //Esta expresión condicional es una forma abreviada de escribir una estructura condicional if-else.
+                String sexo = (jrMacho.isSelected()) ? "Macho" : "Hembra";
+
+                if (mascotaP != null) {
+                    // Modificar la mascota existente
+                    mascotaP.setColorPelo(colorPelo);
+                    mascotaP.setEspecie(especie);
+                    mascotaP.setEstadoMascota(estado);
+                    mascotaP.setFechaNacimiento(fechaNac);
+                    mascotaP.setIdcliente(cliente);
+                    mascotaP.setNombreAlias(nombre);
+                    mascotaP.setRaza(raza);
+                    mascotaP.setSexo(sexo);
+
+                    mascotaData.ModificarMascota(mascotaP);
+
+                } else {
+                    // Crear una nueva mascota
+                    Mascota mascota = new Mascota(nombre, sexo, especie, raza, colorPelo, fechaNac, estado, cliente);
+
                     mascotaData.GuardarMascota(mascota);
-                   
-                
+
+                }
             }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Ocurrió un error inesperado", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
-    } catch (NumberFormatException e) {
-        JOptionPane.showMessageDialog(this, "Ocurrió un error inesperado", "ERROR", JOptionPane.ERROR_MESSAGE);
-    }
     }//GEN-LAST:event_jbGuardarActionPerformed
 
     private void jcClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcClienteActionPerformed
