@@ -29,10 +29,10 @@ public class MascotaData {
     }
 
     public void GuardarMascota(Mascota mascota) {
-      
+
         try {
-              String sql = "INSERT INTO `mascota`( `alias`, `sexo`, `especie`, `raza`, `colorPelo`, `fechaNac`, `idCliente`, `activo`,pesoPromedio)"
-                + " VALUES (?,?,?,?,?,?,?,?,?)";
+            String sql = "INSERT INTO `mascota`( `alias`, `sexo`, `especie`, `raza`, `colorPelo`, `fechaNac`, `idCliente`, `activo`,pesoPromedio)"
+                    + " VALUES (?,?,?,?,?,?,?,?,?)";
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, mascota.getNombreAlias());
             ps.setString(2, mascota.getSexo());
@@ -69,7 +69,7 @@ public class MascotaData {
             ps.setDate(6, Date.valueOf(mascota.getFechaNacimiento()));
             ps.setInt(7, mascota.getcliente().getIdCliente());
             ps.setBoolean(8, mascota.isEstadoMascota());
-            ps.setDouble(9,mascota.getPesoprod());
+            ps.setDouble(9, mascota.getPesoprod());
             ps.setInt(10, mascota.getIdMascota());
             int exito = ps.executeUpdate();
 
@@ -85,7 +85,7 @@ public class MascotaData {
 
     }
 
-    public void eliminarMascota(int id) {
+    public void EliminarMascota(int id) {
         String sql = "UPDATE `mascota` SET `activo`=0 WHERE `idMascota`=?";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -102,7 +102,7 @@ public class MascotaData {
 
     }
 
-    public List<Mascota> listarMascota() {
+    public List<Mascota> ListarMascota() {
         List<Mascota> mascotas = new ArrayList<>();
         String sql = "SELECT*FROM mascota WHERE activo=1 ";
 
@@ -124,7 +124,7 @@ public class MascotaData {
                 mascota.setRaza(rs.getString("raza"));
                 mascota.setIdcliente(cliente);
                 mascota.setSexo(rs.getString("sexo"));
-                mascota.setPesoprod( rs.getDouble("pesoPromedio"));
+                mascota.setPesoprod(rs.getDouble("pesoPromedio"));
                 mascotas.add(mascota);
             }
             ps.close();
@@ -156,8 +156,8 @@ public class MascotaData {
                 mascota.setNombreAlias(rs.getString("alias"));
                 mascota.setRaza(rs.getString("raza"));
                 mascota.setSexo(rs.getString("sexo"));
-                mascota.setPesoprod( rs.getDouble("pesoPromedio"));
-                
+                mascota.setPesoprod(rs.getDouble("pesoPromedio"));
+
             } else {
                 JOptionPane.showMessageDialog(null, "No existe La Mascota");
 
@@ -190,7 +190,7 @@ public class MascotaData {
                 mascota.setNombreAlias(rs.getString("alias"));
                 mascota.setRaza(rs.getString("raza"));
                 mascota.setSexo(rs.getString("sexo"));
-                mascota.setPesoprod( rs.getDouble("pesoPromedio"));
+                mascota.setPesoprod(rs.getDouble("pesoPromedio"));
             } else {
                 JOptionPane.showMessageDialog(null, "No existe La Mascota");
 
@@ -203,4 +203,20 @@ public class MascotaData {
         return mascota;
     }
 
+    public void ModificarPesoMascota(Mascota mascota) {
+        String sql = "UPDATE `mascota` SET pesoPromedio=? WHERE `idMascota`=?";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setDouble(1,mascota.getPesoprod());
+            ps.setInt(2, mascota.getIdMascota());
+            int exito = ps.executeUpdate();
+            if (exito != 1) {
+
+                JOptionPane.showMessageDialog(null, "La Mascota no existe");
+            }
+             ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla mascota" + JOptionPane.ERROR_MESSAGE + ex.getMessage());
+        }
+    }
 }

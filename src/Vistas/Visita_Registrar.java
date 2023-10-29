@@ -427,7 +427,7 @@ public class Visita_Registrar extends javax.swing.JInternalFrame {
     // End of variables declaration//GEN-END:variables
   private void cargarbox() {
         MascotaData mascD = new MascotaData();
-        List<Mascota> mascotas = mascD.listarMascota();
+        List<Mascota> mascotas = mascD.ListarMascota();
         jcMascotaselec.removeAllItems();
         for (int i = 0; i < mascotas.size(); i++) {
             jcMascotaselec.addItem(mascotas.get(i));

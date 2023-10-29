@@ -34,9 +34,11 @@ import net.sf.jasperreports.view.JasperViewer;
  * @author noelia
  */
 public class Mascota_HistorialClinico extends javax.swing.JInternalFrame {
-private DefaultTableModel modelo= new DefaultTableModel();
-    private Connection con=null;
+
+    private DefaultTableModel modelo = new DefaultTableModel();
+    private Connection con = null;
     private Mascota masp;
+
     public Mascota_HistorialClinico() {
         initComponents();
         cargarbox();
@@ -56,7 +58,7 @@ private DefaultTableModel modelo= new DefaultTableModel();
         jTable1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
+        jbExportar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         PesoPromedio = new javax.swing.JLabel();
 
@@ -85,10 +87,10 @@ private DefaultTableModel modelo= new DefaultTableModel();
             }
         });
 
-        jButton1.setText("Exportar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jbExportar.setText("Exportar");
+        jbExportar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jbExportarActionPerformed(evt);
             }
         });
 
@@ -120,7 +122,7 @@ private DefaultTableModel modelo= new DefaultTableModel();
                                 .addGap(18, 18, 18)
                                 .addComponent(PesoPromedio, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton1)))))
+                                .addComponent(jbExportar)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -133,7 +135,7 @@ private DefaultTableModel modelo= new DefaultTableModel();
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
+                .addComponent(jbExportar)
                 .addContainerGap(24, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(395, 395, 395)
@@ -146,115 +148,121 @@ private DefaultTableModel modelo= new DefaultTableModel();
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    con=Conexion.getConexion();
-       
-         masp = (Mascota) jComboBox1.getSelectedItem();
-    
+    private void jbExportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbExportarActionPerformed
+        con = Conexion.getConexion();
+        if (jComboBox1.getSelectedIndex() == -1 ||jComboBox1.getSelectedIndex()== 0) {
+            JOptionPane.showMessageDialog(null, "Seleccionar una Mascota");
+        } else {
+            masp = (Mascota) jComboBox1.getSelectedItem();
+        }
         try {
-            JasperReport report =null;
+            JasperReport report = null;
             String dir = "src\\RECURSOS\\Historial_Clinico.jasper";
-         report = (JasperReport) JRLoader.loadObjectFromFile(dir);
-        Map parametro = new HashMap();
-        parametro.put("Mascota", masp.getNombreAlias());
-            JasperPrint jprint= JasperFillManager.fillReport(report,parametro,con);
-            JasperViewer view =new JasperViewer(jprint, false);
+            report = (JasperReport) JRLoader.loadObjectFromFile(dir);
+            Map parametro = new HashMap();
+            parametro.put("Mascota", masp.getNombreAlias());
+            JasperPrint jprint = JasperFillManager.fillReport(report, parametro, con);
+            JasperViewer view = new JasperViewer(jprint, false);
             view.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
             view.setVisible(true);
         } catch (JRException ex) {
-        Logger.getLogger(Mascota_HistorialClinico.class.getName()).log(Level.SEVERE, null, ex);
-    }
-    }//GEN-LAST:event_jButton1ActionPerformed
+            Logger.getLogger(Mascota_HistorialClinico.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jbExportarActionPerformed
 
     private void jComboBox1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jComboBox1KeyReleased
-   
+
 // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1KeyReleased
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
- borrarFilas();
+        borrarFilas();
         VisitaData visitaData = new VisitaData();
-    MascotaData mascotaData= new MascotaData();
-        
-    masp = (Mascota) jComboBox1.getSelectedItem();
-    List<Visita> visitas = visitaData.listarVisitasPorMascota(masp);
+        MascotaData mascotaData = new MascotaData();
+        if ( jComboBox1.getSelectedIndex()== 0) {
+              PesoPromedio.setText("-----");
+           
+            }else{
+              masp = (Mascota) jComboBox1.getSelectedItem();
+            List<Visita> visitas = visitaData.listarVisitasPorMascota(masp);
 
-    int contador = 0;
+            int contador = 0;
 
-    for (Visita visita : visitas) {
-        
-            modelo.addRow(new Object[]{
-                visita.getFechaVisita(),
-                visita.getTratamiento().getTipoTratamiento(),
-                visita.getPesoActual()
-            });
+            for (Visita visita : visitas) {
 
-            contador++;
-            if (contador >= 10) {
-                break; 
+                modelo.addRow(new Object[]{
+                    visita.getFechaVisita(),
+                    visita.getTratamiento().getTipoTratamiento(),
+                    visita.getPesoActual()
+                });
+
+                contador++;
+                if (contador >= 10) {
+                    break;
+                }
+
             }
-        
-    }
-        String pesopro=pesopromed(jTable1);
-        PesoPromedio.setText(pesopro);
-        if (masp!=null) {
-            masp.setPesoprod(Double.valueOf(pesopro)); 
-            mascotaData.ModificarMascota(masp);
+            String pesopro = pesopromed(jTable1);
+            PesoPromedio.setText(pesopro);
+            if (masp != null) {
+                masp.setPesoprod(Double.valueOf(pesopro));
+                mascotaData.ModificarPesoMascota(masp);
+                }
         }
-       
 // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel PesoPromedio;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<Mascota> jComboBox1;
+    private javax.swing.JComboBox<Object> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JButton jbExportar;
     // End of variables declaration//GEN-END:variables
      private void cargarbox() {
-         MascotaData mascotaD = new MascotaData();
-        List<Mascota> mascotas = mascotaD.listarMascota();
+
+        MascotaData mascotaD = new MascotaData();
+        List<Mascota> mascotas = mascotaD.ListarMascota();
         jComboBox1.removeAllItems();
-       
-        for (int i = 0; i <mascotas.size() ; i++) {
+        jComboBox1.addItem("Seleccionar Mascota");
+        for (int i = 0; i < mascotas.size(); i++) {
             jComboBox1.addItem(mascotas.get(i));
 
         }
 
     }
-private void armarTabla(){
-    modelo.addColumn("Fecha visita");
-    modelo.addColumn("Tratamiento");
-   modelo.addColumn("Peso");
-    
-    jTable1.setModel(modelo);
-    
-}
-private void borrarFilas(){
-    int f=jTable1.getRowCount()-1;
-    
-    for(int i=f; i>=0;i--){
-        modelo.removeRow(i);
-    }
-}
-private String pesopromed(JTable jTable){
-    
-    double pesosuma=0;
-    double pesoprod = 0;
-    for (int i = 0; i <jTable.getRowCount(); i++) {
-        
-        pesosuma=  (double) (pesosuma+ Double.parseDouble(jTable1.getValueAt(i,2).toString()));
-            pesoprod= pesosuma/jTable.getRowCount();
-        
-    }
-    return pesoprod+"";
-    }
-   
 
-                
+    private void armarTabla() {
+        modelo.addColumn("Fecha visita");
+        modelo.addColumn("Tratamiento");
+        modelo.addColumn("Peso");
+
+        jTable1.setModel(modelo);
+
+    }
+
+    private void borrarFilas() {
+        int f = jTable1.getRowCount() - 1;
+
+        for (int i = f; i >= 0; i--) {
+            modelo.removeRow(i);
+        }
+    }
+
+    private String pesopromed(JTable jTable) {
+
+        double pesosuma = 0;
+        double pesoprod = 0;
+        for (int i = 0; i < jTable.getRowCount(); i++) {
+
+            pesosuma = (double) (pesosuma + Double.parseDouble(jTable1.getValueAt(i, 2).toString()));
+            pesoprod = pesosuma / jTable.getRowCount();
+
+        }
+        return pesoprod + "";
+    }
 
 }
