@@ -79,7 +79,21 @@ public class ProductoData {
 
     //preguntar tipo de eliminado
     public void EliminarProducto(int id) {
-        // String sql= ""
+       String sql= "DELETE FROM producto  WHERE idProducto=? ";
+       PreparedStatement ps;
+       try{
+           ps=con.prepareStatement(sql);
+           ps.setInt(1,id);
+           int fila= ps.executeUpdate();
+                   if(fila==1){
+                       JOptionPane.showMessageDialog(null, "Se elimino el producto");
+                   }
+                   ps.close();
+       }catch (SQLException ex){
+           JOptionPane.showMessageDialog(null,"ERROR al acceder a la tabla de Productos"+ ex.getMessage());
+       }
+       
+        
     }
 
     public List<Producto> ListarProductos() {
@@ -116,10 +130,10 @@ public class ProductoData {
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-                producto=new Producto();
+                producto = new Producto();
                 producto.setIdProducto(id);
-                producto.setDescripcion(rs.getString("descripcion"));
                 producto.setNombre(rs.getString("nombre"));
+                producto.setDescripcion(rs.getString("descripcion"));
                 producto.setPrecio(rs.getInt("precio"));
                 producto.setStock(rs.getInt("stock"));
             } else {

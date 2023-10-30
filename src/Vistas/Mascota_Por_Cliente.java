@@ -118,15 +118,15 @@ public class Mascota_Por_Cliente extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jcClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcClienteActionPerformed
-//        borrarFilas();
-        if (jcCliente.getSelectedIndex() == -1 ||jcCliente.getSelectedIndex()== 0) {
-            
-        } else {
+      
+       if (jcCliente.getSelectedIndex() != -1 && jcCliente.getSelectedIndex() != 0) { 
+           
         MascotaData mascotaData = new MascotaData();
         clientep = (Cliente) jcCliente.getSelectedItem();
+        borrarFilas();
         List<Mascota> mascotas = mascotaData.ListarMascota();
         for (Mascota mascota : mascotas) {
-            if (mascota.getcliente().getIdCliente() == clientep.getIdCliente()) {
+            if (mascota.getcliente().getIdCliente()==clientep.getIdCliente()) {
                 modelo.addRow(new Object[]{
                     mascota.getIdMascota(),
                     mascota.getNombreAlias(),
@@ -151,7 +151,7 @@ public class Mascota_Por_Cliente extends javax.swing.JInternalFrame {
         ClienteData clienteD = new ClienteData();
         List<Cliente> clientes = clienteD.listarClientes();
         jcCliente.removeAllItems();
-        jcCliente.addItem("Seleccionar Mascota");
+        jcCliente.addItem("Seleccionar cliente");
         for (int i = 0; i < clientes.size(); i++) {
             jcCliente.addItem(clientes.get(i));
 

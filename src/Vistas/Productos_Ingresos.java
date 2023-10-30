@@ -22,7 +22,7 @@ public class Productos_Ingresos extends javax.swing.JInternalFrame {
      */
     public Productos_Ingresos() {
         initComponents();
-        productoP = new Producto();
+        productoP = null;
 
     }
 
@@ -52,8 +52,10 @@ public class Productos_Ingresos extends javax.swing.JInternalFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jbLimpiar = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        jbGuardar = new javax.swing.JButton();
+        jtEliminar = new javax.swing.JButton();
+
+        setClosable(true);
 
         jPanel1.setBackground(new java.awt.Color(204, 255, 204));
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -159,14 +161,19 @@ public class Productos_Ingresos extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton2.setText("GUARDAR");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jbGuardar.setText("GUARDAR");
+        jbGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jbGuardarActionPerformed(evt);
             }
         });
 
-        jButton3.setText("ELIMINAR");
+        jtEliminar.setText("ELIMINAR");
+        jtEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtEliminarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -178,9 +185,9 @@ public class Productos_Ingresos extends javax.swing.JInternalFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jbLimpiar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2)
+                        .addComponent(jbGuardar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3)
+                        .addComponent(jtEliminar)
                         .addGap(42, 42, 42)
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -207,8 +214,8 @@ public class Productos_Ingresos extends javax.swing.JInternalFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton3)
-                            .addComponent(jButton2)
+                            .addComponent(jtEliminar)
+                            .addComponent(jbGuardar)
                             .addComponent(jbLimpiar))
                         .addContainerGap())))
         );
@@ -237,11 +244,11 @@ public class Productos_Ingresos extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        
+    private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
+        try{ 
         int codigo = Integer.parseInt(jtCodigo.getText());
-        String nombre = jtDescripcion.getText();
-        String descripcion = jtNombre.getText();
+        String descripcion = jtDescripcion.getText();
+        String nombre = jtNombre.getText();
         int precio = Integer.parseInt(jtPrecio.getText());
         int stock = Integer.parseInt(jtStock.getText());
         Producto prod = new Producto(codigo, nombre, descripcion, precio, stock);
@@ -254,23 +261,29 @@ public class Productos_Ingresos extends javax.swing.JInternalFrame {
         productoP.setStock(stock);
         productoP.setIdProducto(codigo);
             prodData.ModificarProducto(productoP);
+            Limpiar();
         }else{
              prodData.GuardarProducto(prod);
+             Limpiar();
         }
+        }
+        }catch (NumberFormatException nfe){
+            JOptionPane.showMessageDialog(this, "Coloque el formato correcto");
         }
 // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_jbGuardarActionPerformed
 
     private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
         ProductoData prodData = new ProductoData();
         try {
             int seleccion = Integer.parseInt(jtCodigo.getText());
             productoP = prodData.BuscarProductoPorId(seleccion);
+           
             jtDescripcion.setText(productoP.getDescripcion());
             jtNombre.setText(productoP.getNombre());
             jtPrecio.setText(productoP.getPrecio() + "");
             jtStock.setText(productoP.getStock() + "");
-
+            
         } catch (NullPointerException e) {
             System.out.println("----");
         } catch (NumberFormatException ex) {
@@ -285,13 +298,31 @@ public class Productos_Ingresos extends javax.swing.JInternalFrame {
         jtNombre.setText("");
         jtPrecio.setText("");
         jtStock.setText("");
-        jtCodigo.setText("");// TODO add your handling code here:
+        jtCodigo.setText("");
+        productoP=null;
+
     }//GEN-LAST:event_jbLimpiarActionPerformed
+
+    private void jtEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtEliminarActionPerformed
+       ProductoData prodData=new ProductoData();
+       
+        try{
+             int seleccion = Integer.parseInt(jtCodigo.getText());
+            productoP = prodData.BuscarProductoPorId(seleccion);
+          
+            
+            prodData.EliminarProducto(seleccion);
+            Limpiar();
+
+        }catch (NullPointerException e){
+            JOptionPane.showMessageDialog(this, "ERROR INESPERADO"+e.getMessage());
+        }catch (NumberFormatException nfe){
+            JOptionPane.showMessageDialog(null, "Formato para numero incorrecto");
+        }
+    }//GEN-LAST:event_jtEliminarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -303,9 +334,11 @@ public class Productos_Ingresos extends javax.swing.JInternalFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JButton jbBuscar;
+    private javax.swing.JButton jbGuardar;
     private javax.swing.JButton jbLimpiar;
     private javax.swing.JTextField jtCodigo;
     private javax.swing.JTextField jtDescripcion;
+    private javax.swing.JButton jtEliminar;
     private javax.swing.JTextField jtNombre;
     private javax.swing.JTextField jtPrecio;
     private javax.swing.JTextField jtStock;
@@ -329,4 +362,13 @@ private boolean revisiondeNull() {
             revision=false;
         }
         return revision;
-    }}
+    }
+private void Limpiar(){
+     jtDescripcion.setText("");
+    jtNombre.setText("");
+    jtPrecio.setText("");
+    jtStock.setText("");
+    jtCodigo.setText("");
+    productoP = null;
+}
+}

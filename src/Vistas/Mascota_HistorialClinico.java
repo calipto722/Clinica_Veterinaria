@@ -176,7 +176,7 @@ public class Mascota_HistorialClinico extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jComboBox1KeyReleased
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        borrarFilas();
+        
         VisitaData visitaData = new VisitaData();
         MascotaData mascotaData = new MascotaData();
         if ( jComboBox1.getSelectedIndex()== 0) {
@@ -184,6 +184,7 @@ public class Mascota_HistorialClinico extends javax.swing.JInternalFrame {
            
             }else{
               masp = (Mascota) jComboBox1.getSelectedItem();
+              borrarFilas();
             List<Visita> visitas = visitaData.listarVisitasPorMascota(masp);
 
             int contador = 0;
