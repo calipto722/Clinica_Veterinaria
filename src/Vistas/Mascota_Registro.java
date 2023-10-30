@@ -406,7 +406,7 @@ public class Mascota_Registro extends javax.swing.JInternalFrame {
 
     private void jbLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLimpiarActionPerformed
         seteo();
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_jbLimpiarActionPerformed
 
     private void jdFechaNacAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jdFechaNacAncestorAdded
