@@ -321,11 +321,11 @@ if (revisiondeNull()) {
     private void cargarbox() {
         ProductoData prodData = new ProductoData();
         Producto anestecia = prodData.BuscarProductoPorId(0);
-        Producto shampu = prodData.BuscarProductoPorId(3);
-        Producto Primerosauxilios = prodData.BuscarProductoPorId(7);
-        Producto vacunas = prodData.BuscarProductoPorId(10);
+        Producto shampoo = prodData.BuscarProductoPorId(1);
+        Producto Primerosauxilios = prodData.BuscarProductoPorId(2);
+        Producto vacunas = prodData.BuscarProductoPorId(3);
         jcProducto.addItem(anestecia);
-        jcProducto.addItem(shampu);
+        jcProducto.addItem(shampoo);
         jcProducto.addItem(Primerosauxilios);
         jcProducto.addItem(vacunas);
 
