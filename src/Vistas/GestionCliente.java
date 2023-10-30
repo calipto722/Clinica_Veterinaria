@@ -334,6 +334,7 @@ public class GestionCliente extends javax.swing.JInternalFrame {
             }
         } catch (NumberFormatException nf) {
             JOptionPane.showMessageDialog(this, "Ingrese un numero para ID");
+            jtid.setText("");
         }
         try {
             if (clienteP != null) {

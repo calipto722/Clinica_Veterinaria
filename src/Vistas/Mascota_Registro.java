@@ -350,9 +350,8 @@ public class Mascota_Registro extends javax.swing.JInternalFrame {
             int id = Integer.valueOf(jtId.getText());
             mascotaP = mascotaData.BuscarMascota(id);
             }
-            if (revisiondeNull() == false) {
-                seteo();
-            } else {
+            if (revisiondeNull() == true) {
+                
 
                 String nombre = jtNombre.getText();
                 String especie = jtEspecie.getText();
@@ -377,19 +376,19 @@ public class Mascota_Registro extends javax.swing.JInternalFrame {
                     mascotaP.setSexo(sexo);
 
                     mascotaData.ModificarMascota(mascotaP);
-
+                     seteo();
                 } else {
                     // Crear una nueva mascota
                     Mascota mascota = new Mascota(nombre, sexo, especie, raza, colorPelo, fechaNac, estado, cliente);
 
                     mascotaData.GuardarMascota(mascota);
-
+                     seteo();
                 }
             }
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Ocurrió un error inesperado", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
-        seteo();
+       
     }//GEN-LAST:event_jbGuardarActionPerformed
 
     private void jcClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcClienteActionPerformed
@@ -491,8 +490,9 @@ private void seteo(){
         } else if (jtRaza.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Falta completar raza ");
             revision = false;
-        } else if( jdFechaNac.getTreeLock() ==null){
+        } else if( jdFechaNac.getDate() ==null){
             revision=false;
+            JOptionPane.showMessageDialog(this, "Falta completar Fecha ");
         }
         return revision;
     }

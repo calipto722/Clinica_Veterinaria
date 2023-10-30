@@ -88,6 +88,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMenuClientes.add(jmGestionClientes);
 
         jMenuItem7.setText("Mascotas de cliente");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
         jMenuClientes.add(jMenuItem7);
 
         jMenuBar1.add(jMenuClientes);
@@ -319,6 +324,16 @@ public class MenuPrincipal extends javax.swing.JFrame {
         Escritorio.add(gtc);
         Escritorio.moveToFront(gtc);
     }//GEN-LAST:event_jmGestionClientesActionPerformed
+
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+  Escritorio.removeAll();
+        Escritorio.repaint();
+        Mascota_Por_Cliente mpc= new Mascota_Por_Cliente();
+        
+        mpc.setVisible(true);
+        Escritorio.add(mpc);
+        Escritorio.moveToFront(mpc);         // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     /**
      * @param args the command line arguments

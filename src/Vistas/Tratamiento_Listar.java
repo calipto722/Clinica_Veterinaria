@@ -21,15 +21,17 @@ import javax.swing.table.TableModel;
 public class Tratamiento_Listar extends javax.swing.JInternalFrame {
 
     private DefaultTableModel modelo = new DefaultTableModel();
-
+    private TratamientoData tratamientoData;
     /**
      * Creates new form Tratamiento_Listar
      */
     public Tratamiento_Listar() {
+        
         initComponents();
         armarTabla();
         cargarTabla();
         jbAgregar.setVisible(false);
+        tratamientoData= new TratamientoData();
     }
 
     /**
@@ -112,18 +114,24 @@ public class Tratamiento_Listar extends javax.swing.JInternalFrame {
         int filselec = jtTratamientos.getSelectedRow();
         ProductoData prod = new ProductoData();
         Producto prodselec = new Producto();
-        String tipo, descripcion, estado, importe;
-        int producto;
+        String tipo, descripcion,descripcionprod, estado, importe;
+        int idTratamiento, idProducto;
         if (filselec == -1) {
             JOptionPane.showMessageDialog(null, "Debe seleccionar producto", "Advertancia", JOptionPane.WARNING_MESSAGE);// TODO add your handling code here:
         } else {
             modelo = (DefaultTableModel) jtTratamientos.getModel();
-            tipo = jtTratamientos.getValueAt(filselec, 0).toString();
-            descripcion = jtTratamientos.getValueAt(filselec, 1).toString();
-            producto = (int) jtTratamientos.getValueAt(filselec, 2);
-            prodselec = prod.BuscarProductoPorId(producto);
-            estado = jtTratamientos.getValueAt(filselec, 4).toString();
-            importe = jtTratamientos.getValueAt(filselec, 5).toString();
+            idTratamiento= Integer.parseInt(jtTratamientos.getValueAt(filselec,0).toString());
+            System.out.println(idTratamiento);
+            tipo = jtTratamientos.getValueAt(filselec, 1).toString();
+            descripcion = jtTratamientos.getValueAt(filselec, 2).toString();
+            idProducto = Integer.parseInt( jtTratamientos.getValueAt(filselec, 3).toString());
+            prodselec = prod.BuscarProductoPorId(idProducto);
+            descripcionprod = jtTratamientos.getValueAt(filselec, 4).toString();
+            estado = jtTratamientos.getValueAt(filselec, 5).toString();
+            importe = jtTratamientos.getValueAt(filselec, 6).toString();
+            System.out.println(tratamientoData.BuscarTratamiento(idTratamiento));
+            Tratamiento trataselec = tratamientoData.BuscarTratamiento(idTratamiento);
+            Tratamiento_Registrar.tratamientoP=trataselec;        
             Tratamiento_Registrar.jtDescripcion.setText(descripcion);
             Tratamiento_Registrar.jtTipo.setText(tipo);
             Tratamiento_Registrar.jcProducto.removeAllItems();
@@ -133,7 +141,7 @@ public class Tratamiento_Listar extends javax.swing.JInternalFrame {
             dispose();
 // TODO add your handling code here:
     }//GEN-LAST:event_jbAgregarActionPerformed
-
+  
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
@@ -143,6 +151,7 @@ public class Tratamiento_Listar extends javax.swing.JInternalFrame {
     private javax.swing.JTable jtTratamientos;
     // End of variables declaration//GEN-END:variables
 private void armarTabla() {
+        modelo.addColumn("Id Tratamiento");
         modelo.addColumn("tipo");
         modelo.addColumn("Descripcion");
         modelo.addColumn("id");
@@ -157,6 +166,7 @@ private void armarTabla() {
         List<Tratamiento> tratamientos = tratamientoData.ListarTratamiento();
         for (Tratamiento tratamiento : tratamientos) {
             modelo.addRow(new Object[]{
+                tratamiento.getIdTratamiento(),
                 tratamiento.getTipoTratamiento(),
                 tratamiento.getDescripcion(),
                 tratamiento.getProducto().getIdProducto(),

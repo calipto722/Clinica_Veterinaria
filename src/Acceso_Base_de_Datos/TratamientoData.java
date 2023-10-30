@@ -45,6 +45,7 @@ public class TratamientoData {
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
                 tratamiento.setIdTratamiento(rs.getInt(1));
+                JOptionPane.showMessageDialog(null, "Añadido exitosamente. ");
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "ERROR al acceder a la tabla Tratamiento " + ex.getMessage());
@@ -76,14 +77,14 @@ public class TratamientoData {
     }
 
     public Tratamiento BuscarTratamiento(int id) {
-        Tratamiento tratamiento = null;
-        String sql = "SELECT * FROM `tratamiento` WHERE idTratamiento=?";
+        tratamiento = null;
+        String sql = "SELECT * FROM tratamiento WHERE idTratamiento=?";
 
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
-            //``, `medicamento`, `importe`, `tipoTratamiento`, ``
+            
             if (rs.next()) {
                 tratamiento = new Tratamiento();
                 ProductoData productoData = new ProductoData();
@@ -98,9 +99,8 @@ public class TratamientoData {
 
             } else {
                 JOptionPane.showMessageDialog(null, "No existe el Tratamiento");
-                ps.close();
-
-            }
+                
+            }ps.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Tratamiento " + ex.getMessage());
         }

@@ -21,7 +21,7 @@ import javax.swing.JOptionPane;
  */
 public class Tratamiento_Registrar extends javax.swing.JInternalFrame {
 
-    private Tratamiento tratamientoP;
+    public static Tratamiento tratamientoP;
 
     /**
      * Creates new form RegistrarTratamiento
@@ -29,7 +29,7 @@ public class Tratamiento_Registrar extends javax.swing.JInternalFrame {
     public Tratamiento_Registrar() {
         initComponents();
         cargarbox();
-        tratamientoP = new Tratamiento();
+        tratamientoP = null;
     }
 
     /**
@@ -223,6 +223,7 @@ public class Tratamiento_Registrar extends javax.swing.JInternalFrame {
         this.jtDescripcion.setText("");
         this.jtEstado.setText("");
         this.jtImporte.setText("");
+        tratamientoP=null;
         jcProducto.removeAllItems();
         cargarbox();// TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
@@ -258,7 +259,8 @@ if (revisiondeNull()) {
 
             // Crear o modificar el tratamiento
             TratamientoData tratamientoData = new TratamientoData();
-            if (tratamientoP.getDescripcion() != null) {
+            
+            if (tratamientoP != null) {
                 // Modificar tratamiento existente
                 tratamientoP.setTipoTratamiento(tipoString);
                 tratamientoP.setDescripcion(descripcion);
