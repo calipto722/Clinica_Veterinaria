@@ -267,7 +267,7 @@ public class GestionCliente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbLimpiarActionPerformed
 
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
-
+        ////
         try {
             if (!(jtid.getText().isEmpty())) {
                 int id = Integer.parseInt(jtid.getText());
