@@ -32,7 +32,7 @@ public class Mascota_Registro extends javax.swing.JInternalFrame {
      */
     public Mascota_Registro() {
         initComponents();
-        mascotaP = new Mascota();
+        mascotaP = null;
         mascotaData = new MascotaData();
         clienteData = new ClienteData();
         this.setTitle("Registro de mascotas ");
@@ -311,14 +311,17 @@ public class Mascota_Registro extends javax.swing.JInternalFrame {
         try {
             int id = Integer.valueOf(jtId.getText());
 
-            mascotaP = mascotaData.BuscarMascota(id);
-
+            Mascota mascotaselec = mascotaData.BuscarMascota(id);
+            if (mascotaselec==null) {
+                seteo();
+                mascotaP=null;
+            } else {
+                mascotaP=mascotaselec;
+            }
         }  catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(null, "Ingresar un Numero");
         }try{
             
-       
-
         if (mascotaP != null) {
             jcCliente.removeAllItems();
             jtNombre.setText(mascotaP.getNombreAlias());
@@ -343,8 +346,10 @@ public class Mascota_Registro extends javax.swing.JInternalFrame {
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
         
         try {
+            if(!(jtId.getText().isEmpty())){
             int id = Integer.valueOf(jtId.getText());
             mascotaP = mascotaData.BuscarMascota(id);
+            }
             if (revisiondeNull() == false) {
                 seteo();
             } else {
@@ -384,6 +389,7 @@ public class Mascota_Registro extends javax.swing.JInternalFrame {
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Ocurrió un error inesperado", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
+        seteo();
     }//GEN-LAST:event_jbGuardarActionPerformed
 
     private void jcClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcClienteActionPerformed
@@ -409,6 +415,12 @@ public class Mascota_Registro extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jdFechaNacAncestorAdded
 
     private void jbEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEliminarActionPerformed
+        if (jtId.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null,"Completar ID antes de Eliminar");
+        }
+        
+        mascotaData.EliminarMascota(Integer.parseInt(jtId.getText()));
+seteo();
         // TODO add your handling code here:
     }//GEN-LAST:event_jbEliminarActionPerformed
 

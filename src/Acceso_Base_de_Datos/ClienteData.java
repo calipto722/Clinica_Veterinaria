@@ -128,7 +128,7 @@ public class ClienteData {
         
     }
     public Cliente buscarCliente(int id){
-       Cliente cliente =null;
+       cliente= null;
         String sql= "SELECT* FROM cliente WHERE idCliente=?";
         PreparedStatement ps;
         try {
@@ -148,9 +148,9 @@ public class ClienteData {
                 cliente.setEstadoCLiente(rs.getBoolean("activo"));
             }else{
                   JOptionPane.showMessageDialog(null, "No existe el Cliente");
-                ps.close();
+                
             }
-           
+           ps.close();
         } catch (SQLException ex) {
           JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Cliente "+ ex.getMessage());
         }

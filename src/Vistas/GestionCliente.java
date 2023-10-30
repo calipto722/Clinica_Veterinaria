@@ -15,13 +15,15 @@ import javax.swing.JOptionPane;
  */
 public class GestionCliente extends javax.swing.JInternalFrame {
 
- private ClienteData clienteD;
- private Cliente clienteP;
-  
+    private ClienteData clienteD;
+    private Cliente clienteP;
+    
+
     public GestionCliente() {
         initComponents();
-        clienteP=new Cliente();
-        clienteD= new ClienteData();
+        clienteP = null;
+       
+        clienteD = new ClienteData();
         this.setTitle("Registro de cliente ");
     }
 
@@ -261,96 +263,99 @@ public class GestionCliente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jtContactoAltActionPerformed
 
     private void jbLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLimpiarActionPerformed
-       Limpiar();
+        Limpiar();
     }//GEN-LAST:event_jbLimpiarActionPerformed
 
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
-      
 
-
- try {
-     int id=Integer.parseInt(jtid.getText());
-     clienteP= clienteD.buscarCliente(id);
-     
-     
-     
-     
-        String nombre = jtNombre.getText();
-        String apellido = jtApellido.getText();
-        String dniStr = jtDni.getText();
-        String telefonoStr = jtTelefono.getText();
-        String contactoAlternativo = jtContactoAlt.getText();
-        String direccion = jtDireccion.getText();
-        boolean estado = jCheckEstado.isSelected();
-
-        if (nombre.isEmpty() || apellido.isEmpty() || dniStr.isEmpty() || telefonoStr.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos obligatorios.");
-        } else {
-            int dni = Integer.parseInt(dniStr);
-            int telefono = Integer.parseInt(telefonoStr);
-
-            if (clienteP != null) {
-                clienteP.setNombre(nombre);
-                clienteP.setApellido(apellido);
-                clienteP.setDni(dni);
-                clienteP.setTelefono(telefono);
-                clienteP.setNombreAlternativo(contactoAlternativo);
-                clienteP.setDireccion(direccion);
-                clienteP.isEstadoCLiente();
-                clienteD.ModificarCliente(clienteP);
-
-                
-                 
-            } else {
-                Cliente cliente = new Cliente(dni, nombre, apellido, telefono, contactoAlternativo, direccion, estado);
-                clienteD.GuardarCliente(cliente);
+        try {
+            if (!(jtid.getText().isEmpty())) {
+                int id = Integer.parseInt(jtid.getText());
+                clienteP = clienteD.buscarCliente(id);
             }
-        }
-    } catch (NumberFormatException nf) {
-        JOptionPane.showMessageDialog(this, "Error de formato en campos numéricos.");
-    } catch (Exception ex) {
-        JOptionPane.showMessageDialog(this, "Ocurrió un error al guardar/modificar el cliente: " + ex.getMessage());
-    }
+            String nombre = jtNombre.getText();
+            String apellido = jtApellido.getText();
+            String dniStr = jtDni.getText();
+            String telefonoStr = jtTelefono.getText();
+            String contactoAlternativo = jtContactoAlt.getText();
+            String direccion = jtDireccion.getText();
+            boolean estado = jCheckEstado.isSelected();
 
+            if (nombre.isEmpty() || apellido.isEmpty() || dniStr.isEmpty() || telefonoStr.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos obligatorios.");
+            } else {
+                int dni = Integer.parseInt(dniStr);
+                int telefono = Integer.parseInt(telefonoStr);
+
+                if (clienteP != null) {
+                    clienteP.setNombre(nombre);
+                    clienteP.setApellido(apellido);
+                    clienteP.setDni(dni);
+                    clienteP.setTelefono(telefono);
+                    clienteP.setNombreAlternativo(contactoAlternativo);
+                    clienteP.setDireccion(direccion);
+                    clienteP.setEstadoCLiente(estado);
+
+                    clienteD.ModificarCliente(clienteP);
+
+                } else {
+
+                    Cliente cliente = new Cliente(dni, nombre, apellido, telefono, contactoAlternativo, direccion, estado);
+                    clienteD.GuardarCliente(cliente);
+                }
+            }
+        } catch (NumberFormatException nf) {
+            JOptionPane.showMessageDialog(this, "Error de formato en campos numéricos.");
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Ocurrió un error al guardar/modificar el cliente: " + ex.getMessage());
+        }
+        Limpiar();
     }//GEN-LAST:event_jbGuardarActionPerformed
 
     private void jbEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEliminarActionPerformed
-        // TODO add your handling code here:
+        if (clienteP != null) {
+            clienteD.eliminarCliente(clienteP.getIdCliente());
+        } else {
+            JOptionPane.showMessageDialog(null, "Cliente no se encuentra en la Base de Datos");
+        }
+        Limpiar();        // TODO add your handling code here:
     }//GEN-LAST:event_jbEliminarActionPerformed
 
     private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
-      try{
-          int id=Integer.valueOf(jtid.getText());
-          clienteP=  clienteD.buscarCliente(id);
-          if (clienteP== null) {
-              Limpiar();
-          }
-          
-      }catch(NumberFormatException nf){
-          JOptionPane.showMessageDialog(this, "Ingrese un numero para ID");
-      }
-      try{
-          if(clienteP!=null){
-              jtNombre.setText(clienteP.getNombre());
-              jtApellido.setText(clienteP.getApellido());
-              String dni= Integer.toString(clienteP.getDni());
-              jtDni.setText(dni);
-              String tel= Integer.toString(clienteP.getTelefono());
-              jtTelefono.setText(tel);
-              jtContactoAlt.setText(clienteP.getNombreAlternativo());
-              jtDireccion.setText(clienteP.getDireccion());
-              if (clienteP.isEstadoCLiente()==true){
-                  jCheckEstado.setSelected(true);
-              }else {
-                  jCheckEstado.setSelected(false);
-              }
-              
-              
-          }
-      }catch (NullPointerException e) {
-          JOptionPane.showMessageDialog(this, "Error en algun campo "+e.getMessage());
-      }
-        
+        try {
+            int id = Integer.valueOf(jtid.getText());
+          Cliente clienteselec = clienteD.buscarCliente(id);
+            
+            if (clienteselec == null) {
+                Limpiar();
+                clienteP=null;
+            } else {
+                clienteP = clienteselec;
+            }
+        } catch (NumberFormatException nf) {
+            JOptionPane.showMessageDialog(this, "Ingrese un numero para ID");
+        }
+        try {
+            if (clienteP != null) {
+                jtNombre.setText(clienteP.getNombre());
+                jtApellido.setText(clienteP.getApellido());
+                String dni = Integer.toString(clienteP.getDni());
+                jtDni.setText(dni);
+                String tel = Integer.toString(clienteP.getTelefono());
+                jtTelefono.setText(tel);
+                jtContactoAlt.setText(clienteP.getNombreAlternativo());
+                jtDireccion.setText(clienteP.getDireccion());
+                if (clienteP.isEstadoCLiente() == true) {
+                    jCheckEstado.setSelected(true);
+                } else {
+                    jCheckEstado.setSelected(false);
+                }
+
+            }
+        } catch (NullPointerException e) {
+            JOptionPane.showMessageDialog(this, "Error en algun campo " + e.getMessage());
+        }
+
     }//GEN-LAST:event_jbBuscarActionPerformed
 
 
@@ -378,17 +383,17 @@ public class GestionCliente extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jtTelefono;
     private javax.swing.JTextField jtid;
     // End of variables declaration//GEN-END:variables
-private void Limpiar(){
-    jtNombre.setText("");
-    jtApellido.setText("");
-    jtDni.setText("");
-    jtTelefono.setText("");
-    jtContactoAlt.setText("");
-    jtDireccion.setText("");
-    jCheckEstado.setSelected(false);
-    clienteP=null;
-    jtid.setText("");
-    
-}
-    
+private void Limpiar() {
+        jtNombre.setText("");
+        jtApellido.setText("");
+        jtDni.setText("");
+        jtTelefono.setText("");
+        jtContactoAlt.setText("");
+        jtDireccion.setText("");
+        jCheckEstado.setSelected(false);
+        clienteP = null;
+        jtid.setText("");
+
+    }
+
 }
