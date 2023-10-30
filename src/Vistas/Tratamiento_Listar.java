@@ -116,7 +116,8 @@ public class Tratamiento_Listar extends javax.swing.JInternalFrame {
         int filselec = jtTratamientos.getSelectedRow();
         ProductoData prod = new ProductoData();
         Producto prodselec = new Producto();
-        String tipo, descripcion,descripcionprod, estado, importe;
+        String tipo, descripcion,descripcionprod, importe;
+        boolean estado;
         int idTratamiento, idProducto;
         if (filselec == -1) {
             JOptionPane.showMessageDialog(null, "Debe seleccionar producto", "Advertancia", JOptionPane.WARNING_MESSAGE);// TODO add your handling code here:
@@ -129,7 +130,7 @@ public class Tratamiento_Listar extends javax.swing.JInternalFrame {
             idProducto = Integer.parseInt( jtTratamientos.getValueAt(filselec, 3).toString());
             prodselec = prod.BuscarProductoPorId(idProducto);
             descripcionprod = jtTratamientos.getValueAt(filselec, 4).toString();
-            estado = jtTratamientos.getValueAt(filselec, 5).toString();
+            estado = jtTratamientos.getValueAt(filselec, 5).toString().equals("true");
             importe = jtTratamientos.getValueAt(filselec, 6).toString();
             System.out.println(tratamientoData.BuscarTratamiento(idTratamiento));
             Tratamiento trataselec = tratamientoData.BuscarTratamiento(idTratamiento);
@@ -138,7 +139,7 @@ public class Tratamiento_Listar extends javax.swing.JInternalFrame {
             Tratamiento_Registrar.jtTipo.setText(tipo);
             Tratamiento_Registrar.jcProducto.removeAllItems();
             Tratamiento_Registrar.jcProducto.addItem(prodselec);
-            Tratamiento_Registrar.jtEstado.setText(estado);
+            Tratamiento_Registrar.jcheckEstado.setSelected(estado);
             Tratamiento_Registrar.jtImporte.setText(importe);
             dispose();
 // TODO add your handling code here:

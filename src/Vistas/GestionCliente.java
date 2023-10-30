@@ -297,11 +297,13 @@ public class GestionCliente extends javax.swing.JInternalFrame {
                     clienteP.setEstadoCLiente(estado);
 
                     clienteD.ModificarCliente(clienteP);
+                    Limpiar();
 
                 } else {
 
                     Cliente cliente = new Cliente(dni, nombre, apellido, telefono, contactoAlternativo, direccion, estado);
                     clienteD.GuardarCliente(cliente);
+                    Limpiar();
                 }
             }
         } catch (NumberFormatException nf) {
@@ -309,7 +311,7 @@ public class GestionCliente extends javax.swing.JInternalFrame {
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "Ocurrió un error al guardar/modificar el cliente: " + ex.getMessage());
         }
-        Limpiar();
+        
     }//GEN-LAST:event_jbGuardarActionPerformed
 
     private void jbEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEliminarActionPerformed

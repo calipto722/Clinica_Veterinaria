@@ -371,14 +371,23 @@ public class Visita_Registrar extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
-       LocalDate fecha= jDateFechaVisita.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+      try{
+          
+      
+        LocalDate fecha= jDateFechaVisita.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
        Mascota masp= (Mascota) jcMascotaselec.getSelectedItem();
         String peso= jtPesoActual.getText();
         VisitaData visitd =new VisitaData();
         if (casillasVacias()==true) {
           Visita visita= new Visita(fecha,importeVisita, tratamientodeVisita,Double.valueOf(peso), masp);
-        visitd.GuardarVisita(visita);  
+        visitd.GuardarVisita(visita); 
+        // agregar un limpiar
         }
+      }catch (NullPointerException npe){
+          JOptionPane.showMessageDialog(this,"Error en el formato de fecha");
+      }catch (NumberFormatException nfe){
+          JOptionPane.showMessageDialog(this, "Ingrese el formato de peso correcto");
+      }
     }//GEN-LAST:event_jbGuardarActionPerformed
 
     private void jbAddDialogo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAddDialogo1ActionPerformed
