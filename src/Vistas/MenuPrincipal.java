@@ -78,6 +78,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
+        jMenuClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/RECURSOS/klipartz.com (12).png"))); // NOI18N
         jMenuClientes.setText("Clientes");
 
         jmGestionClientes.setText("Gestion Clientes");
@@ -98,6 +99,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenuClientes);
 
+        jMmascotas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/RECURSOS/klipartz.com (25).png"))); // NOI18N
         jMmascotas.setText("Mascotas");
 
         jMGestionMascotas.setText("Gestion Mascota");
@@ -118,6 +120,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMmascotas);
 
+        jMenuProductos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/RECURSOS/klipartz.com (29).png"))); // NOI18N
         jMenuProductos.setText("Productos");
 
         jmBuscarProductosNombre.setText("Productos por nombre");
@@ -146,6 +149,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenuProductos);
 
+        jMenuVisita.setIcon(new javax.swing.ImageIcon(getClass().getResource("/RECURSOS/klipartz.com (28).png"))); // NOI18N
         jMenuVisita.setText("Visita");
 
         jmRegistrarVisita.setText("Registrar visita");
@@ -182,6 +186,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenuVisita);
 
+        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/RECURSOS/klipartz.com (14).png"))); // NOI18N
         jMenu1.setText("Contabilidad");
 
         jMenuItem1.setText("Factura");
@@ -194,6 +199,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
+        jMenu5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/RECURSOS/klipartz.com (16).png"))); // NOI18N
         jMenu5.setText("Salir");
 
         jMenuItem8.setText("Cerrar");
