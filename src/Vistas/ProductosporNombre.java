@@ -23,7 +23,7 @@ import javax.swing.table.DefaultTableModel;
 public class ProductosporNombre extends javax.swing.JInternalFrame {
 
     private DefaultTableModel modelo = new DefaultTableModel();
-        
+    
     
 
     /**
@@ -36,6 +36,7 @@ public class ProductosporNombre extends javax.swing.JInternalFrame {
         jbAgregar.setVisible(false);
         jlcant.setVisible(false);
         jtCant.setVisible(false);
+        
     }
 
     /**
@@ -195,7 +196,9 @@ public class ProductosporNombre extends javax.swing.JInternalFrame {
     private void jbAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAgregarActionPerformed
         int filselec = jtProductos.getSelectedRow();
         try {
-            String id, nombre, descripcion, precio, cant, importe;
+            String id, nombre, descripcion,cant, precio, importe;
+            int canti;
+            double calcula;
 
             if (filselec == -1) {
                 JOptionPane.showMessageDialog(null, "Debe seleccionar producto", "Advertancia", JOptionPane.WARNING_MESSAGE);// TODO add your handling code here:
@@ -212,14 +215,17 @@ public class ProductosporNombre extends javax.swing.JInternalFrame {
                
 
                 
-                String filaElemento = "Producto : " + cant + ", " + nombre + ", " + descripcion +" Precio: $"+ x;
-                model.addElement(filaElemento);
+                modelo = (DefaultTableModel) Ventas.jtFactura.getModel();
+                String filaElemento[]={id,nombre,descripcion,precio,importe};
+                model.addRow(filaElemento);
                 ProductoData prod = new ProductoData();
                 Producto producStock = prod.BuscarProductoPorId(Integer.parseInt(id));
                 producStock.setStock(producStock.getStock() - Integer.parseInt(cant));
                 prod.ModificarProducto(producStock);
                 Ventas.total+= x;
+                Ventas.iva= total*0.21;
                 lbl_total.setText("$"+total);
+                Ventas.lb_Iva.setText(Ventas.iva+"");
             }
         } catch (Exception ex) {
 
