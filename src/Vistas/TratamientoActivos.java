@@ -39,6 +39,9 @@ public class TratamientoActivos extends javax.swing.JInternalFrame {
         jTable1 = new javax.swing.JTable();
         jbSalir = new javax.swing.JButton();
 
+        jPanel1.setBackground(new java.awt.Color(204, 255, 255));
+        jPanel1.setForeground(new java.awt.Color(255, 153, 102));
+
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("LISTA DE TRATAMIENTOS  ACTIVOS");

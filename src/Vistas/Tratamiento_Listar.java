@@ -49,7 +49,10 @@ public class Tratamiento_Listar extends javax.swing.JInternalFrame {
         jbAgregar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(204, 255, 255));
         setClosable(true);
+
+        jPanel1.setBackground(new java.awt.Color(204, 255, 255));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -62,6 +65,7 @@ public class Tratamiento_Listar extends javax.swing.JInternalFrame {
             .addGap(0, 24, Short.MAX_VALUE)
         );
 
+        jtTratamientos.setBackground(new java.awt.Color(204, 255, 255));
         jtTratamientos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
