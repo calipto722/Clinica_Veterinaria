@@ -45,6 +45,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jmRegistrarVisita = new javax.swing.JMenuItem();
         jListarTratamiento = new javax.swing.JMenuItem();
         jmBuscarTratamiento = new javax.swing.JMenuItem();
+        jmTratamientosActivos = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
@@ -170,6 +171,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
         jMenuVisita.add(jmBuscarTratamiento);
+
+        jmTratamientosActivos.setText("Tratamientos Activos");
+        jmTratamientosActivos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmTratamientosActivosActionPerformed(evt);
+            }
+        });
+        jMenuVisita.add(jmTratamientosActivos);
 
         jMenuBar1.add(jMenuVisita);
 
@@ -335,6 +344,15 @@ public class MenuPrincipal extends javax.swing.JFrame {
         Escritorio.moveToFront(mpc);         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
+    private void jmTratamientosActivosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmTratamientosActivosActionPerformed
+      Escritorio.removeAll();
+      Escritorio.repaint();
+      TratamientoActivos ta = new TratamientoActivos();
+      ta.setVisible(true);
+      Escritorio.add(ta);
+      Escritorio.moveToFront(ta);
+    }//GEN-LAST:event_jmTratamientosActivosActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -394,5 +412,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jmGestionClientes;
     private javax.swing.JMenuItem jmRegistrarVisita;
     private javax.swing.JMenuItem jmRegistroProducto;
+    private javax.swing.JMenuItem jmTratamientosActivos;
     // End of variables declaration//GEN-END:variables
 }
