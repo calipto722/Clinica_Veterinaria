@@ -6,23 +6,36 @@
 package Vistas;
 
 import Acceso_Base_de_Datos.ClienteData;
+import Acceso_Base_de_Datos.Conexion;
 import Acceso_Base_de_Datos.MascotaData;
 import Entidades.Cliente;
 import Entidades.Mascota;
 import com.oracle.xmlns.internal.webservices.jaxws_databinding.SoapBindingParameterStyle;
+import java.sql.Connection;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
  * @author noelia
  */
 public class Mascota_Registro extends javax.swing.JInternalFrame {
-
+private Connection con = null;
     private MascotaData mascotaData;
     private ClienteData clienteData;
     private Mascota mascotaP;
@@ -376,18 +389,22 @@ public class Mascota_Registro extends javax.swing.JInternalFrame {
                     mascotaP.setSexo(sexo);
 
                     mascotaData.ModificarMascota(mascotaP);
+                    
                      seteo();
                 } else {
                     // Crear una nueva mascota
                     Mascota mascota = new Mascota(nombre, sexo, especie, raza, colorPelo, fechaNac, estado, cliente);
-
+                    mascotaP=mascota;
                     mascotaData.GuardarMascota(mascota);
+                    carnet();
                      seteo();
                 }
             }
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Ocurrió un error inesperado", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
+        
+         
        
     }//GEN-LAST:event_jbGuardarActionPerformed
 
@@ -495,5 +512,25 @@ private void seteo(){
             JOptionPane.showMessageDialog(this, "Falta completar Fecha ");
         }
         return revision;
+    }
+    public void carnet(){
+          con = Conexion.getConexion();
+       
+             
+        
+        try {
+            JasperReport report = null;
+            String dir = "src\\RECURSOS\\carnet.jasper";
+            report = (JasperReport) JRLoader.loadObjectFromFile(dir);
+            Map parametro = new HashMap();
+            parametro.put("cliente", mascotaP.getcliente().getIdCliente());
+            parametro.put("mascota", mascotaP.getIdMascota());
+            JasperPrint jprint = JasperFillManager.fillReport(report, parametro, con);
+            JasperViewer view = new JasperViewer(jprint, false);
+            view.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+            view.setVisible(true);
+        } catch (JRException ex) {
+            Logger.getLogger(Mascota_HistorialClinico.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

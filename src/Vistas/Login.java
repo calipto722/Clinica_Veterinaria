@@ -5,6 +5,9 @@
  */
 package Vistas;
 
+import Acceso_Base_de_Datos.UsuarioData;
+import Entidades.Usuario;
+
 
 /**
  *
@@ -175,25 +178,25 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEntrarActionPerformed
-//    UsuarioData usuarioData =new UsuarioData();
-//    String contrString= jPassword.getText();
-//    String usuarioString=jtUsuario.getText();
-//        try {
-//             Usuario usuario= usuarioData.verificarUsuario(usuarioString);
-//      
-//           if (usuarioData.verificarPasswor(usuario,contrString)) {
-//             MenuPrincipal menu = new MenuPrincipal();
-//            menu.setVisible(true);
-//                    this.dispose();
-//        }else{
-//           jPassword.setText("");
-//           }
-//           
-//        } catch (NullPointerException e) {
-//        jPassword.setText("");
-//        jtUsuario.setText("");
-//        }
-//     
+    UsuarioData usuarioData =new UsuarioData();
+    String contrString= jPassword.getText();
+    String usuarioString=jtUsuario.getText();
+        try {
+             Usuario usuario= usuarioData.verificarUsuario(usuarioString);
+      
+           if (usuarioData.verificarPasswor(usuario,contrString)) {
+             MenuPrincipal menu = new MenuPrincipal();
+            menu.setVisible(true);
+                    this.dispose();
+        }else{
+           jPassword.setText("");
+           }
+           
+        } catch (NullPointerException e) {
+        jPassword.setText("");
+        jtUsuario.setText("");
+        }
+     
     }//GEN-LAST:event_jbEntrarActionPerformed
 
     private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed

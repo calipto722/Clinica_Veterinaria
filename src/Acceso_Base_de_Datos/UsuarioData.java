@@ -39,7 +39,7 @@ public class UsuarioData {
             if (rs.next()) {
                 usuario.setIdUsuario(rs.getInt("idUsuario"));
                 usuario.setNombre(rs.getString("nombre"));
-                usuario.setPassword(rs.getString("pasword"));
+                usuario.setPassword(rs.getString("password"));
                 
             } else {
                 JOptionPane.showMessageDialog(null, " Usuario no Registrado");
