@@ -111,7 +111,7 @@ public class TratamientoActivos extends javax.swing.JInternalFrame {
     private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
        dispose();
     }//GEN-LAST:event_jbSalirActionPerformed
-
+//Agrego comentario 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
