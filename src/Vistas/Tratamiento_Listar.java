@@ -167,7 +167,9 @@ private void armarTabla() {
     private void cargarTabla() {
         TratamientoData tratamientoData = new TratamientoData();
         List<Tratamiento> tratamientos = tratamientoData.ListarTratamiento();
+       
         for (Tratamiento tratamiento : tratamientos) {
+           
             modelo.addRow(new Object[]{
                 tratamiento.getIdTratamiento(),
                 tratamiento.getTipoTratamiento(),
@@ -183,3 +185,4 @@ private void armarTabla() {
     }
     
 }
+
