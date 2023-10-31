@@ -22,7 +22,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ProductosporNombre extends javax.swing.JInternalFrame {
 
-    private DefaultTableModel modelo = new DefaultTableModel();
+    private DefaultTableModel modelo;
     
     
 
@@ -38,7 +38,10 @@ public class ProductosporNombre extends javax.swing.JInternalFrame {
         jtCant.setVisible(false);
         
     }
-
+public void nuevaTabla(){
+    modelo= new DefaultTableModel();
+    jtProductos.setModel(modelo);
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -207,6 +210,9 @@ public class ProductosporNombre extends javax.swing.JInternalFrame {
             if (filselec == -1) {
                 JOptionPane.showMessageDialog(null, "Debe seleccionar producto", "Advertancia", JOptionPane.WARNING_MESSAGE);// TODO add your handling code here:
             } else {
+                if (jtCant.getText().isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Ingresar Cantidad", "Advertancia", JOptionPane.WARNING_MESSAGE);
+                }
                 modelo = (DefaultTableModel) jtProductos.getModel();
                 id = jtProductos.getValueAt(filselec, 0).toString();
                 nombre = jtProductos.getValueAt(filselec, 1).toString();
@@ -216,26 +222,28 @@ public class ProductosporNombre extends javax.swing.JInternalFrame {
 
                 double x = (Double.parseDouble(precio) * Integer.parseInt(cant));
                 importe = String.valueOf(x);
-               
+              
 
                 
                 modelo = (DefaultTableModel) Ventas.jtFactura.getModel();
-                String filaElemento[]={id,nombre,descripcion,precio,importe};
+                String filaElemento[]={id,nombre,descripcion,importe};
                 model.addRow(filaElemento);
                 ProductoData prod = new ProductoData();
                 Producto producStock = prod.BuscarProductoPorId(Integer.parseInt(id));
                 producStock.setStock(producStock.getStock() - Integer.parseInt(cant));
                 prod.ModificarProducto(producStock);
+                
                 Ventas.total+= x;
-                Ventas.iva= total*0.21;
+                
                 lbl_total.setText("$"+total);
-                Ventas.lb_Iva.setText(Ventas.iva+"");
+                
+                dispose();
             }
         } catch (Exception ex) {
 
         }
 
-        dispose();
+        
 // TODO add your handling code here:
     }//GEN-LAST:event_jbAgregarActionPerformed
 
@@ -253,6 +261,7 @@ public class ProductosporNombre extends javax.swing.JInternalFrame {
     public javax.swing.JTable jtProductos;
     // End of variables declaration//GEN-END:variables
 private void armarTabla() {
+    modelo=new DefaultTableModel();
         modelo.addColumn("id");
         modelo.addColumn("nombre");
         modelo.addColumn("descripcion");
