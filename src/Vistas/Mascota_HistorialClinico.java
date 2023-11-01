@@ -235,14 +235,26 @@ public class Mascota_HistorialClinico extends javax.swing.JInternalFrame {
                 }
 
             }
-            String pesopro = pesopromed(jTable1);
-            PesoPromedio.setText(pesopro);
-            if (masp != null) {
-                masp.setPesoprod(Double.valueOf(pesopro));
-                mascotaData.ModificarPesoMascota(masp);
+          try {
+                String pesopro = pesopromed(jTable1);
+                PesoPromedio.setText(pesopro);
+
+                if (masp != null) {
+                    // Manejo de la excepción al convertir a double
+                    try {
+                        masp.setPesoprod(Double.valueOf(pesopro));
+                        mascotaData.ModificarPesoMascota(masp);
+                    } catch (NumberFormatException e) {
+                        // Manejo de la excepción de conversión a double
+                        // Puedes imprimir un mensaje de error o realizar otras acciones
+                        System.out.println("Error al convertir a double: " + e.getMessage());
+                    }
                 }
+            } catch (Exception ex) {
+                // Manejo de excepciones generales
+                ex.printStackTrace();
+            }
         }
-// TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jtTratamientoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtTratamientoKeyReleased
@@ -250,24 +262,39 @@ public class Mascota_HistorialClinico extends javax.swing.JInternalFrame {
         borrarFilas();
         VisitaData visitData = new VisitaData();
 
+      try {
         List<Visita> visitas = visitData.listarVisitasPorMascota(masp);
         for (Visita visit : visitas) {
-            if (visit.getTratamiento().getTipoTratamiento().toLowerCase().startsWith(jtTratamiento.getText().toLowerCase()) ) {
-                System.out.println(visitas);
+            if (visit.getTratamiento().getTipoTratamiento().toLowerCase().startsWith(jtTratamiento.getText().toLowerCase())) {
                 modelo.addRow(new Object[]{
                     visit.getFechaVisita(),
                     visit.getTratamiento().getTipoTratamiento(),
                     visit.getPesoActual()
                 });
             }
-
         }
-         String pesopro = pesopromed(jTable1);
+
+        try {
+            String pesopro = pesopromed(jTable1);
             PesoPromedio.setText(pesopro);
+            
             if (masp != null) {
-                masp.setPesoprod(Double.valueOf(pesopro));
-                mascotaData.ModificarPesoMascota(masp);
+                try {
+                    masp.setPesoprod(Double.valueOf(pesopro));
+                    mascotaData.ModificarPesoMascota(masp);
+                } catch (NumberFormatException e) {
+                    // Manejo de excepción de conversión a double
+                    System.err.println("Error al convertir a double: " + e.getMessage());
+                }
             }
+        } catch (Exception ex) {
+            // Manejo de excepción general para pesopromed
+            System.err.println("Error en pesopromed: " + ex.getMessage());
+        }
+    } catch (Exception ex) {
+        // Manejo de excepción general para listarVisitasPorMascota
+        System.err.println("Error en listarVisitasPorMascota: " + ex.getMessage());
+    }
     }//GEN-LAST:event_jtTratamientoKeyReleased
 
 
