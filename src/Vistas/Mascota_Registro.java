@@ -527,7 +527,7 @@ private void seteo(){
             String dir = "src\\RECURSOS\\carnet.jasper";
             report = (JasperReport) JRLoader.loadObjectFromFile(dir);
             Map parametro = new HashMap();
-            parametro.put("cliente", mascotaP.getcliente().getIdCliente());
+            
             parametro.put("mascota", mascotaP.getIdMascota());
             JasperPrint jprint = JasperFillManager.fillReport(report, parametro, con);
             JasperViewer view = new JasperViewer(jprint, false);
