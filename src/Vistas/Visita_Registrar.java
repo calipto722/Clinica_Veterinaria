@@ -387,6 +387,7 @@ public class Visita_Registrar extends javax.swing.JInternalFrame {
           Visita visita= new Visita(fecha,importeVisita, tratamientodeVisita,Double.valueOf(peso), masp);
         visitd.GuardarVisita(visita); 
         // agregar un limpiar
+        Limpiar();
         }
       }catch (NullPointerException npe){
           JOptionPane.showMessageDialog(this,"Error en el formato de fecha");
@@ -498,5 +499,12 @@ public class Visita_Registrar extends javax.swing.JInternalFrame {
            revision= false;
         }
       return revision;
+    }
+    private void Limpiar(){
+        jDateFechaVisita.setDate(null);
+        jtPesoActual.setText("");
+       jcMascotaselec.removeAllItems();
+        cargarbox();
+       
     }
 }
