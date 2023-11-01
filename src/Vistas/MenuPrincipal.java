@@ -30,7 +30,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         Escritorio = new javax.swing.JDesktopPane();
-        jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenuClientes = new javax.swing.JMenu();
         jmGestionClientes = new javax.swing.JMenuItem();
@@ -50,31 +49,19 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
-        jMenuItem8 = new javax.swing.JMenuItem();
         jSMSalir = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/RECURSOS/klipartz.com (31).png"))); // NOI18N
-
-        Escritorio.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout EscritorioLayout = new javax.swing.GroupLayout(Escritorio);
         Escritorio.setLayout(EscritorioLayout);
         EscritorioLayout.setHorizontalGroup(
             EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(EscritorioLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1259, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(47, Short.MAX_VALUE))
+            .addGap(0, 1312, Short.MAX_VALUE)
         );
         EscritorioLayout.setVerticalGroup(
             EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(EscritorioLayout.createSequentialGroup()
-                .addGap(67, 67, 67)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 689, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(21, Short.MAX_VALUE))
+            .addGap(0, 777, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -164,7 +151,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMenuVisita.setIcon(new javax.swing.ImageIcon(getClass().getResource("/RECURSOS/klipartz.com (28).png"))); // NOI18N
         jMenuVisita.setText("Visita");
 
-        jmRegistrarVisita.setText("Registrar visita");
+        jmRegistrarVisita.setText("Registrar Visita");
         jmRegistrarVisita.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jmRegistrarVisitaActionPerformed(evt);
@@ -180,7 +167,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
         jMenuVisita.add(jListarTratamiento);
 
-        jmBuscarTratamiento.setText("Buscar visita por Tratamiento");
+        jmBuscarTratamiento.setText("Tipo de Tratamientos");
         jmBuscarTratamiento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jmBuscarTratamientoActionPerformed(evt);
@@ -201,7 +188,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/RECURSOS/klipartz.com (14).png"))); // NOI18N
         jMenu1.setText("Contabilidad");
 
-        jMenuItem1.setText("Factura");
+        jMenuItem1.setText("Facturacion");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem1ActionPerformed(evt);
@@ -214,15 +201,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMenu5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/RECURSOS/klipartz.com (16).png"))); // NOI18N
         jMenu5.setText("Salir");
 
-        jMenuItem8.setText("Cerrar");
-        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem8ActionPerformed(evt);
-            }
-        });
-        jMenu5.add(jMenuItem8);
-
-        jSMSalir.setText("Salir");
+        jSMSalir.setText("SALIR");
         jSMSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jSMSalirActionPerformed(evt);
@@ -286,10 +265,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
         Escritorio.add(stockProducto);
         Escritorio.moveToFront(stockProducto);        // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem6ActionPerformed
-
-    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     private void jSMSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSMSalirActionPerformed
         dispose();        // TODO add your handling code here:
@@ -409,7 +384,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JDesktopPane Escritorio;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuItem jListarTratamiento;
     private javax.swing.JMenuItem jMGestionMascotas;
     private javax.swing.JMenu jMenu1;
@@ -420,7 +394,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenu jMenuProductos;
     private javax.swing.JMenu jMenuVisita;
     private javax.swing.JMenu jMmascotas;
