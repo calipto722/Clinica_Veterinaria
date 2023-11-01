@@ -117,28 +117,63 @@ public class Tratamiento_Listar extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAgregarActionPerformed
+//        int filselec = jtTratamientos.getSelectedRow();
+//        ProductoData prod = new ProductoData();
+//        Producto prodselec = new Producto();
+//        String tipo, descripcion,descripcionprod, importe;
+//        boolean estado;
+//        int idTratamiento, idProducto;
+//        if (filselec == -1) {
+//            JOptionPane.showMessageDialog(null, "Debe seleccionar producto", "Advertancia", JOptionPane.WARNING_MESSAGE);// TODO add your handling code here:
+//        } else {
+//            modelo = (DefaultTableModel) jtTratamientos.getModel();
+//            idTratamiento= Integer.parseInt(jtTratamientos.getValueAt(filselec,0).toString());
+//            System.out.println(idTratamiento);
+//            tipo = jtTratamientos.getValueAt(filselec, 1).toString();
+//            descripcion = jtTratamientos.getValueAt(filselec, 2).toString();
+//            idProducto = Integer.parseInt( jtTratamientos.getValueAt(filselec, 3).toString());
+//            prodselec = prod.BuscarProductoPorId(idProducto);
+//            descripcionprod = jtTratamientos.getValueAt(filselec, 4).toString();
+//            estado = jtTratamientos.getValueAt(filselec, 5).toString().equals("true");
+//            importe = jtTratamientos.getValueAt(filselec, 6).toString();
+//            System.out.println(tratamientoData.BuscarTratamiento(idTratamiento));
+//            Tratamiento trataselec = tratamientoData.BuscarTratamiento(idTratamiento);
+//            Tratamiento_Registrar.tratamientoP=trataselec;        
+//            Tratamiento_Registrar.jtDescripcion.setText(descripcion);
+//            Tratamiento_Registrar.jtTipo.setText(tipo);
+//            Tratamiento_Registrar.jcProducto.removeAllItems();
+//            Tratamiento_Registrar.jcProducto.addItem(prodselec);
+//            Tratamiento_Registrar.jcheckEstado.setSelected(estado);
+//            Tratamiento_Registrar.jtImporte.setText(importe);
+//            dispose();
+            try {
         int filselec = jtTratamientos.getSelectedRow();
         ProductoData prod = new ProductoData();
         Producto prodselec = new Producto();
-        String tipo, descripcion,descripcionprod, importe;
+        String tipo, descripcion, descripcionprod, importe;
         boolean estado;
         int idTratamiento, idProducto;
+        
         if (filselec == -1) {
-            JOptionPane.showMessageDialog(null, "Debe seleccionar producto", "Advertancia", JOptionPane.WARNING_MESSAGE);// TODO add your handling code here:
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un producto", "Advertencia", JOptionPane.WARNING_MESSAGE);
         } else {
             modelo = (DefaultTableModel) jtTratamientos.getModel();
-            idTratamiento= Integer.parseInt(jtTratamientos.getValueAt(filselec,0).toString());
-            System.out.println(idTratamiento);
+            idTratamiento = Integer.parseInt(jtTratamientos.getValueAt(filselec, 0).toString());
             tipo = jtTratamientos.getValueAt(filselec, 1).toString();
             descripcion = jtTratamientos.getValueAt(filselec, 2).toString();
-            idProducto = Integer.parseInt( jtTratamientos.getValueAt(filselec, 3).toString());
+            idProducto = Integer.parseInt(jtTratamientos.getValueAt(filselec, 3).toString());
+            
+            // Manejo de NullPointerException si prod.BuscarProductoPorId(idProducto) devuelve null
             prodselec = prod.BuscarProductoPorId(idProducto);
+            
             descripcionprod = jtTratamientos.getValueAt(filselec, 4).toString();
             estado = jtTratamientos.getValueAt(filselec, 5).toString().equals("true");
             importe = jtTratamientos.getValueAt(filselec, 6).toString();
-            System.out.println(tratamientoData.BuscarTratamiento(idTratamiento));
+            
+            // Manejo de excepciones de base de datos o E/S si es necesario
             Tratamiento trataselec = tratamientoData.BuscarTratamiento(idTratamiento);
-            Tratamiento_Registrar.tratamientoP=trataselec;        
+            Tratamiento_Registrar.tratamientoP = trataselec;
+            
             Tratamiento_Registrar.jtDescripcion.setText(descripcion);
             Tratamiento_Registrar.jtTipo.setText(tipo);
             Tratamiento_Registrar.jcProducto.removeAllItems();
@@ -146,10 +181,18 @@ public class Tratamiento_Listar extends javax.swing.JInternalFrame {
             Tratamiento_Registrar.jcheckEstado.setSelected(estado);
             Tratamiento_Registrar.jtImporte.setText(importe);
             dispose();
+        }
+        
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(null, "Error al convertir valores numéricos", "Error", JOptionPane.ERROR_MESSAGE);
+    } catch (NullPointerException e) {
+        JOptionPane.showMessageDialog(null, "Error de datos nulos", "Error", JOptionPane.ERROR_MESSAGE);
+    }
+
 // TODO add your handling code here:
     }//GEN-LAST:event_jbAgregarActionPerformed
   
-    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;

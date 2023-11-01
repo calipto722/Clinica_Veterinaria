@@ -11,6 +11,7 @@ import Acceso_Base_de_Datos.VisitaData;
 import Entidades.Mascota;
 import Entidades.Visita;
 import java.sql.Connection;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -63,6 +64,7 @@ public class Mascota_HistorialClinico extends javax.swing.JInternalFrame {
         PesoPromedio = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jtTratamiento = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
 
         setClosable(true);
 
@@ -76,7 +78,9 @@ public class Mascota_HistorialClinico extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        jLabel1.setText("Historial Clinico");
+        jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("HISTORIAL CLINICO");
 
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -96,7 +100,7 @@ public class Mascota_HistorialClinico extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel2.setText("Peso Promedio");
+        jLabel2.setText("PESO PROMEDIO:");
 
         PesoPromedio.setText("--------");
 
@@ -109,6 +113,8 @@ public class Mascota_HistorialClinico extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel4.setText("Mascota:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -116,38 +122,39 @@ public class Mascota_HistorialClinico extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(124, 124, 124)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(37, 37, 37)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jComboBox1, 0, 262, Short.MAX_VALUE)
+                            .addComponent(jtTratamiento))
+                        .addGap(0, 230, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jScrollPane1)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(PesoPromedio, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jbExportar))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(359, 359, 359)
-                                .addComponent(jLabel1))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(124, 124, 124)
-                                .addComponent(jLabel3)
-                                .addGap(37, 37, 37)
-                                .addComponent(jtTratamiento, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(269, 269, 269)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 230, Short.MAX_VALUE)))
+                                .addComponent(jbExportar)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(21, 21, 21)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(5, 5, 5)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -157,14 +164,15 @@ public class Mascota_HistorialClinico extends javax.swing.JInternalFrame {
                         .addGap(58, 58, 58)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jbExportar)
-                        .addContainerGap(20, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jbExportar)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(294, 294, 294)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(PesoPromedio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap())))
+                        .addComponent(PesoPromedio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
         );
 
         pack();
@@ -172,7 +180,7 @@ public class Mascota_HistorialClinico extends javax.swing.JInternalFrame {
 
     private void jbExportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbExportarActionPerformed
         con = Conexion.getConexion();
-        if (jComboBox1.getSelectedIndex() == -1 ||jComboBox1.getSelectedIndex()== 0) {
+        if (jComboBox1.getSelectedIndex() == -1 || jComboBox1.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(null, "Seleccionar una Mascota");
         } else {
             masp = (Mascota) jComboBox1.getSelectedItem();
@@ -189,6 +197,8 @@ public class Mascota_HistorialClinico extends javax.swing.JInternalFrame {
             view.setVisible(true);
         } catch (JRException ex) {
             Logger.getLogger(Mascota_HistorialClinico.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NullPointerException np) {
+            JOptionPane.showMessageDialog(this, "Error al exportar Historial");
         }
     }//GEN-LAST:event_jbExportarActionPerformed
 
@@ -225,14 +235,26 @@ public class Mascota_HistorialClinico extends javax.swing.JInternalFrame {
                 }
 
             }
-            String pesopro = pesopromed(jTable1);
-            PesoPromedio.setText(pesopro);
-            if (masp != null) {
-                masp.setPesoprod(Double.valueOf(pesopro));
-                mascotaData.ModificarPesoMascota(masp);
+          try {
+                String pesopro = pesopromed(jTable1);
+                PesoPromedio.setText(pesopro);
+
+                if (masp != null) {
+                    // Manejo de la excepción al convertir a double
+                    try {
+                        masp.setPesoprod(Double.valueOf(pesopro));
+                        mascotaData.ModificarPesoMascota(masp);
+                    } catch (NumberFormatException e) {
+                        // Manejo de la excepción de conversión a double
+                        // Puedes imprimir un mensaje de error o realizar otras acciones
+                        System.out.println("Error al convertir a double: " + e.getMessage());
+                    }
                 }
+            } catch (Exception ex) {
+                // Manejo de excepciones generales
+                ex.printStackTrace();
+            }
         }
-// TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jtTratamientoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtTratamientoKeyReleased
@@ -240,24 +262,39 @@ public class Mascota_HistorialClinico extends javax.swing.JInternalFrame {
         borrarFilas();
         VisitaData visitData = new VisitaData();
 
+      try {
         List<Visita> visitas = visitData.listarVisitasPorMascota(masp);
         for (Visita visit : visitas) {
-            if (visit.getTratamiento().getTipoTratamiento().toLowerCase().startsWith(jtTratamiento.getText().toLowerCase()) ) {
-                System.out.println(visitas);
+            if (visit.getTratamiento().getTipoTratamiento().toLowerCase().startsWith(jtTratamiento.getText().toLowerCase())) {
                 modelo.addRow(new Object[]{
                     visit.getFechaVisita(),
                     visit.getTratamiento().getTipoTratamiento(),
                     visit.getPesoActual()
                 });
             }
-
         }
-         String pesopro = pesopromed(jTable1);
+
+        try {
+            String pesopro = pesopromed(jTable1);
             PesoPromedio.setText(pesopro);
+            
             if (masp != null) {
-                masp.setPesoprod(Double.valueOf(pesopro));
-                mascotaData.ModificarPesoMascota(masp);
+                try {
+                    masp.setPesoprod(Double.valueOf(pesopro));
+                    mascotaData.ModificarPesoMascota(masp);
+                } catch (NumberFormatException e) {
+                    // Manejo de excepción de conversión a double
+                    System.err.println("Error al convertir a double: " + e.getMessage());
+                }
             }
+        } catch (Exception ex) {
+            // Manejo de excepción general para pesopromed
+            System.err.println("Error en pesopromed: " + ex.getMessage());
+        }
+    } catch (Exception ex) {
+        // Manejo de excepción general para listarVisitasPorMascota
+        System.err.println("Error en listarVisitasPorMascota: " + ex.getMessage());
+    }
     }//GEN-LAST:event_jtTratamientoKeyReleased
 
 
@@ -267,6 +304,7 @@ public class Mascota_HistorialClinico extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JButton jbExportar;
@@ -310,9 +348,11 @@ public class Mascota_HistorialClinico extends javax.swing.JInternalFrame {
 
             pesosuma = (double) (pesosuma + Double.parseDouble(jTable1.getValueAt(i, 2).toString()));
             pesoprod = pesosuma / jTable.getRowCount();
-
+         
         }
+      
         return pesoprod + "";
+     
     }
 
 }

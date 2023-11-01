@@ -103,7 +103,7 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jmRegistrarVisita">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Registrar visita"/>
+                <Property name="text" type="java.lang.String" value="Registrar Visita"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmRegistrarVisitaActionPerformed"/>
@@ -119,7 +119,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jmBuscarTratamiento">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Buscar visita por Tratamiento"/>
+                <Property name="text" type="java.lang.String" value="Tipo de Tratamientos"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmBuscarTratamientoActionPerformed"/>
@@ -145,7 +145,7 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Factura"/>
+                <Property name="text" type="java.lang.String" value="Facturacion"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem1ActionPerformed"/>
@@ -161,17 +161,9 @@
             <Property name="text" type="java.lang.String" value="Salir"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem8">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Cerrar"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem8ActionPerformed"/>
-              </Events>
-            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jSMSalir">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Salir"/>
+                <Property name="text" type="java.lang.String" value="SALIR"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jSMSalirActionPerformed"/>
@@ -244,7 +236,9 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="1316" max="32767" attributes="0"/>
+
+                  <EmptySpace min="0" pref="1312" max="32767" attributes="0"/>
+
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
