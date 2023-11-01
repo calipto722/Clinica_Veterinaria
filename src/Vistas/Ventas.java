@@ -24,7 +24,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Ventas extends javax.swing.JInternalFrame {
 
-    public static DefaultTableModel model ;
+    public static DefaultTableModel model;
 
     Visita visita;
     static double total, iva;
@@ -66,6 +66,7 @@ public class Ventas extends javax.swing.JInternalFrame {
         jbEliminar = new javax.swing.JButton();
         lbl_total = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setClosable(true);
 
@@ -122,6 +123,13 @@ public class Ventas extends javax.swing.JInternalFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel3.setText("Total");
 
+        jButton1.setText("Guardar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -140,6 +148,8 @@ public class Ventas extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addComponent(lbl_total, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(29, 29, 29)
                 .addComponent(jbEliminar)
                 .addGap(20, 20, 20))
         );
@@ -153,7 +163,9 @@ public class Ventas extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(34, 34, 34)
-                        .addComponent(jbEliminar))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jbEliminar)
+                            .addComponent(jButton1)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(49, 49, 49)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -224,7 +236,6 @@ public class Ventas extends javax.swing.JInternalFrame {
         productosporNombre.jbAgregar.setVisible(true);
         productosporNombre.jlcant.setVisible(true);
         productosporNombre.jtCant.setVisible(true);
-        
 
 // TODO add your handling code here:
     }//GEN-LAST:event_jbAgregarActionPerformed
@@ -236,15 +247,15 @@ public class Ventas extends javax.swing.JInternalFrame {
         nombreVisita = visita.getTratamiento().getTipoTratamiento() + "";
         descripcionVisita = visita.getTratamiento().getDescripcion();
         int importTra = visita.getTratamiento().getImporte();
-        int impvis= visita.getImporte();
+        int impvis = visita.getImporte();
 
-       int importProd = visita.getTratamiento().getProducto().getPrecio() ;
-       int importevis = importTra + impvis+importProd;
-       
-        String elemento[] = {idVisita, nombreVisita, descripcionVisita, importevis+""};
+        int importProd = visita.getTratamiento().getProducto().getPrecio();
+        int importevis = importTra + impvis + importProd;
+
+        String elemento[] = {idVisita, nombreVisita, descripcionVisita, importevis + ""};
         model.addRow(elemento);
 //        Ventas.jtFactura.setModel(model);
-        total +=   importevis;
+        total += importevis;
         lbl_total.setText("$" + total);
         jlFecha.setText(visita.getFechaVisita().toString());// TODO add your handling code here:
     }//GEN-LAST:event_jbSeleccionarActionPerformed
@@ -254,20 +265,29 @@ public class Ventas extends javax.swing.JInternalFrame {
         if (filselec == -1) {
             JOptionPane.showMessageDialog(null, "Seleccione una fila");
         } else {
-            
-            
-            String importProd = jtFactura.getValueAt(filselec,3 ).toString() ;
-            total = total -Double.parseDouble(importProd);
-            
+
+            String importProd = jtFactura.getValueAt(filselec, 3).toString();
+            total = total - Double.parseDouble(importProd);
+
             lbl_total.setText("$" + total);
-            
+
             model.removeRow(filselec);
             jtFactura.setModel(model);
         }// TODO add your handling code here:
     }//GEN-LAST:event_jbEliminarActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        int filselec = jtFactura.getRowCount();
+        if (filselec != 0) {
+            JOptionPane.showMessageDialog(null, "Se envio factura por Correo Electronico");
+        } else {
+            JOptionPane.showMessageDialog(null, "Falta Cargar Productos");
+        }// TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<Visita> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -299,7 +319,7 @@ public class Ventas extends javax.swing.JInternalFrame {
         model.addColumn("Id");
         model.addColumn("Nombre");
         model.addColumn("Descripcion");
-        
+
         model.addColumn("Importe");
 
         jtFactura.setModel(model);
