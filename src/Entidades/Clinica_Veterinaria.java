@@ -5,15 +5,10 @@
  */
 package Entidades;
 
-import Acceso_Base_de_Datos.ClienteData;
 import Acceso_Base_de_Datos.Conexion;
 import Acceso_Base_de_Datos.MascotaData;
-import Acceso_Base_de_Datos.ProductoData;
-import Acceso_Base_de_Datos.TratamientoData;
 import Acceso_Base_de_Datos.VisitaData;
-import com.sun.javafx.font.PrismFontFile;
-import java.time.LocalDate;
-import java.time.Month;
+import java.sql.Connection;
 import java.util.List;
 
 /**
@@ -27,8 +22,8 @@ public class Clinica_Veterinaria {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        Conexion.getConexion();
-        MascotaData mascotaData= new MascotaData();
+        Conexion con;
+       
 //       ClienteData clientD= new ClienteData();
 //       Cliente cliente= new Cliente();
      //  Cliente client=new Cliente(302240234, "Mar","Juzco ", 1332444092, "2244552", "calle 24 n 4668", true);
@@ -84,15 +79,16 @@ public class Clinica_Veterinaria {
 ////            
 //        }
 //Mascota masc= mascotaData.BuscarMascotaPorNombre("Cielo");
-Mascota masp = mascotaData.BuscarMascota(2);
-//        System.out.println(masc);
-       
-        VisitaData visitaData= new VisitaData();
-        List<Visita> visitas=visitaData.listarVisitasPorMascota(masp);
-        for (Visita visita : visitas) {
-            System.out.println(visita);
-        }
-            
+//Mascota masp = mascotaData.BuscarMascota(2);
+////        System.out.println(masc);
+//
+//VisitaData visitaData= new VisitaData();
+//List<Visita> visitas=visitaData.listarVisitasPorMascota(masp);
+//for (Visita visita : visitas) {
+//    System.out.println(visita);
+//}
+        con = new Conexion();
+
         }
     }
 

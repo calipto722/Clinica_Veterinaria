@@ -22,7 +22,7 @@ public class Conexion {
     private static String password = "";
     private static Connection connection;
 
-    private Conexion() {
+    public Conexion() {
     }
 
     public static Connection getConexion() {
@@ -30,7 +30,7 @@ public class Conexion {
         if (connection == null) {
 
             try {
-                Class.forName("org.mariadb.jdbc.Driver");
+                Class.forName("org.mariadb.jdbc.Statement");
 
                 // Setup the connection with the DB
                 connection = DriverManager.getConnection(url + Db + "?useLegacyDatetimeCode=false&serverTimezone=UTC" + "&user=" + usuario + "&password=" + password);
