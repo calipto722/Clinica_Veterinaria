@@ -8,6 +8,7 @@ package Vistas;
 import Acceso_Base_de_Datos.ProductoData;
 import Entidades.Producto;
 import static Vistas.Ventas.lbl_total;
+import static Vistas.Ventas.model;
 import static Vistas.Ventas.total;
 import java.util.List;
 import javax.swing.DefaultListModel;
@@ -194,34 +195,37 @@ public class ProductosporNombre extends javax.swing.JInternalFrame {
     private void jbAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAgregarActionPerformed
         int filselec = jtProductos.getSelectedRow();
         try {
-            String id,cant;
+            String id, nombre, descripcion, precio, cant, importe;
 
             if (filselec == -1) {
                 JOptionPane.showMessageDialog(null, "Debe seleccionar producto", "Advertancia", JOptionPane.WARNING_MESSAGE);// TODO add your handling code here:
-            }
-            else {
+            } else {
                 modelo = (DefaultTableModel) jtProductos.getModel();
                 id = jtProductos.getValueAt(filselec, 0).toString();
-                
+                nombre = jtProductos.getValueAt(filselec, 1).toString();
+                descripcion = jtProductos.getValueAt(filselec, 2).toString();
+                precio = jtProductos.getValueAt(filselec, 3).toString();
                 cant = jtCant.getText();
 
-                //
-                //model.addElement(filaElemento);
-                ProductoData prod = new ProductoData();
-                Producto producSelec = prod.BuscarProductoPorId(Integer.parseInt(id));
-                double importetotal = (producSelec.getPrecio() * Integer.parseInt(cant));
-                producSelec.setStock(producSelec.getStock() - Integer.parseInt(cant));
+                double x = (Double.parseDouble(precio) * Integer.parseInt(cant));
+                importe = String.valueOf(x);
+               
+
                 
-                prod.ModificarProducto(producSelec);
-                Ventas.total+= importetotal;
+                String filaElemento = "Producto : " + cant + ", " + nombre + ", " + descripcion +" Precio: $"+ x;
+                model.addElement(filaElemento);
+                ProductoData prod = new ProductoData();
+                Producto producStock = prod.BuscarProductoPorId(Integer.parseInt(id));
+                producStock.setStock(producStock.getStock() - Integer.parseInt(cant));
+                prod.ModificarProducto(producStock);
+                Ventas.total+= x;
                 lbl_total.setText("$"+total);
-                dispose();
             }
-        } catch (NumberFormatException ex) {
-JOptionPane.showMessageDialog(null, "Debe Insertar Numeros en cantidad", "Advertancia", JOptionPane.WARNING_MESSAGE);
+        } catch (Exception ex) {
+
         }
 
-        
+        dispose();
 // TODO add your handling code here:
     }//GEN-LAST:event_jbAgregarActionPerformed
 
@@ -239,8 +243,8 @@ JOptionPane.showMessageDialog(null, "Debe Insertar Numeros en cantidad", "Advert
     public javax.swing.JTable jtProductos;
     // End of variables declaration//GEN-END:variables
 private void armarTabla() {
-        modelo.addColumn("id");// visita
-        modelo.addColumn("nombre");//visita
+        modelo.addColumn("id");
+        modelo.addColumn("nombre");
         modelo.addColumn("descripcion");
         modelo.addColumn("precio");
         modelo.addColumn("stock");
