@@ -49,6 +49,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
+        jMenuItem8 = new javax.swing.JMenuItem();
         jSMSalir = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -57,9 +58,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         Escritorio.setLayout(EscritorioLayout);
         EscritorioLayout.setHorizontalGroup(
             EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-
-            .addGap(0, 1312, Short.MAX_VALUE)
-
+            .addGap(0, 1316, Short.MAX_VALUE)
         );
         EscritorioLayout.setVerticalGroup(
             EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -153,7 +152,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMenuVisita.setIcon(new javax.swing.ImageIcon(getClass().getResource("/RECURSOS/klipartz.com (28).png"))); // NOI18N
         jMenuVisita.setText("Visita");
 
-        jmRegistrarVisita.setText("Registrar Visita");
+        jmRegistrarVisita.setText("Registrar visita");
         jmRegistrarVisita.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jmRegistrarVisitaActionPerformed(evt);
@@ -169,7 +168,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
         jMenuVisita.add(jListarTratamiento);
 
-        jmBuscarTratamiento.setText("Tipo de Tratamientos");
+        jmBuscarTratamiento.setText("Buscar visita por Tratamiento");
         jmBuscarTratamiento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jmBuscarTratamientoActionPerformed(evt);
@@ -190,7 +189,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/RECURSOS/klipartz.com (14).png"))); // NOI18N
         jMenu1.setText("Contabilidad");
 
-        jMenuItem1.setText("Facturacion");
+        jMenuItem1.setText("Factura");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem1ActionPerformed(evt);
@@ -203,7 +202,15 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMenu5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/RECURSOS/klipartz.com (16).png"))); // NOI18N
         jMenu5.setText("Salir");
 
-        jSMSalir.setText("SALIR");
+        jMenuItem8.setText("Cerrar");
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem8ActionPerformed(evt);
+            }
+        });
+        jMenu5.add(jMenuItem8);
+
+        jSMSalir.setText("Salir");
         jSMSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jSMSalirActionPerformed(evt);
@@ -267,6 +274,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
         Escritorio.add(stockProducto);
         Escritorio.moveToFront(stockProducto);        // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     private void jSMSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSMSalirActionPerformed
         dispose();        // TODO add your handling code here:
@@ -396,6 +407,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenu jMenuProductos;
     private javax.swing.JMenu jMenuVisita;
     private javax.swing.JMenu jMmascotas;
