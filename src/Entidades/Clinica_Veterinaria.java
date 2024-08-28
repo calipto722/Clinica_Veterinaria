@@ -8,7 +8,13 @@ package Entidades;
 import Acceso_Base_de_Datos.Conexion;
 import Acceso_Base_de_Datos.MascotaData;
 import Acceso_Base_de_Datos.VisitaData;
+<<<<<<< Updated upstream
 import java.sql.Connection;
+=======
+
+import java.time.LocalDate;
+import java.time.Month;
+>>>>>>> Stashed changes
 import java.util.List;
 
 /**
