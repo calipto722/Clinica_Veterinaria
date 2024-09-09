@@ -223,13 +223,13 @@ public class Tratamiento_Registrar extends javax.swing.JInternalFrame {
         this.jtDescripcion.setText("");
         this.jcheckEstado.setSelected(false);
         this.jtImporte.setText("");
-        tratamientoP=null;
+        tratamientoP = null;
         jcProducto.removeAllItems();
         cargarbox();// TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jbAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAgregarActionPerformed
-        
+
 //        if (revisiondeNull()) {
 //            int importe = Integer.valueOf(this.jtImporte.getText());
 //        boolean estado = jtEstado.getText().equals("1") ? true : false;
@@ -246,7 +246,7 @@ public class Tratamiento_Registrar extends javax.swing.JInternalFrame {
 //
 //        dispose();
 //        }
-if (revisiondeNull()) {
+        if (revisiondeNull()) {
             // Obtener los datos del tratamiento
             String descripcion = this.jtDescripcion.getText();
             int importe = Integer.parseInt(this.jtImporte.getText());
@@ -259,7 +259,7 @@ if (revisiondeNull()) {
 
             // Crear o modificar el tratamiento
             TratamientoData tratamientoData = new TratamientoData();
-            
+
             if (tratamientoP != null) {
                 // Modificar tratamiento existente
                 tratamientoP.setTipoTratamiento(tipoString);
@@ -268,17 +268,17 @@ if (revisiondeNull()) {
                 tratamientoP.setImporte(importe);
                 tratamientoP.setProducto(producStock);
                 tratamientoData.ModificarTratamiento(tratamientoP);
-                Visita_Registrar.tratamientodeVisita=tratamientoP;
+                Visita_Registrar.tratamientodeVisita = tratamientoP;
             } else {
                 // Crear nuevo tratamiento
                 Tratamiento tratamiento = new Tratamiento(tipoString, descripcion, producStock, importe, estado);
                 tratamientoData.GuardarTratamiento(tratamiento);
-                Visita_Registrar.tratamientodeVisita=tratamiento;
+                Visita_Registrar.tratamientodeVisita = tratamiento;
             }
 
             // Cerrar la ventana
             dispose();
-    }
+        }
     }//GEN-LAST:event_jbAgregarActionPerformed
 
     private void jcProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcProductoActionPerformed
@@ -286,13 +286,13 @@ if (revisiondeNull()) {
     }//GEN-LAST:event_jcProductoActionPerformed
 
     private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
- 
+
         Tratamiento_Listar tratamiento_Listar = new Tratamiento_Listar();
         Escritorio.add(tratamiento_Listar);
         tratamiento_Listar.toFront();
         tratamiento_Listar.setVisible(true);
         tratamiento_Listar.jbAgregar.setVisible(true);
-        
+
         // TODO add your handling code here:
     }//GEN-LAST:event_jbBuscarActionPerformed
 
@@ -319,15 +319,32 @@ if (revisiondeNull()) {
 
     private void cargarbox() {
         ProductoData prodData = new ProductoData();
-        Producto anestecia = prodData.BuscarProductoPorId(0);
-        Producto shampoo = prodData.BuscarProductoPorId(1);
-        Producto Primerosauxilios = prodData.BuscarProductoPorId(2);
-        Producto vacunas = prodData.BuscarProductoPorId(3);
-        jcProducto.addItem(anestecia);
-        jcProducto.addItem(shampoo);
-        jcProducto.addItem(Primerosauxilios);
-        jcProducto.addItem(vacunas);
 
+        List<Producto> productos = prodData.ListarProductos();
+
+        // Limpia el JComboBox antes de llenarlo
+        jcProducto.removeAllItems();
+
+        if (productos.isEmpty()) {
+            // Maneja el caso cuando no hay productos
+            JOptionPane.showMessageDialog(null, "No hay productos disponibles.");
+        } else {
+            // Agrega cada producto al JComboBox
+            for (Producto producto : productos) {
+                // Suponiendo que deseas mostrar el nombre del producto
+                jcProducto.addItem(producto);
+            }
+
+//        Producto anestecia = prodData.BuscarProductoPorId(0);
+//        Producto shampoo = prodData.BuscarProductoPorId(1);
+//        Producto Primerosauxilios = prodData.BuscarProductoPorId(2);
+//        Producto vacunas = prodData.BuscarProductoPorId(3);
+//        jcProducto.addItem(anestecia);
+//        jcProducto.addItem(shampoo);
+//        jcProducto.addItem(Primerosauxilios);
+//        jcProducto.addItem(vacunas);
+//
+        }
     }
 
     private boolean revisiondeNull() {

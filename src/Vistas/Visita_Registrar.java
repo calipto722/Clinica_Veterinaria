@@ -34,14 +34,15 @@ public class Visita_Registrar extends javax.swing.JInternalFrame {
 
     private DefaultTableModel m = new DefaultTableModel();
     public static Tratamiento tratamientodeVisita;
-    DefaultListModel<String>model = new DefaultListModel<>();
-    int importeVisita=500;
+    DefaultListModel<String> model = new DefaultListModel<>();
+    int importeVisita = 500;
+
     public Visita_Registrar() {
         initComponents();
         cargarbox();
         this.setTitle("Registro de visita");
         armarTabla();
-        
+
     }
 
     /**
@@ -314,11 +315,12 @@ public class Visita_Registrar extends javax.swing.JInternalFrame {
                                     .addComponent(jtPesoActual, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jcMascotaselec, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jDateFechaVisita, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jButton4)))
+                            .addComponent(jButton4))
+                        .addGap(80, 80, 80))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(73, 73, 73)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(92, Short.MAX_VALUE))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -364,22 +366,23 @@ public class Visita_Registrar extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
-     // falta buscar la forma de que abra el panel para registrar el tratamiento
-    
-       
+        // falta buscar la forma de que abra el panel para registrar el tratamiento
+
+
     }//GEN-LAST:event_jButton4MouseClicked
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-      
-        
+
 // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
-      try{
-          
+      
+
+try{
       
         LocalDate fecha= jDateFechaVisita.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        System.out.print(fecha);
        Mascota masp= (Mascota) jcMascotaselec.getSelectedItem();
         String peso= jtPesoActual.getText();
         VisitaData visitd =new VisitaData();
@@ -404,9 +407,8 @@ public class Visita_Registrar extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jbAddDialogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAddDialogoActionPerformed
-      
-    }//GEN-LAST:event_jbAddDialogoActionPerformed
 
+    }//GEN-LAST:event_jbAddDialogoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -482,21 +484,22 @@ public class Visita_Registrar extends javax.swing.JInternalFrame {
             m.removeRow(i);
         }
     }
-    private boolean casillasVacias(){
-        boolean revision= true;
-        if (this.jDateFechaVisita.getTreeLock()==null) {
+
+    private boolean casillasVacias() {
+        boolean revision = true;
+        if (this.jDateFechaVisita.getTreeLock() == null) {
             JOptionPane.showMessageDialog(this, "Falta Elegir Fecha");
-            revision=false;
-        }else if (jtPesoActual.getText().isEmpty()) {
+            revision = false;
+        } else if (jtPesoActual.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Falta completar Peso");
-            revision=false;
-        }else if (tratamientodeVisita.getDescripcion().isEmpty()) {
+            revision = false;
+        } else if (tratamientodeVisita.getDescripcion().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Falta Elegir Tratamiento");
-            revision=false;
-        }else if (jcMascotaselec.getSelectedIndex()== -1) {
-           JOptionPane.showMessageDialog(this, "Falta Elegir Mascota");
-           revision= false;
+            revision = false;
+        } else if (jcMascotaselec.getSelectedIndex() == -1) {
+            JOptionPane.showMessageDialog(this, "Falta Elegir Mascota");
+            revision = false;
         }
-      return revision;
+        return revision;
     }
 }

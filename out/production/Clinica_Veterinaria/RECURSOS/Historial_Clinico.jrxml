@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="5faa8101-7bac-467c-853b-51946e2d220b">
+	<property name="ireport.zoom" value="1.363636363636364"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="Mascota" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+     visita.`fechaVisita` AS visita_fechaVisita,
+     visita.`peso` AS visita_peso,
+     tratamiento.`descripcion` AS tratamiento_descripcion,
+     mascota.`alias` AS mascota_alias,
+     mascota.`pesoPromedio` AS mascota_pesoPromedio
+FROM
+     `mascota` mascota INNER JOIN `visita` visita ON mascota.`idMascota` = visita.`idMascota`
+     INNER JOIN `tratamiento` tratamiento ON visita.`idTratamiento` = tratamiento.`idTratamiento`
+WHERE
+     mascota.alias LIKE "%$P!{Mascota}%"
+ORDER BY
+     `idVisita` DESC]]>
+	</queryString>
+	<field name="visita_fechaVisita" class="java.sql.Date"/>
+	<field name="visita_peso" class="java.lang.Double"/>
+	<field name="tratamiento_descripcion" class="java.lang.String"/>
+	<field name="mascota_alias" class="java.lang.String"/>
+	<field name="mascota_pesoPromedio" class="java.lang.Double"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="66" splitType="Stretch">
+			<staticText>
+				<reportElement x="60" y="16" width="243" height="34" forecolor="#0000FF" uuid="fa951501-a279-4b8a-9ed5-97dd6814a37a"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="26"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Historial Clinico]]></text>
+			</staticText>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="377" y="23" width="178" height="27" uuid="e20c7c6c-0c4c-4afc-84f8-259a94bd4787"/>
+				<textElement textAlignment="Center">
+					<font fontName="SansSerif" size="15"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<image onErrorType="Blank">
+				<reportElement x="0" y="16" width="50" height="50" uuid="7d4643cc-f3d9-4352-9b75-4f9ea8df73e3"/>
+				<imageExpression><![CDATA["C:\\Users\\Usuario\\Documents\\GitHub\\Clinica_Veterinaria\\src\\RECURSOS\\klipartz.com (26).png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="23" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="20" backcolor="#66FFFF" uuid="671f988c-b640-4fe8-8c3f-f3a82789ef1e"/>
+				<textElement>
+					<font size="13"/>
+				</textElement>
+				<text><![CDATA[MASCOTA: ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="0" width="100" height="20" backcolor="#66FFFF" uuid="9807f7cc-db7d-45af-9d2e-0c170ebfcc2e"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{mascota_alias}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="417" y="0" width="100" height="20" uuid="650eff00-29b4-4ac3-92f4-c66d94cf5764"/>
+				<textFieldExpression><![CDATA[$F{mascota_pesoPromedio}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="315" y="0" width="89" height="20" uuid="3e332038-beb7-43d9-92a5-00d5ebf0659d"/>
+				<text><![CDATA[Peso Promedio:]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="24" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="20" uuid="085c2eb2-8e50-480a-869c-ac9b61f619f3"/>
+				<text><![CDATA[Fecha Visita]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="178" y="0" width="100" height="20" uuid="9d389377-0ebb-4c75-bb2a-7e6bd0b5526a"/>
+				<text><![CDATA[Tratamiento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="355" y="0" width="100" height="20" uuid="265bf858-cb0f-44fd-9e3d-6777e2d6c9b0"/>
+				<text><![CDATA[Peso]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="33" splitType="Stretch">
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="0" y="9" width="131" height="20" uuid="df6015b1-1ca4-4a8b-b845-660fab99c286"/>
+				<textFieldExpression><![CDATA[$F{visita_fechaVisita}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="355" y="9" width="100" height="20" uuid="bf4d5cc6-7873-4889-b918-2dc4d94aef23"/>
+				<textFieldExpression><![CDATA[$F{visita_peso}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="178" y="9" width="137" height="20" uuid="581120cb-1acc-4894-ab40-eab9cbb5a707"/>
+				<textFieldExpression><![CDATA[$F{tratamiento_descripcion}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="29" width="555" height="1" uuid="e865d127-29b8-400d-806c-0c41e9aef4ba"/>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="1" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="25" splitType="Stretch">
+			<textField>
+				<reportElement x="198" y="0" width="80" height="20" uuid="b3aa9972-aef2-4403-9006-b6c55d83497f"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="288" y="0" width="40" height="20" uuid="da7675bb-c2d1-4eb8-827d-07186aa8ad0b"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="34" splitType="Stretch"/>
+	</summary>
+</jasperReport>
